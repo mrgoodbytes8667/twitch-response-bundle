@@ -4,7 +4,7 @@
 namespace Bytes\TwitchResponseBundle\Objects\OAuth2;
 
 
-use Bytes\TwitchResponseBundle\Objects\Interfaces\AccessTokenInterface;
+use Bytes\Response\Common\Interfaces\AccessTokenInterface;
 
 /**
  * Class Token
