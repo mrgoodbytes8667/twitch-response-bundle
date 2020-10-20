@@ -4,13 +4,13 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-json": "*",
-        "symfony/config": "5.1.*",
-        "symfony/console": "5.1.*",
-        "symfony/dependency-injection": "5.1.*",
-        "symfony/framework-bundle": "5.1.*",
-        "symfony/messenger": "5.1.*",
+        "symfony/config": "^5.1",
+        "symfony/console": "^5.1",
+        "symfony/dependency-injection": "^5.1",
+        "symfony/framework-bundle": "^5.1",
+        "symfony/messenger": "^5.1",
         "symfony/serializer": "^5.1",
-        "symfony/string": "5.1.*"
+        "symfony/string": "^5.1"
     },
     "authors": [
         {
