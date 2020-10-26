@@ -29,6 +29,7 @@ phpdoc.xml
 
 ###> symfony bundle
 composer.lock
+bin/phpunit
 ###< symfony bundle
 
 ###> jetbrains

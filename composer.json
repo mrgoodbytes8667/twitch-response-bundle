@@ -14,6 +14,11 @@
         "symfony/serializer": "^5.1",
         "symfony/string": "^5.1"
     },
+    "require-dev": {
+        "ext-json": "*",
+        "symfony/phpunit-bridge": "^5.1",
+        "symfony/var-dumper": "^5.1"
+    },
     "authors": [
         {
             "name": "MrGoodBytes",
@@ -25,7 +30,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Bytes\\TwitchResponseBundle\\": "src/"
+            "Bytes\\TwitchResponseBundle\\": "src/",
+            "Bytes\\TwitchResponseBundle\\Tests\\": "Tests/"
         }
     }
 }
