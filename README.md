@@ -2,7 +2,8 @@
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/mrgoodbytes8667/twitch-response-bundle?style=flat)](https://packagist.org/packages/mrgoodbytes8667/twitch-response-bundle)
 ![Packagist Version](https://img.shields.io/packagist/v/mrgoodbytes8667/twitch-response-bundle?style=flat)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mrgoodbytes8667/twitch-response-bundle/release?style=flat&label=stable)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mrgoodbytes8667/twitch-response-bundle/tests?style=flat)  
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mrgoodbytes8667/twitch-response-bundle/tests?style=flat)
+![Packagist License](https://img.shields.io/packagist/l/mrgoodbytes8667/twitch-response-bundle?style=flat)    
 A Symfony bundle for Twitch API Response objects and enums
 
 ## Installation
