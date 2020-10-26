@@ -2,7 +2,7 @@
 
 <phpunit colors="true" bootstrap="vendor/autoload.php">
     <testsuites>
-        <testsuite name="Enum Serializer Bundle for Symfony and Spatie/Enum">
+        <testsuite name="Project Test Suite">
             <directory>./Tests</directory>
         </testsuite>
     </testsuites>
