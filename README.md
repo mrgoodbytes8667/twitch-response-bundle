@@ -43,7 +43,7 @@ in the `config/bundles.php` file of your project:
 return [
     // ...
     Bytes\EnumSerializerBundle\BytesEnumSerializerBundle::class => ['all' => true],
-    Bytes\TwitchResponseBundle>::class => ['all' => true],
+    Bytes\TwitchResponseBundle\BytesTwitchResponseBundle::class => ['all' => true],
 ];
 ```
 Note: this bundle depends on the [Enum-Serializer-Bundle](https://github.com/mrgoodbytes8667/enum-serializer-bundle) and [setup instructions](https://github.com/mrgoodbytes8667/enum-serializer-bundle/blob/main/README.md#applications-that-dont-use-symfony-flex) for it must be followed as well.
