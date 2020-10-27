@@ -10,6 +10,9 @@ use Bytes\Response\Common\Interfaces\AccessTokenInterface;
  * Class Token
  * @package Bytes\TwitchResponseBundle\Objects\OAuth2
  *
+ * @link https://dev.twitch.tv/docs/authentication Twitch Authentication
+ * @link https://dev.twitch.tv/docs/authentication#refreshing-access-tokens Token response example (included below)
+ *
  * {
  *   "access_token": "<user access token>",
  *   "refresh_token": "<refresh token>",
@@ -22,31 +25,37 @@ class Token implements AccessTokenInterface
 {
 
     /**
+     * User access token
      * @var string|null
      */
     private $accessToken;
 
     /**
+     * Refresh token
      * @var string|null
      */
     private $refreshToken;
 
     /**
+     * Time (in seconds) until the access token expires
      * @var int|null
      */
     private $expiresIn;
 
     /**
+     * Array of scopes
      * @var string[]|null
      */
     private $scope;
 
     /**
-     * @var string|null
+     * Always 'bearer' for Twitch
+     * @var string|null = 'bearer'
      */
     private $tokenType;
 
     /**
+     * Get the user access token
      * @return string|null
      */
     public function getAccessToken(): ?string
@@ -55,6 +64,7 @@ class Token implements AccessTokenInterface
     }
 
     /**
+     * Set the user access token
      * @param string|null $accessToken
      * @return $this
      */
@@ -83,6 +93,7 @@ class Token implements AccessTokenInterface
     }
 
     /**
+     * Get the time (in seconds) until the access token expires
      * @return int|null
      */
     public function getExpiresIn()
@@ -91,6 +102,7 @@ class Token implements AccessTokenInterface
     }
 
     /**
+     * Set the time (in seconds) until the access token expires
      * @param int|null $expiresIn
      * @return $this
      */
@@ -101,6 +113,7 @@ class Token implements AccessTokenInterface
     }
 
     /**
+     * Get the array of scopes
      * @return string[]|null
      */
     public function getScope(): ?array
@@ -109,6 +122,7 @@ class Token implements AccessTokenInterface
     }
 
     /**
+     * Set the scope(s).
      * @param string[]|string|null $scope
      * @return $this
      */
@@ -122,7 +136,8 @@ class Token implements AccessTokenInterface
     }
 
     /**
-     * @return string|null
+     * Get the OAuth token type. Always 'bearer' for Twitch.
+     * @return string|null = 'bearer'
      */
     public function getTokenType(): ?string
     {
@@ -130,7 +145,8 @@ class Token implements AccessTokenInterface
     }
 
     /**
-     * @param string|null $tokenType
+     * Set the OAuth token type. Always 'bearer' for Twitch.
+     * @param string|null $tokenType = 'bearer'
      * @return $this
      */
     public function setTokenType(?string $tokenType): self
