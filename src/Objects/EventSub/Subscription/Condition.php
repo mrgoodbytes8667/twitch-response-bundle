@@ -5,6 +5,7 @@ namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 
 use Illuminate\Support\Str;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
  * Class Condition
@@ -17,24 +18,28 @@ class Condition
     /**
      * @var string|null
      * @Groups({"channel","stream","points_reward_add", "points_rewards_update", "points_reward_remove"})
+     * @SerializedName("broadcaster_user_id")
      */
     private ?string $broadcaster_user_id = null;
 
     /**
      * @var string|null
      * @Groups({"points_rewards_update", "points_reward_remove"})
+     * @SerializedName("reward_id")
      */
     private ?string $reward_id = null;
 
     /**
      * @var string|null
      * @Groups({"user_authorization_revoke"})
+     * @SerializedName("client_id")
      */
     private ?string $client_id = null;
 
     /**
      * @var string|null
      * @Groups({"user_update"})
+     * @SerializedName("user_id")
      */
     private ?string $user_id = null;
 
@@ -111,7 +116,7 @@ class Condition
     }
 
     /**
-     * @param string[] $array
+     * @param string[] $array = ['broadcasterUserId' => '', 'userId' => '', 'rewardId' => '', 'clientId' => '']
      * @return static
      */
     public static function createFromArray(array $array)

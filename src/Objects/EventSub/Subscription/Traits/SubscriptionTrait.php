@@ -16,12 +16,12 @@ trait SubscriptionTrait
     /**
      * @var string|null
      */
-    protected ?string $id;
+    protected ?string $id = null;
 
     /**
      * @var string|null
      */
-    protected ?string $status;
+    protected ?string $status = null;
 
     /**
      * @var string
