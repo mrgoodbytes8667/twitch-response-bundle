@@ -16,6 +16,7 @@ class StreamChanged
     /**
      * @var string[]|null
      * @Groups({"all"})
+     * @deprecated No longer offered by Twitch
      */
     protected $community_ids;
 
@@ -24,6 +25,12 @@ class StreamChanged
      * @Groups({"stored","all"})
      */
     protected $game_id;
+
+    /**
+     * @var string
+     * @Groups({"all"})
+     */
+    protected $game_name;
 
     /**
      * @var string
@@ -106,6 +113,7 @@ class StreamChanged
 
     /**
      * @return string[]|null
+     * @deprecated No longer offered by Twitch
      */
     public function getCommunityIds(): ?array
     {
@@ -115,6 +123,7 @@ class StreamChanged
     /**
      * @param string[]|null $community_ids
      * @return $this
+     * @deprecated No longer offered by Twitch
      */
     public function setCommunityIds(?array $community_ids): self
     {
@@ -137,6 +146,24 @@ class StreamChanged
     public function setGameId(string $game_id): self
     {
         $this->game_id = $game_id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGameName(): string
+    {
+        return $this->game_name ?? '';
+    }
+
+    /**
+     * @param string $game_name
+     * @return $this
+     */
+    public function setGameName(string $game_name): self
+    {
+        $this->game_name = $game_name;
         return $this;
     }
 
