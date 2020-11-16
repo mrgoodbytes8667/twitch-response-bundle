@@ -3,6 +3,7 @@
 
 namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 
+use Illuminate\Support\Str;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -107,5 +108,36 @@ class Condition
     {
         $this->user_id = $user_id;
         return $this;
+    }
+
+    /**
+     * @param string[] $array
+     * @return static
+     */
+    public static function createFromArray(array $array)
+    {
+        $static = new static();
+        foreach ($array as $key => $value)
+        {
+            switch (Str::snake($key)){
+                case 'broadcaster_user_id':
+                    $static->setBroadcasterUserId($value);
+                    break;
+                case 'user_id':
+                    $static->setUserId($value);
+                    break;
+                case 'reward_id':
+                    $static->setRewardId($value);
+                    break;
+                case 'client_id':
+                    $static->setClientId($value);
+                    break;
+                default:
+                    throw new \InvalidArgumentException($key . ' is not a valid argument');
+                    break;
+            }
+        }
+
+        return $static;
     }
 }

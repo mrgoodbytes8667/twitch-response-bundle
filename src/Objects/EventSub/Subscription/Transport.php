@@ -3,6 +3,7 @@
 
 namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 
+use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubTransportMethod;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -26,6 +27,27 @@ class Transport
      * @var string|null
      */
     private ?string $secret = null;
+
+    /**
+     * @param string $callback
+     * @param string|null $secret
+     * @param EventSubTransportMethod|null $method
+     * @return static
+     */
+    public static function create(string $callback, ?string $secret = null, ?EventSubTransportMethod $method = null)
+    {
+        if (is_null($method)) {
+            $method = EventSubTransportMethod::webhook();
+        }
+        $static = new static();
+        $static->setCallback($callback);
+        $static->setMethod($method->value);
+        if (!empty($secret)) {
+            $static->setSecret($secret);
+        }
+
+        return $static;
+    }
 
     /**
      * @return string
