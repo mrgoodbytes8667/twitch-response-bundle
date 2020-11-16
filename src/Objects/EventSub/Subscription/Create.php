@@ -20,7 +20,7 @@ class Create
 
     /**
      * @param EventSubSubscriptionTypes $type
-     * @param array $conditions
+     * @param string[] $conditions = ['broadcasterUserId' => '', 'userId' => '', 'rewardId' => '', 'clientId' => '']
      * @param string $callback
      * @param string $secret
      * @param EventSubTransportMethod|null $method

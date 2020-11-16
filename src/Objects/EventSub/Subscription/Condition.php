@@ -12,39 +12,38 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * @package Bytes\TwitchResponseBundle\Objects\EventSub\Subscription
  *
  * @link https://dev.twitch.tv/docs/eventsub/eventsub-reference#conditions As of 2020-11-16
+ *
+ * @todo Do groups need to move to the get methods as well?
  */
 class Condition
 {
     /**
      * @var string|null
      * @Groups({"channel","stream","points_reward_add", "points_rewards_update", "points_reward_remove"})
-     * @SerializedName("broadcaster_user_id")
      */
     private ?string $broadcaster_user_id = null;
 
     /**
      * @var string|null
      * @Groups({"points_rewards_update", "points_reward_remove"})
-     * @SerializedName("reward_id")
      */
     private ?string $reward_id = null;
 
     /**
      * @var string|null
      * @Groups({"user_authorization_revoke"})
-     * @SerializedName("client_id")
      */
     private ?string $client_id = null;
 
     /**
      * @var string|null
      * @Groups({"user_update"})
-     * @SerializedName("user_id")
      */
     private ?string $user_id = null;
 
     /**
      * @return string|null
+     * @SerializedName("broadcaster_user_id")
      */
     public function getBroadcasterUserId(): ?string
     {
@@ -63,6 +62,7 @@ class Condition
 
     /**
      * @return string|null
+     * @SerializedName("reward_id")
      */
     public function getRewardId(): ?string
     {
@@ -81,6 +81,7 @@ class Condition
 
     /**
      * @return string|null
+     * @SerializedName("client_id")
      */
     public function getClientId(): ?string
     {
@@ -99,6 +100,7 @@ class Condition
 
     /**
      * @return string|null
+     * @SerializedName("user_id")
      */
     public function getUserId(): ?string
     {
