@@ -5,32 +5,31 @@ namespace Bytes\TwitchResponseBundle\Objects\Traits;
 
 
 /**
- * Trait TotalTrait
+ * Trait LimitTrait
  * @package Bytes\TwitchResponseBundle\Objects\Traits
  */
-trait TotalTrait
+trait LimitTrait
 {
-
     /**
      * @var int|null
      */
-    protected ?int $total;
+    protected ?int $limit;
 
     /**
      * @return int|null
      */
-    public function getTotal(): ?int
+    public function getLimit(): ?int
     {
-        return $this->total;
+        return $this->limit;
     }
 
     /**
-     * @param int|null $total
+     * @param int|null $limit
      * @return $this
      */
-    public function setTotal(?int $total): self
+    public function setLimit(?int $limit): self
     {
-        $this->total = $total;
+        $this->limit = $limit;
         return $this;
     }
 
