@@ -7,6 +7,7 @@ namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubSubscriptionTypes;
 use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubTransportMethod;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Traits\SubscriptionTrait;
+use InvalidArgumentException;
 
 /**
  * Class Create
@@ -20,16 +21,22 @@ class Create
 
     /**
      * @param EventSubSubscriptionTypes $type
-     * @param string[] $conditions = ['broadcasterUserId' => '', 'userId' => '', 'rewardId' => '', 'clientId' => '']
+     * @param Condition|string[] $conditions = ['broadcasterUserId' => '', 'userId' => '', 'rewardId' => '', 'clientId' => '']
      * @param string $callback
      * @param string $secret
      * @param EventSubTransportMethod|null $method
      * @return static
      */
-    public static function create(EventSubSubscriptionTypes $type, array $conditions, string $callback, string $secret, ?EventSubTransportMethod $method = null)
+    public static function create(EventSubSubscriptionTypes $type, $conditions, string $callback, string $secret, ?EventSubTransportMethod $method = null)
     {
         $transport = Transport::create($callback, $secret, $method);
-        $condition = Condition::createFromArray($conditions);
+        if ($conditions instanceof Condition) {
+            $condition = $conditions;
+        } elseif (is_array($conditions)) {
+            $condition = Condition::createFromArray($conditions);
+        } else {
+            throw new InvalidArgumentException('Conditions argument must be an array or a Condition object');
+        }
 
         $static = new static();
         $static->setType($type);
