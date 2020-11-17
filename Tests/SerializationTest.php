@@ -8,6 +8,7 @@ use Bytes\TwitchResponseBundle\Enums\HubMode;
 use Bytes\TwitchResponseBundle\Enums\OAuthScopes;
 use Bytes\TwitchResponseBundle\Enums\StreamType;
 use Bytes\TwitchResponseBundle\Enums\SubscriptionTopics;
+use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubMessageType;
 use Bytes\TwitchResponseBundle\Enums\TwitchColors;
 
 class SerializationTest extends TestSerializationCase
@@ -139,5 +140,29 @@ class SerializationTest extends TestSerializationCase
             ]), $output);
         }
 
+    }
+
+    public function testEventSubMessageTypeSerialization()
+    {
+        $serializer = $this->createSerializer();
+
+        foreach ([
+                     'webhookCallbackVerification' => 'webhook_callback_verification',
+                     'notification' => 'notification',
+                     'revocation' => 'revocation',
+                 ] as $label => $value) {
+            $output = $serializer->serialize(new EventSubMessageType($label), 'json');
+
+            $this->assertEquals(json_encode([
+                'label' => $label,
+                'value' => $value
+            ]), $output);
+        }
+    }
+
+    public function testEventSubMessageTypeSerializationFakeValue()
+    {
+        $this->expectException(\BadMethodCallException::class);
+        new EventSubMessageType('abc123');
     }
 }
