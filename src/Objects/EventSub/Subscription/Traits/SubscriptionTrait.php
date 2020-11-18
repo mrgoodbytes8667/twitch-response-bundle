@@ -5,6 +5,7 @@ namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Traits;
 
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Condition;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Transport;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 
 /**
@@ -45,6 +46,7 @@ trait SubscriptionTrait
 
     /**
      * @var \DateTimeInterface|null
+     * @SerializedName("created_at")
      */
     protected $createdAt = null;
 
@@ -168,12 +170,8 @@ trait SubscriptionTrait
      * @param \DateTimeInterface|string|null $createdAt
      * @return $this
      */
-    public function setCreatedAt($createdAt): self
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
-        if(is_string($createdAt))
-        {
-            $createdAt = new \DateTime($createdAt);
-        }
         $this->createdAt = $createdAt;
         return $this;
     }
