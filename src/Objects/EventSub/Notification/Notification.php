@@ -1,14 +1,15 @@
 <?php
 
 
-namespace Bytes\TwitchResponseBundle\Objects\EventSub;
+namespace Bytes\TwitchResponseBundle\Objects\EventSub\Notification;
 
 
+use Bytes\TwitchResponseBundle\Objects\EventSub\Event\EventInterface;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Subscription;
 
 /**
  * Class Notification
- * @package Bytes\TwitchResponseBundle\Objects\EventSub
+ * @package Bytes\TwitchResponseBundle\Objects\EventSub\Notification
  */
 class Notification
 {
@@ -18,7 +19,7 @@ class Notification
     protected ?Subscription $subscription = null;
 
     /**
-     * @var AbstractEvent|null
+     * @var EventInterface|null
      */
     protected $event = null;
 
@@ -41,7 +42,7 @@ class Notification
     }
 
     /**
-     * @return AbstractEvent|null
+     * @return EventInterface|null
      */
     public function getEvent()
     {
@@ -49,7 +50,7 @@ class Notification
     }
 
     /**
-     * @param AbstractEvent|null $event
+     * @param EventInterface|null $event
      * @return $this
      */
     public function setEvent($event): self

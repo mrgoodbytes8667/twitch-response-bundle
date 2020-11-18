@@ -4,7 +4,7 @@
 namespace Bytes\TwitchResponseBundle\Objects\EventSub\Event\Channel;
 
 
-use Bytes\TwitchResponseBundle\Objects\EventSub\AbstractEvent;
+use Bytes\TwitchResponseBundle\Objects\EventSub\Event\AbstractEvent;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Traits\UserTrait;
 
 /**
