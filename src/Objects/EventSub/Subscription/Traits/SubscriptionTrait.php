@@ -44,6 +44,11 @@ trait SubscriptionTrait
     protected ?Transport $transport = null;
 
     /**
+     * @var \DateTimeInterface|null
+     */
+    protected $createdAt = null;
+
+    /**
      * @return string|null
      */
     public function getId(): ?string
@@ -148,6 +153,28 @@ trait SubscriptionTrait
     public function setTransport(?Transport $transport): self
     {
         $this->transport = $transport;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTimeInterface|string|null $createdAt
+     * @return $this
+     */
+    public function setCreatedAt($createdAt): self
+    {
+        if(is_string($createdAt))
+        {
+            $createdAt = new \DateTime($createdAt);
+        }
+        $this->createdAt = $createdAt;
         return $this;
     }
 }
