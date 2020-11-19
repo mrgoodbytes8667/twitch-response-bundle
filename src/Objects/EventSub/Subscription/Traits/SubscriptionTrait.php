@@ -14,10 +14,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  */
 trait SubscriptionTrait
 {
-    /**
-     * @var string|null
-     */
-    protected ?string $id = null;
+    use IdTrait;
 
     /**
      * @var string|null
@@ -49,24 +46,6 @@ trait SubscriptionTrait
      * @SerializedName("created_at")
      */
     protected $createdAt = null;
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param string|null $id
-     * @return $this
-     */
-    public function setId(?string $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
 
     /**
      * @return string|null
