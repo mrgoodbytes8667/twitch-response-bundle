@@ -6,7 +6,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use Bytes\TwitchResponseBundle\Request\EventSubSignature;
 use Bytes\TwitchResponseBundle\Request\SignatureInterface;
 use Bytes\TwitchResponseBundle\Request\WebhookSignature;
-use Bytes\TwitchResponseBundle\Serializer\SubscriptionDenormalizer;
+use Bytes\TwitchResponseBundle\Serializer\SubscriptionNormalizer;
 
 /**
  * @param ContainerConfigurator $container
@@ -25,7 +25,7 @@ return static function (ContainerConfigurator $container) {
         ->args([''])
         ->alias(SignatureInterface::class . ' $webhookSignature', 'bytes_twitch_response.signature.webhook');
 
-    $services->set('bytes_twitch_response.denormalizer.subscription', SubscriptionDenormalizer::class)
+    $services->set('bytes_twitch_response.normalizer.subscription', SubscriptionNormalizer::class)
         ->args([
             service('serializer.mapping.class_metadata_factory'), // ClassMetadataFactoryInterface|null $classMetadataFactory
             service('serializer.name_converter.metadata_aware'), // NameConverterInterface|null $nameConverter

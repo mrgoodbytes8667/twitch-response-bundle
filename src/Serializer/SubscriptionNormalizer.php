@@ -10,11 +10,12 @@ use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 /**
- * Class SubscriptionDenormalizer
- * Sets the created_at field format to the non-standard Twitch EventSub format
+ * Class SubscriptionNormalizer
+ * Sets the created_at field format to the non-standard Twitch EventSub format for denormalization, otherwise
+ * defaults to GetSetMethodNormalizer
  * @package Bytes\TwitchResponseBundle\Serializer
  */
-class SubscriptionDenormalizer extends GetSetMethodNormalizer
+class SubscriptionNormalizer extends GetSetMethodNormalizer
 {
     /**
      * Denormalizes data back into an object of the given class.
@@ -57,5 +58,18 @@ class SubscriptionDenormalizer extends GetSetMethodNormalizer
     public function supportsDenormalization($data, string $type, string $format = null)
     {
         return ($type == Subscription::class) && parent::supportsDenormalization($data, $type, $format);
+    }
+
+    /**
+     * Checks whether the given class is supported for normalization by this normalizer.
+     *
+     * @param mixed $data Data to normalize
+     * @param string|null $format The format being (de-)serialized from or into
+     *
+     * @return bool
+     */
+    public function supportsNormalization($data, string $format = null)
+    {
+        return ($data instanceof Subscription) && parent::supportsNormalization($data, $format);
     }
 }
