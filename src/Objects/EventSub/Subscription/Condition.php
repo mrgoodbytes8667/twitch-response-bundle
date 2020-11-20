@@ -118,6 +118,15 @@ class Condition
     }
 
     /**
+     * Gets the broadcaster or user id
+     * @return string|null
+     */
+    public function getBroadcasterOrUserId()
+    {
+        return $this->getBroadcasterUserId() ?? $this->getUserId();
+    }
+
+    /**
      * @param string[] $array = ['broadcasterUserId' => '', 'userId' => '', 'rewardId' => '', 'clientId' => '']
      * @return static
      */
