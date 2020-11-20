@@ -13,7 +13,12 @@ class ConditionTest extends TestSerializationCase
         $serializer = $this->createSerializer();
 
         $condition = Condition::createFromArray(['broadcasterUserId' => '123']);
-        $output = $serializer->serialize($condition, 'json', [AbstractObjectNormalizer::SKIP_NULL_VALUES => true]);
+        $output = $serializer->serialize($condition, 'json', [
+            AbstractObjectNormalizer::SKIP_NULL_VALUES => true,
+            AbstractObjectNormalizer::IGNORED_ATTRIBUTES => [
+                'broadcasterOrUserId'
+            ]
+        ]);
 
         $this->assertEquals(json_encode(['broadcaster_user_id' => '123']), $output);
     }
@@ -25,7 +30,9 @@ class ConditionTest extends TestSerializationCase
         $serializer->serialize($message, 'json');
         $this->addToAssertionCount(1);
 
-        $serializer->serialize($message, 'json', [AbstractObjectNormalizer::SKIP_NULL_VALUES => true]);
+        $serializer->serialize($message, 'json', [
+            AbstractObjectNormalizer::SKIP_NULL_VALUES => true
+        ]);
         $this->addToAssertionCount(1);
     }
 }
