@@ -126,11 +126,10 @@ class User
 
     /**
      * @return bool
-     * @todo Is this returning incorrectly?
      */
     public function hasEmail(): bool
     {
-        return empty($this->email);
+        return !empty($this->email);
     }
 
     /**
