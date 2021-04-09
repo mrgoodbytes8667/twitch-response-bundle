@@ -1,25 +1,26 @@
 {
     "name": "mrgoodbytes8667/twitch-response-bundle",
     "type": "symfony-bundle",
+    "description": "A Symfony bundle for Twitch API Response objects and enums",
     "license": "CC-BY-NC-4.0",
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-json": "*",
         "illuminate/support": "^8.0",
-        "mrgoodbytes8667/response-bundle": "^1.0",
-        "symfony/config": "^5.1",
-        "symfony/console": "^5.1",
-        "symfony/dependency-injection": "^5.1",
-        "symfony/framework-bundle": "^5.1",
-        "symfony/messenger": "^5.1",
-        "symfony/serializer": "^5.1",
-        "symfony/string": "^5.1",
-        "symfony/validator": "^5.1"
+        "mrgoodbytes8667/response-bundle": "^1.2",
+        "symfony/config": "^5.2",
+        "symfony/console": "^5.2",
+        "symfony/dependency-injection": "^5.2",
+        "symfony/framework-bundle": "^5.2",
+        "symfony/messenger": "^5.2",
+        "symfony/serializer": "^5.2",
+        "symfony/string": "^5.2"
+        "symfony/validator": "^5.2"
     },
     "require-dev": {
         "doctrine/common": "^3.0",
-        "symfony/phpunit-bridge": "^5.1",
-        "symfony/var-dumper": "^5.1"
+        "symfony/phpunit-bridge": "^5.2",
+        "symfony/var-dumper": "^5.2"
     },
     "authors": [
         {
@@ -37,7 +38,9 @@
         "doctrine/event-manager": "<1.1.1",
         "doctrine/inflector": "<1.4.3",
         "doctrine/lexer": "<1.2.1",
-        "doctrine/persistence": "<2.1.0"
+        "doctrine/persistence": "<2.1.0",
+        "spatie/enum": "<3.7.2",
+        "symfony/serializer": "<5.2.2"
     },
     "autoload": {
         "psr-4": {
