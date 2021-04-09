@@ -14,11 +14,14 @@
         "symfony/framework-bundle": "^5.2",
         "symfony/messenger": "^5.2",
         "symfony/serializer": "^5.2",
-        "symfony/string": "^5.2"
+        "symfony/string": "^5.2",
         "symfony/validator": "^5.2"
     },
     "require-dev": {
         "doctrine/common": "^3.0",
+        "fakerphp/faker": "^1.13",
+        "mrgoodbytes8667/test-common": ">=0.0.11",
+        "mrgoodbytes8667/test-common-faker": "^0.3.3",
         "symfony/phpunit-bridge": "^5.2",
         "symfony/var-dumper": "^5.2"
     },
