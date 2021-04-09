@@ -14,8 +14,11 @@ use Bytes\EnumSerializerBundle\Enums\Enum;
  * @method static self channelFollow()
  * @method static self channelSubscribe()
  * @method static self channelCheer()
+ * @method static self channelRaid() A broadcaster raids another broadcaster’s channel.
  * @method static self channelBan()
  * @method static self channelUnban()
+ * @method static self channelModeratorAdd() Moderator privileges were added to a user on a specified channel.
+ * @method static self channelModeratorRemove() Moderator privileges were removed from a user on a specified channel.
  * @method static self channelChannelPointsCustomRewardAdd()
  * @method static self channelChannelPointsCustomRewardUpdate()
  * @method static self channelChannelPointsCustomRewardRemove()
@@ -41,8 +44,11 @@ class EventSubSubscriptionTypes extends Enum
             'channelFollow' => 'channel.follow',
             'channelSubscribe' => 'channel.subscribe',
             'channelCheer' => 'channel.cheer',
+            'channelRaid' => 'channel.raid',
             'channelBan' => 'channel.ban',
             'channelUnban' => 'channel.unban',
+            'channelModeratorAdd' => 'channel.moderator.add',
+            'channelModeratorRemove' => 'channel.moderator.remove',
             'channelChannelPointsCustomRewardAdd' => 'channel.channel_points_custom_reward.add',
             'channelChannelPointsCustomRewardUpdate' => 'channel.channel_points_custom_reward.update',
             'channelChannelPointsCustomRewardRemove' => 'channel.channel_points_custom_reward.remove',
