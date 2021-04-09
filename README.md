@@ -1,9 +1,12 @@
 # twitch-response-bundle
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/mrgoodbytes8667/twitch-response-bundle?style=flat)](https://packagist.org/packages/mrgoodbytes8667/twitch-response-bundle)
-[![Packagist Version](https://img.shields.io/packagist/v/mrgoodbytes8667/twitch-response-bundle?style=flat)](https://packagist.org/packages/mrgoodbytes8667/twitch-response-bundle)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mrgoodbytes8667/twitch-response-bundle/release?style=flat&label=stable)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mrgoodbytes8667/twitch-response-bundle/tests?style=flat)
-![Packagist License](https://img.shields.io/packagist/l/mrgoodbytes8667/twitch-response-bundle?style=flat)    
+[![Packagist Version](https://img.shields.io/packagist/v/mrgoodbytes8667/twitch-response-bundle?logo=packagist&logoColor=FFF&style=flat)](https://packagist.org/packages/mrgoodbytes8667/twitch-response-bundle)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/mrgoodbytes8667/twitch-response-bundle?logo=php&logoColor=FFF&style=flat)](https://packagist.org/packages/mrgoodbytes8667/twitch-response-bundle)
+![Symfony Version](https://img.shields.io/badge/symfony-%5E5.2-lightgrey?logo=symfony&logoColor=FFF&style=flat)
+![Twitch API Version](https://img.shields.io/badge/twitch-new-blue?logo=twitch&logoColor=FFF&style=flat)
+![Packagist License](https://img.shields.io/packagist/l/mrgoodbytes8667/twitch-response-bundle?logo=creative-commons&logoColor=FFF&style=flat)  
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mrgoodbytes8667/twitch-response-bundle/release?label=stable&logo=github&logoColor=FFF&style=flat)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/mrgoodbytes8667/twitch-response-bundle/tests?logo=github&logoColor=FFF&style=flat)
+[![codecov](https://img.shields.io/codecov/c/github/mrgoodbytes8667/twitch-response-bundle?logo=codecov&logoColor=FFF&style=flat)](https://codecov.io/gh/mrgoodbytes8667/twitch-response-bundle)  
 A Symfony bundle for Twitch API Response objects and enums
 
 ## Installation
