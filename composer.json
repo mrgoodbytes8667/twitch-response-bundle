@@ -16,6 +16,10 @@
         "symfony/string": "^5.2"
     },
     "require-dev": {
+        "doctrine/common": "^3.0",
+        "fakerphp/faker": "^1.13",
+        "mrgoodbytes8667/test-common": ">=0.0.11",
+        "mrgoodbytes8667/test-common-faker": "^0.3.3",
         "symfony/phpunit-bridge": "^5.2",
         "symfony/var-dumper": "^5.2"
     },
@@ -29,6 +33,13 @@
         "sort-packages": true
     },
     "conflict": {
+        "doctrine/annotations": "<1.11.1",
+        "doctrine/cache": "<1.10.2",
+        "doctrine/collections": "<1.6.7",
+        "doctrine/event-manager": "<1.1.1",
+        "doctrine/inflector": "<1.4.3",
+        "doctrine/lexer": "<1.2.1",
+        "doctrine/persistence": "<2.1.0",
         "spatie/enum": "<3.7.2",
         "symfony/serializer": "<5.2.2"
     },
