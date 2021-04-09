@@ -1,6 +1,7 @@
 {
     "name": "mrgoodbytes8667/twitch-response-bundle",
     "type": "symfony-bundle",
+    "description": "A Symfony bundle for Twitch API Response objects and enums",
     "license": "CC-BY-NC-4.0",
     "require": {
         "php": "^7.4 || ^8.0",
@@ -26,6 +27,10 @@
     ],
     "config": {
         "sort-packages": true
+    },
+    "conflict": {
+        "spatie/enum": "<3.7.2",
+        "symfony/serializer": "<5.2.2"
     },
     "autoload": {
         "psr-4": {
