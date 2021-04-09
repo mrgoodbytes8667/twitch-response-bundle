@@ -8,10 +8,10 @@ use Bytes\TwitchResponseBundle\Enums\HubMode;
 use Bytes\TwitchResponseBundle\Enums\OAuthScopes;
 use Bytes\TwitchResponseBundle\Enums\StreamType;
 use Bytes\TwitchResponseBundle\Enums\SubscriptionTopics;
-use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubMessageType;
-use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubStatus;
-use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubSubscriptionTypes;
-use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubTransportMethod;
+use Bytes\TwitchResponseBundle\Enums\EventSubMessageType;
+use Bytes\TwitchResponseBundle\Enums\EventSubStatus;
+use Bytes\TwitchResponseBundle\Enums\EventSubSubscriptionTypes;
+use Bytes\TwitchResponseBundle\Enums\EventSubTransportMethod;
 use Bytes\TwitchResponseBundle\Enums\TwitchColors;
 
 class SerializationTest extends TestSerializationCase

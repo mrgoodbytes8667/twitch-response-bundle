@@ -3,7 +3,7 @@
 
 namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 
-use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubTransportMethod;
+use Bytes\TwitchResponseBundle\Enums\EventSubTransportMethod;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

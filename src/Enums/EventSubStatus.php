@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Bytes\TwitchResponseBundle\Enums\Twitch\EventSub;
+namespace Bytes\TwitchResponseBundle\Enums;
 
 
 use Bytes\EnumSerializerBundle\Enums\Enum;
 
 /**
  * Class EventSubStatus
- * @package Bytes\TwitchResponseBundle\Enums\Twitch\EventSub
+ * @package Bytes\TwitchResponseBundle\Enums
  *
  * @method static self enabled() designates that the subscription is in an operable state and is valid.
  * @method static self webhookCallbackVerificationPending() webhook is pending verification of the callback specified in the subscription creation request.

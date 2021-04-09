@@ -4,8 +4,8 @@
 namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 
 
-use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubSubscriptionTypes;
-use Bytes\TwitchResponseBundle\Enums\Twitch\EventSub\EventSubTransportMethod;
+use Bytes\TwitchResponseBundle\Enums\EventSubSubscriptionTypes;
+use Bytes\TwitchResponseBundle\Enums\EventSubTransportMethod;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Traits\SubscriptionTrait;
 use InvalidArgumentException;
 

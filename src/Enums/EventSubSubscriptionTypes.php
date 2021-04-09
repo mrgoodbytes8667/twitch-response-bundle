@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Bytes\TwitchResponseBundle\Enums\Twitch\EventSub;
+namespace Bytes\TwitchResponseBundle\Enums;
 
 
 use Bytes\EnumSerializerBundle\Enums\Enum;
 
 /**
  * Class EventSubSubscriptionTypes
- * @package Bytes\TwitchResponseBundle\Enums\Twitch\EventSub
+ * @package Bytes\TwitchResponseBundle\Enums
  *
  * @method static self channelUpdate() A broadcaster updates their channel properties e.g., category, title, mature flag, broadcast, or language.
  * @method static self channelFollow() A specified channel receives a follow.
