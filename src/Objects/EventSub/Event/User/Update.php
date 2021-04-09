@@ -18,12 +18,12 @@ class Update extends AbstractEvent
     /**
      * @var string|null
      */
-    protected ?string $email;
+    protected ?string $email = null;
 
     /**
      * @var string|null
      */
-    protected ?string $description;
+    protected ?string $description = null;
 
     /**
      * @return string|null

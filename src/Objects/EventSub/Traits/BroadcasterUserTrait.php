@@ -13,12 +13,12 @@ trait BroadcasterUserTrait
     /**
      * @var string|null
      */
-    protected ?string $broadcaster_user_id;
+    protected ?string $broadcaster_user_id = null;
 
     /**
      * @var string|null
      */
-    protected ?string $broadcaster_user_name;
+    protected ?string $broadcaster_user_name = null;
 
     /**
      * @return string|null

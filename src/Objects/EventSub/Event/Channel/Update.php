@@ -18,27 +18,27 @@ class Update extends AbstractEvent
     /**
      * @var string|null
      */
-    protected ?string $title;
+    protected ?string $title = null;
     
     /**
      * @var string|null
      */
-    protected ?string $language;
+    protected ?string $language = null;
     
     /**
      * @var string|null
      */
-    protected ?string $category_id;
+    protected ?string $category_id = null;
     
     /**
      * @var string|null
      */
-    protected ?string $category_name;
+    protected ?string $category_name = null;
     
     /**
      * @var bool|null
      */
-    protected ?bool $is_mature;
+    protected ?bool $is_mature = null;
 
     /**
      * @return string|null

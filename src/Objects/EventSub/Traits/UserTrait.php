@@ -13,12 +13,12 @@ trait UserTrait
     /**
      * @var string|null
      */
-    protected ?string $user_id;
+    protected ?string $user_id = null;
 
     /**
      * @var string|null
      */
-    protected ?string $user_name;
+    protected ?string $user_name = null;
 
     /**
      * @return string|null

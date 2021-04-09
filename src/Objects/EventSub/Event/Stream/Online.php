@@ -15,12 +15,15 @@ class Online extends Offline
     /**
      * @var string|null The event id.
      */
-    protected ?string $id;
+    protected ?string $id = null;
 
     /**
-     * @var string|null The stream type. Valid values are: live, playlist, watch_party, premiere, rerun.
+     * The stream type. Valid values are: live, playlist, watch_party, premiere, rerun.
+     * @var string|null ['live', 'playlist', 'watch_party', 'premiere', 'rerun'][$any]
      */
-    protected ?string $type;
+    protected ?string $type = null;
+
+    protected ?\DateTimeInterface $started_at = null;
 
     /**
      * @return string|null The event id.
@@ -57,4 +60,24 @@ class Online extends Offline
         $this->type = $type;
         return $this;
     }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getStartedAt(): ?\DateTimeInterface
+    {
+        return $this->started_at;
+    }
+
+    /**
+     * @param \DateTimeInterface|null $started_at
+     * @return $this
+     */
+    public function setStartedAt(?\DateTimeInterface $started_at): self
+    {
+        $this->started_at = $started_at;
+        return $this;
+    }
+
+
 }
