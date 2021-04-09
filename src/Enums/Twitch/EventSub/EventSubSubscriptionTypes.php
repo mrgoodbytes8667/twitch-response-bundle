@@ -10,27 +10,29 @@ use Bytes\EnumSerializerBundle\Enums\Enum;
  * Class EventSubSubscriptionTypes
  * @package Bytes\TwitchResponseBundle\Enums\Twitch\EventSub
  *
- * @method static self channelUpdate() The channel.update subscription type sends notifications when a broadcaster updates the category, title, mature flag, or broadcast language for their channel.
- * @method static self channelFollow()
- * @method static self channelSubscribe()
- * @method static self channelCheer()
+ * @method static self channelUpdate() A broadcaster updates their channel properties e.g., category, title, mature flag, broadcast, or language.
+ * @method static self channelFollow() A specified channel receives a follow.
+ * @method static self channelSubscribe() A notification when a specified channel receives a subscriber. This does not include resubscribes.
+ * @method static self channelCheer() A user cheers on the specified channel.
  * @method static self channelRaid() A broadcaster raids another broadcaster’s channel.
- * @method static self channelBan()
- * @method static self channelUnban()
+ * @method static self channelBan() A viewer is banned from the specified channel.
+ * @method static self channelUnban() A viewer is unbanned from the specified channel.
  * @method static self channelModeratorAdd() Moderator privileges were added to a user on a specified channel.
  * @method static self channelModeratorRemove() Moderator privileges were removed from a user on a specified channel.
- * @method static self channelChannelPointsCustomRewardAdd()
- * @method static self channelChannelPointsCustomRewardUpdate()
- * @method static self channelChannelPointsCustomRewardRemove()
- * @method static self channelChannelPointsCustomRewardRedemptionAdd()
- * @method static self channelChannelPointsCustomRewardRedemptionUpdate()
- * @method static self channelHypeTrainBegin()
- * @method static self channelHypeTrainProgress()
- * @method static self channelHypeTrainEnd()
- * @method static self streamOnline() The stream.online subscription type sends a notification when the specified broadcaster starts a stream.
- * @method static self streamOffline() The stream.offline subscription type sends a notification when the specified broadcaster stops a stream.
- * @method static self userAuthorizationRevoke() The user.authorization.revoke subscription type sends a notification when a user has revoked authorization for your client id. Use this webhook to meet government requirements for handling user data, such as GDPR, LGPD, or CCPA.
- * @method static self userUpdate() The user.update subscription type sends a notification when user updates their account.
+ * @method static self channelChannelPointsCustomRewardAdd() A custom channel points reward has been created for the specified channel.
+ * @method static self channelChannelPointsCustomRewardUpdate() A custom channel points reward has been updated for the specified channel.
+ * @method static self channelChannelPointsCustomRewardRemove() A custom channel points reward has been removed from the specified channel.
+ * @method static self channelChannelPointsCustomRewardRedemptionAdd() A viewer has redeemed a custom channel points reward on the specified channel.
+ * @method static self channelChannelPointsCustomRewardRedemptionUpdate() A redemption of a channel points custom reward has been updated for the specified channel.
+ * @method static self channelHypeTrainBegin() A hype train begins on the specified channel.
+ * @method static self channelHypeTrainProgress() A hype train makes progress on the specified channel.
+ * @method static self channelHypeTrainEnd() A hype train ends on the specified channel.
+ * @method static self streamOnline() The specified broadcaster starts a stream.
+ * @method static self streamOffline() The specified broadcaster stops a stream.
+ * @method static self userAuthorizationRevoke() A user’s authorization has been revoked for your client id.
+ * @method static self userUpdate() A user has updated their account.
+ *
+ * @link https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types
  */
 class EventSubSubscriptionTypes extends Enum
 {
