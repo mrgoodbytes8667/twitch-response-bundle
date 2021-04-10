@@ -12,10 +12,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Transport
 {
+    const DEFAULT_METHOD = 'webhook';
+    
     /**
      * @var string
      */
-    private string $method = 'webhook';
+    private string $method = self::DEFAULT_METHOD;
 
     /**
      * @var string
