@@ -24,7 +24,7 @@ trait SubscriptionTrait
     /**
      * @var string
      */
-    protected string $type;
+    protected string $type = '';
 
     /**
      * @var string

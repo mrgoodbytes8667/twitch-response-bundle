@@ -13,7 +13,7 @@ trait LimitTrait
     /**
      * @var int|null
      */
-    protected ?int $limit;
+    protected ?int $limit = null;
 
     /**
      * @return int|null

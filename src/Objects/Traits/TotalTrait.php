@@ -14,7 +14,7 @@ trait TotalTrait
     /**
      * @var int|null
      */
-    protected ?int $total;
+    protected ?int $total = null;
 
     /**
      * @return int|null

@@ -20,7 +20,7 @@ class Subscriptions
     /**
      * @var Subscription[]|null
      */
-    private $data;
+    private $data = null;
 
     /**
      * @return Subscription[]|null
