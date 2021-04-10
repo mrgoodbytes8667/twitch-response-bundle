@@ -28,6 +28,9 @@ class SubscriptionsTest extends TestCase
 
         $this->assertEquals($data, $subscriptions->getSubscriptions());
         $this->assertInstanceOf(Subscription::class, $subscriptions->getSubscription());
+
+        $subscriptions->setData([]);
+        $this->assertNull($subscriptions->getSubscription());
     }
 
     /**

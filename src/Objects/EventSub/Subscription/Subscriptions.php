@@ -53,10 +53,11 @@ class Subscriptions
      */
     public function getSubscription()
     {
-        if(!array_key_exists('0', $this->data))
+        if(!empty($this->data))
         {
-            return null;
+            $data = $this->data;
+            return array_shift($data);
         }
-        return $this->data[0];
+        return null;
     }
 }
