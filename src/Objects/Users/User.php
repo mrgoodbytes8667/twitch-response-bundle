@@ -4,15 +4,17 @@
 namespace Bytes\TwitchResponseBundle\Objects\Users;
 
 
+use Bytes\TwitchResponseBundle\Objects\Interfaces\UserInterface;
+
 /**
  * Class User
  * @package Bytes\TwitchResponseBundle\Objects\Users
  */
-class User
+class User implements UserInterface
 {
     /**
      * User’s broadcaster type: "partner", "affiliate", or "".
-     * @var string|null
+     * @var string|null = ['partner', 'affiliate', ''][$any]
      */
     protected $broadcaster_type;
 
@@ -60,7 +62,7 @@ class User
 
     /**
      * User’s type: "staff", "admin", "global_mod", or "".
-     * @var string|null
+     * @var string|null = ['staff', 'admin', 'global_mod', ''][$any]
      */
     protected $type;
 
@@ -79,7 +81,7 @@ class User
     }
 
     /**
-     * @param string|null $broadcaster_type
+     * @param string|null $broadcaster_type = ['partner', 'affiliate', ''][$any]
      * @return $this
      */
     public function setBroadcasterType(?string $broadcaster_type): self
@@ -231,7 +233,7 @@ class User
     }
 
     /**
-     * @param string|null $type
+     * @param string|null $type = ['staff', 'admin', 'global_mod', ''][$any]
      * @return $this
      */
     public function setType(?string $type): self
