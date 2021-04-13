@@ -73,6 +73,22 @@ class User implements UserInterface
     protected $view_count;
 
     /**
+     * @param string $id
+     * @param string|null $login
+     * @return UserInterface
+     */
+    public static function make(string $id, ?string $login = null): UserInterface
+    {
+        $static = new static();
+        $static->setId($id);
+        if (!empty($login)) {
+            $static->setLogin($login);
+        }
+
+        return $static;
+    }
+
+    /**
      * @return string|null
      */
     public function getBroadcasterType(): ?string

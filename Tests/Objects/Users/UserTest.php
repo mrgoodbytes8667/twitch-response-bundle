@@ -3,6 +3,7 @@
 namespace Bytes\TwitchResponseBundle\Tests\Objects\Users;
 
 use Bytes\Common\Faker\TestFakerTrait;
+use Bytes\TwitchResponseBundle\Objects\Interfaces\UserInterface;
 use Bytes\TwitchResponseBundle\Objects\Users\User;
 use Exception;
 use PHPUnit\Framework\TestCase;
@@ -173,5 +174,37 @@ class UserTest extends TestCase
         $this->assertNull($this->user->getDescription());
         $this->assertInstanceOf(User::class, $this->user->setDescription($description));
         $this->assertEquals($description, $this->user->getDescription());
+    }
+
+    /**
+     * @return \Generator
+     * @throws Exception
+     */
+    public function provideUserArgsForMake()
+    {
+        $this->setupFaker();
+
+        yield ['id' => (string) $this->faker->numberBetween(1000, 9999999), 'login' => null];
+        yield ['id' => (string) $this->faker->numberBetween(1000, 9999999), 'login' => ''];
+        yield ['id' => (string) $this->faker->numberBetween(1000, 9999999), 'login' => $this->faker->userName()];
+    }
+
+    /**
+     * @dataProvider provideUserArgsForMake
+     * @param $id
+     * @param $login
+     */
+    public function testCreate($id, $login)
+    {
+        $user = User::make($id, $login);
+        $this->assertInstanceOf(User::class, $user);
+        $this->assertInstanceOf(UserInterface::class, $user);
+
+        $this->assertEquals($id, $user->getId());
+        if(empty($login)) {
+            $this->assertEmpty($user->getLogin());
+        } else {
+            $this->assertEquals($login, $user->getLogin());
+        }
     }
 }
