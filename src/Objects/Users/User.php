@@ -75,13 +75,13 @@ class User implements UserInterface
     /**
      * @param string $id
      * @param string|null $login
-     * @param string|null $broadcasterType
+     * @param string|null $broadcasterType = ['partner', 'affiliate', ''][$any]
      * @param string|null $description
      * @param string|null $displayName
      * @param string|null $email
      * @param string|null $offlineImageUrl
      * @param string|null $profileImageUrl
-     * @param string|null $type
+     * @param string|null $type = ['staff', 'admin', 'global_mod', ''][$any]
      * @param int|null $viewCount
      * @return UserInterface
      */
@@ -306,6 +306,4 @@ class User implements UserInterface
         $this->view_count = $view_count ?? 0;
         return $this;
     }
-
-
 }
