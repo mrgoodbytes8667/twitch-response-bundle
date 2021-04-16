@@ -34,10 +34,12 @@ trait PaginationTrait
      */
     public function setPagination($pagination): self
     {
-        if (!empty($pagination)) {
+        if (!empty($pagination) && is_array($pagination)) {
             $temp = new Pagination();
             $temp->setCursor($pagination['cursor']);
             $this->pagination = $temp;
+        } else {
+            $this->pagination = $pagination;
         }
         return $this;
     }
