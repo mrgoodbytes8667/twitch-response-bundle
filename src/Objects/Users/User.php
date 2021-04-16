@@ -75,16 +75,47 @@ class User implements UserInterface
     /**
      * @param string $id
      * @param string|null $login
+     * @param string|null $broadcasterType = ['partner', 'affiliate', ''][$any]
+     * @param string|null $description
+     * @param string|null $displayName
+     * @param string|null $email
+     * @param string|null $offlineImageUrl
+     * @param string|null $profileImageUrl
+     * @param string|null $type = ['staff', 'admin', 'global_mod', ''][$any]
+     * @param int|null $viewCount
      * @return UserInterface
      */
-    public static function make(string $id, ?string $login = null): UserInterface
+    public static function make(string $id, ?string $login = null, ?string $broadcasterType = null, ?string $description = null, ?string $displayName = null, ?string $email = null, ?string $offlineImageUrl = null, ?string $profileImageUrl = null, ?string $type = null, ?int $viewCount = null): UserInterface
     {
         $static = new static();
         $static->setId($id);
         if (!empty($login)) {
             $static->setLogin($login);
         }
-
+        if (!empty($broadcasterType)) {
+            $static->setBroadcasterType($broadcasterType);
+        }
+        if (!empty($description)) {
+            $static->setDescription($description);
+        }
+        if (!empty($displayName)) {
+            $static->setDisplayName($displayName);
+        }
+        if (!empty($email)) {
+            $static->setEmail($email);
+        }
+        if (!empty($offlineImageUrl)) {
+            $static->setOfflineImageUrl($offlineImageUrl);
+        }
+        if (!empty($profileImageUrl)) {
+            $static->setProfileImageUrl($profileImageUrl);
+        }
+        if (!empty($type)) {
+            $static->setType($type);
+        }
+        if (!is_null($viewCount)) {
+            $static->setViewCount($viewCount);
+        }
         return $static;
     }
 
@@ -275,6 +306,4 @@ class User implements UserInterface
         $this->view_count = $view_count ?? 0;
         return $this;
     }
-
-
 }
