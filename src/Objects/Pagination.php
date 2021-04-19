@@ -11,9 +11,24 @@ namespace Bytes\TwitchResponseBundle\Objects;
 class Pagination
 {
     /**
-     * @var string|null
+     * Pagination constructor.
+     * @param string|null $cursor
      */
-    protected $cursor;
+    public function __construct(protected ?string $cursor = null)
+    {
+    }
+
+    /**
+     * @param string|null $cursor
+     * @return static|null
+     */
+    public static function make(?string $cursor = null): ?static
+    {
+        if (empty($cursor)) {
+            return null;
+        }
+        return new static($cursor);
+    }
 
     /**
      * @return string|null
@@ -32,5 +47,4 @@ class Pagination
         $this->cursor = $cursor;
         return $this;
     }
-
 }
