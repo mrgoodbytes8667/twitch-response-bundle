@@ -3,6 +3,7 @@
 
 namespace Bytes\TwitchResponseBundle\Objects\Webhooks;
 
+use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
 use DateTimeInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
@@ -11,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * Class StreamChanged
  * @package Bytes\TwitchResponseBundle\Objects\Webhooks
  */
-class StreamChanged
+class StreamChanged implements TwitchDateTimeInterface
 {
     /**
      * @var string[]|null

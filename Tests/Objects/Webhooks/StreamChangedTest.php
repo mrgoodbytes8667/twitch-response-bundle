@@ -1,102 +1,30 @@
 <?php
 
+namespace Bytes\TwitchResponseBundle\Tests\Objects\Webhooks;
 
-namespace Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Event\Stream;
-
-
+use Bytes\Common\Faker\Twitch\TestTwitchFakerTrait;
 use Bytes\Tests\Common\TestSerializerTrait;
 use Bytes\TwitchResponseBundle\Normalizer\TwitchDateTimeNormalizer;
-use Bytes\TwitchResponseBundle\Objects\EventSub\Event\Stream\Online;
-use Bytes\TwitchResponseBundle\Objects\Follows\Follow;
+use Bytes\TwitchResponseBundle\Objects\Webhooks\StreamChanged;
 use DateTime;
 use DateTimeInterface;
 use Exception;
 use Generator;
 use PHPUnit\Framework\TestCase;
+use Spatie\Enum\Faker\FakerEnumProvider;
 use Symfony\Component\Serializer\SerializerInterface;
 use function Symfony\Component\String\u;
 
-/**
- * Class OnlineTest
- * @package Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Event\Stream
- */
-class OnlineTest extends TestCase
+class StreamChangedTest extends TestCase
 {
-    use TestSerializerTrait, TestBroadcasterUserTrait;
+    use TestSerializerTrait, TestTwitchFakerTrait {
+        TestTwitchFakerTrait::getProviders as parentProviders;
+    }
 
     /**
      * @var SerializerInterface
      */
     protected $serializer;
-
-    /**
-     * @dataProvider provideId
-     * @param mixed $id
-     */
-    public function testGetSetId($id)
-    {
-        $online = new Online();
-        $this->assertNull($online->getId());
-        $this->assertInstanceOf(Online::class, $online->setId(null));
-        $this->assertNull($online->getId());
-        $this->assertInstanceOf(Online::class, $online->setId($id));
-        $this->assertEquals($id, $online->getId());
-    }
-
-    /**
-     * @return Generator
-     */
-    public function provideId()
-    {
-        $this->setupFaker();
-        yield [(string)$this->faker->numberBetween(1)];
-    }
-
-    /**
-     * @dataProvider provideType
-     * @param mixed $type
-     */
-    public function testGetSetType($type)
-    {
-        $online = new Online();
-        $this->assertNull($online->getType());
-        $this->assertInstanceOf(Online::class, $online->setType(null));
-        $this->assertNull($online->getType());
-        $this->assertInstanceOf(Online::class, $online->setType($type));
-        $this->assertEquals($type, $online->getType());
-    }
-
-    /**
-     * @return Generator
-     */
-    public function provideType()
-    {
-        $this->setupFaker();
-        yield [$this->faker->randomElement(['live', 'playlist', 'watch_party', 'premiere', 'rerun'])];
-    }
-
-    /**
-     * @dataProvider provideStartedAt
-     * @param mixed $startedAt
-     */
-    public function testGetSetStartedAt($startedAt)
-    {
-        $online = new Online();
-        $this->assertNull($online->getStartedAt());
-        $this->assertInstanceOf(Online::class, $online->setStartedAt(null));
-        $this->assertNull($online->getStartedAt());
-        $this->assertInstanceOf(Online::class, $online->setStartedAt($startedAt));
-        $this->assertEquals($startedAt, $online->getStartedAt());
-    }
-
-    /**
-     * @return Generator
-     */
-    public function provideStartedAt()
-    {
-        $this->setupFaker();
-        yield [$this->faker->dateTimeInInterval('-1 week', 'now')];
-    }
 
     /**
      * @dataProvider provideDateNormalization
@@ -105,8 +33,8 @@ class OnlineTest extends TestCase
      */
     public function testDateDenormalization($date, $json)
     {
-        /** @var Online $deserialized */
-        $deserialized = $this->serializer->deserialize($json, Online::class, 'json');
+        /** @var StreamChanged $deserialized */
+        $deserialized = $this->serializer->deserialize($json, StreamChanged::class, 'json');
         $this->assertEquals($date->format(DateTimeInterface::ISO8601), $deserialized->getStartedAt()->format(DateTimeInterface::ISO8601));
     }
 
@@ -117,9 +45,21 @@ class OnlineTest extends TestCase
      */
     public function testDateNormalization($date, $json)
     {
-        $online = new Online();
-        $online->setStartedAt($date);
-        $serialized = $this->serializer->serialize($online, 'json');
+        $streamChanged = new StreamChanged();
+        $streamChanged->setGameId($this->faker->id());
+        $streamChanged->setGameName($this->faker->word());
+        $streamChanged->setId($this->faker->id());
+        $streamChanged->setLanguage($this->faker->locale());
+        $streamChanged->setThumbnailUrl($this->faker->imageUrl());
+        $streamChanged->setTitle($this->faker->paragraph());
+        $streamChanged->setType($this->faker->word());
+        $streamChanged->setUserId($this->faker->id());
+        $streamChanged->setUserName($this->faker->userName());
+        $streamChanged->setViewerCount($this->faker->numberBetween());
+
+        $streamChanged->setStartedAt($date);
+
+        $serialized = $this->serializer->serialize($streamChanged, 'json');
         $this->assertStringContainsString($date->format('Y'), $serialized);
         $this->assertStringContainsString($date->format('m'), $serialized);
         $this->assertStringContainsString($date->format('d'), $serialized);
@@ -182,5 +122,13 @@ class OnlineTest extends TestCase
     protected function tearDownSerializer(): void
     {
         $this->serializer = null;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getProviders()
+    {
+        return array_merge($this->parentProviders(), [FakerEnumProvider::class]);
     }
 }
