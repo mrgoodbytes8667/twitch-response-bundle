@@ -5,15 +5,22 @@ namespace Bytes\TwitchResponseBundle\Serializer;
 
 
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Subscription;
+use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
 use Illuminate\Support\Str;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+
+trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.3.0', 'The "%s" normalizer is deprecated, use "%s" instead.', __CLASS__, TwitchDateTimeInterface::class);
 
 /**
  * Class SubscriptionNormalizer
  * Sets the created_at field format to the non-standard Twitch EventSub format for denormalization, otherwise
  * defaults to GetSetMethodNormalizer
  * @package Bytes\TwitchResponseBundle\Serializer
+ *
+ * @deprecated v0.3.0 Use "\Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface" instead.
+ *
+ * @see TwitchDateTimeInterface
  */
 class SubscriptionNormalizer extends GetSetMethodNormalizer
 {
