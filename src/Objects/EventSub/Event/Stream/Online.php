@@ -4,13 +4,15 @@
 namespace Bytes\TwitchResponseBundle\Objects\EventSub\Event\Stream;
 
 
+use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
+
 /**
  * Class Online
  * @package Bytes\TwitchResponseBundle\Objects\EventSub\Event\Stream
  *
  * @link https://dev.twitch.tv/docs/eventsub/eventsub-reference/#stream-online-event
  */
-class Online extends Offline
+class Online extends Offline implements TwitchDateTimeInterface
 {
     /**
      * @var string|null The event id.

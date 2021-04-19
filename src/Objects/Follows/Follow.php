@@ -4,15 +4,14 @@
 namespace Bytes\TwitchResponseBundle\Objects\Follows;
 
 
-use DateTime;
+use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
 use DateTimeInterface;
-use Exception;
 
 /**
  * Class Follow
  * @package Bytes\TwitchResponseBundle\Objects\Follows
  */
-class Follow
+class Follow implements TwitchDateTimeInterface
 {
     /**
      * @var int|null
@@ -37,7 +36,7 @@ class Follow
     /**
      * @var DateTimeInterface|null
      */
-    public $followedAt;
+    public $followed_at;
 
     /**
      * @return int|null
@@ -116,23 +115,16 @@ class Follow
      */
     public function getFollowedAt()
     {
-        return $this->followedAt;
+        return $this->followed_at;
     }
 
     /**
-     * @param DateTimeInterface|string|null $followedAt
+     * @param DateTimeInterface|null $followed_at
      * @return $this
-     * @throws Exception
      */
-    public function setFollowedAt($followedAt)
+    public function setFollowedAt(?DateTimeInterface $followed_at)
     {
-        if (is_string($followedAt)) {
-            $this->followedAt = new DateTime($followedAt);
-        } else {
-            $this->followedAt = $followedAt;
-        }
+        $this->followed_at = $followed_at;
         return $this;
     }
-
-
 }

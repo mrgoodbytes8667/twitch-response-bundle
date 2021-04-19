@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Bytes\TwitchResponseBundle\Serializer;
+namespace Bytes\TwitchResponseBundle\Normalizer;
 
 
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Subscription;
@@ -9,20 +9,15 @@ use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
 use Illuminate\Support\Str;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
-
-trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.3.0', 'The "%s" normalizer is deprecated, use "%s" instead.', __CLASS__, TwitchDateTimeInterface::class);
+use function Symfony\Component\String\u;
 
 /**
  * Class SubscriptionNormalizer
  * Sets the created_at field format to the non-standard Twitch EventSub format for denormalization, otherwise
  * defaults to GetSetMethodNormalizer
  * @package Bytes\TwitchResponseBundle\Serializer
- *
- * @deprecated v0.3.0 Use "\Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface" instead.
- *
- * @see TwitchDateTimeInterface
  */
-class SubscriptionNormalizer extends GetSetMethodNormalizer
+class TwitchDateTimeNormalizer extends GetSetMethodNormalizer
 {
     /**
      * Denormalizes data back into an object of the given class.
@@ -39,15 +34,32 @@ class SubscriptionNormalizer extends GetSetMethodNormalizer
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
-        if (array_key_exists('created_at', $data)) {
-            $createdAt = Str::of($data['created_at']);
-            $createdAt = $createdAt
-                ->when($createdAt->contains('.'), function ($string) {
-                    return $string->before('.')->append('Z');
-                });
-
-            $data['createdAt'] = (string)$createdAt;
-            unset($data['created_at']);
+        foreach($data as $key => $value) {
+            switch ($key) {
+                case 'created_at':
+                case 'followed_at':
+                case 'started_at':
+                    $camelKey = u($key)->camel()->toString();
+                    $createdAt = Str::of($data[$key]);
+                    //0000-00-00T00:00:00.vP
+                    $timezone = $createdAt->when($createdAt->substr(-6, 1) == '+' || $createdAt->substr(-6, 1) == '-' || $createdAt->endsWith('Z'), function($string) {
+                        if($string->endsWith('Z')) {
+                            return 'Z';
+                        } elseif ($string->substr(-6, 1) == '+') {
+                            return $string->afterLast('+')->prepend('+');
+                        } else {
+                            return $string->afterLast('-')->prepend('-');
+                        }
+                    });
+                    $createdAt = $createdAt
+                        ->when($createdAt->contains('.'), function ($string) {
+                            return $string->before('.');
+                        })->append($timezone);
+    
+                    $data[$camelKey] = (string)$createdAt;
+                    unset($data[$key]);
+                    break;
+            }
         }
 
         return parent::denormalize($data, $type, $format, $context);
@@ -64,7 +76,7 @@ class SubscriptionNormalizer extends GetSetMethodNormalizer
      */
     public function supportsDenormalization($data, string $type, string $format = null)
     {
-        return ($type == Subscription::class) && parent::supportsDenormalization($data, $type, $format);
+        return is_subclass_of($type, TwitchDateTimeInterface::class) && is_array($data) && parent::supportsDenormalization($data, $type, $format);
     }
 
     /**
@@ -77,6 +89,6 @@ class SubscriptionNormalizer extends GetSetMethodNormalizer
      */
     public function supportsNormalization($data, string $format = null)
     {
-        return ($data instanceof Subscription) && parent::supportsNormalization($data, $format);
+        return ($data instanceof TwitchDateTimeInterface) && parent::supportsNormalization($data, $format);
     }
 }
