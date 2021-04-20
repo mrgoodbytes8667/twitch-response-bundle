@@ -4,11 +4,10 @@
 namespace Bytes\TwitchResponseBundle\Normalizer;
 
 
-use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Subscription;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
 use Illuminate\Support\Str;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
-use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use function Symfony\Component\String\u;
 
 /**
@@ -17,7 +16,7 @@ use function Symfony\Component\String\u;
  * defaults to GetSetMethodNormalizer
  * @package Bytes\TwitchResponseBundle\Serializer
  */
-class TwitchDateTimeNormalizer extends GetSetMethodNormalizer
+class TwitchDateTimeNormalizer extends ObjectNormalizer
 {
     /**
      * Denormalizes data back into an object of the given class.
@@ -34,7 +33,7 @@ class TwitchDateTimeNormalizer extends GetSetMethodNormalizer
      */
     public function denormalize($data, string $type, string $format = null, array $context = [])
     {
-        foreach($data as $key => $value) {
+        foreach ($data as $key => $value) {
             switch ($key) {
                 case 'created_at':
                 case 'followed_at':
@@ -42,8 +41,8 @@ class TwitchDateTimeNormalizer extends GetSetMethodNormalizer
                     $camelKey = u($key)->camel()->toString();
                     $createdAt = Str::of($data[$key]);
                     //0000-00-00T00:00:00.vP
-                    $timezone = $createdAt->when($createdAt->substr(-6, 1) == '+' || $createdAt->substr(-6, 1) == '-' || $createdAt->endsWith('Z'), function($string) {
-                        if($string->endsWith('Z')) {
+                    $timezone = $createdAt->when($createdAt->substr(-6, 1) == '+' || $createdAt->substr(-6, 1) == '-' || $createdAt->endsWith('Z'), function ($string) {
+                        if ($string->endsWith('Z')) {
                             return 'Z';
                         } elseif ($string->substr(-6, 1) == '+') {
                             return $string->afterLast('+')->prepend('+');
@@ -55,7 +54,7 @@ class TwitchDateTimeNormalizer extends GetSetMethodNormalizer
                         ->when($createdAt->contains('.'), function ($string) {
                             return $string->before('.');
                         })->append($timezone);
-    
+
                     $data[$camelKey] = (string)$createdAt;
                     unset($data[$key]);
                     break;
