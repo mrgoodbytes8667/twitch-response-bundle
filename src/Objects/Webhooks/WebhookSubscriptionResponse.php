@@ -3,13 +3,14 @@
 
 namespace Bytes\TwitchResponseBundle\Objects\Webhooks;
 
+use Bytes\TwitchResponseBundle\Objects\Interfaces\DataPaginationResponseInterface;
 use Bytes\TwitchResponseBundle\Objects\Traits\PaginationTrait;
 
 /**
  * Class WebhookSubscriptionResponse
  * @package Bytes\TwitchResponseBundle\Objects\Webhooks
  */
-class WebhookSubscriptionResponse
+class WebhookSubscriptionResponse implements DataPaginationResponseInterface
 {
     use PaginationTrait;
 

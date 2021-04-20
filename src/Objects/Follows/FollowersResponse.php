@@ -4,6 +4,7 @@
 namespace Bytes\TwitchResponseBundle\Objects\Follows;
 
 
+use Bytes\TwitchResponseBundle\Objects\Interfaces\DataPaginationResponseInterface;
 use Bytes\TwitchResponseBundle\Objects\Traits\PaginationTrait;
 use Bytes\TwitchResponseBundle\Objects\Traits\TotalTrait;
 
@@ -11,7 +12,7 @@ use Bytes\TwitchResponseBundle\Objects\Traits\TotalTrait;
  * Class FollowersResponse
  * @package Bytes\TwitchResponseBundle\Objects\Follows
  */
-class FollowersResponse
+class FollowersResponse implements DataPaginationResponseInterface
 {
     use PaginationTrait, TotalTrait;
 

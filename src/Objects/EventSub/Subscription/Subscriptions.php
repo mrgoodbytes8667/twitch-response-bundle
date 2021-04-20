@@ -4,6 +4,7 @@
 namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 
 
+use Bytes\TwitchResponseBundle\Objects\Interfaces\DataPaginationResponseInterface;
 use Bytes\TwitchResponseBundle\Objects\Traits\LimitTrait;
 use Bytes\TwitchResponseBundle\Objects\Traits\PaginationTrait;
 use Bytes\TwitchResponseBundle\Objects\Traits\TotalTrait;
@@ -13,7 +14,7 @@ use Bytes\TwitchResponseBundle\Objects\Traits\TotalTrait;
  * Used for Creation response and Get EventSub Subscriptions
  * @package Bytes\TwitchResponseBundle\Objects\EventSub\Subscription
  */
-class Subscriptions
+class Subscriptions implements DataPaginationResponseInterface
 {
     use LimitTrait, TotalTrait, PaginationTrait;
 
