@@ -112,7 +112,7 @@ class StreamChangedTest extends TestCase
     protected function setUpSerializer()
     {
         $this->setupObjectNormalizerParts();
-        $normalizer = new TwitchDateTimeNormalizer($this->classMetadataFactory, $this->metadataAwareNameConverter, $this->propertyInfo, $this->classDiscriminatorFromClassMetadata);
+        $normalizer = new TwitchDateTimeNormalizer($this->classMetadataFactory, $this->metadataAwareNameConverter, $this->propertyAccessor, $this->propertyInfo, $this->classDiscriminatorFromClassMetadata);
         $this->serializer = $this->createSerializer(prependNormalizers: [$normalizer]);
     }
 
