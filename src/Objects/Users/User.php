@@ -4,13 +4,14 @@
 namespace Bytes\TwitchResponseBundle\Objects\Users;
 
 
+use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\UserInterface;
 
 /**
  * Class User
  * @package Bytes\TwitchResponseBundle\Objects\Users
  */
-class User implements UserInterface
+class User implements UserInterface, TwitchDateTimeInterface
 {
     /**
      * User’s broadcaster type: "partner", "affiliate", or "".
@@ -73,6 +74,11 @@ class User implements UserInterface
     protected $view_count;
 
     /**
+     * @var \DateTimeInterface|null
+     */
+    protected $created_at;
+
+    /**
      * @param string $id
      * @param string|null $login
      * @param string|null $broadcasterType = ['partner', 'affiliate', ''][$any]
@@ -83,9 +89,10 @@ class User implements UserInterface
      * @param string|null $profileImageUrl
      * @param string|null $type = ['staff', 'admin', 'global_mod', ''][$any]
      * @param int|null $viewCount
+     * @param \DateTimeInterface|null $createdAt
      * @return UserInterface
      */
-    public static function make(string $id, ?string $login = null, ?string $broadcasterType = null, ?string $description = null, ?string $displayName = null, ?string $email = null, ?string $offlineImageUrl = null, ?string $profileImageUrl = null, ?string $type = null, ?int $viewCount = null): UserInterface
+    public static function make(string $id, ?string $login = null, ?string $broadcasterType = null, ?string $description = null, ?string $displayName = null, ?string $email = null, ?string $offlineImageUrl = null, ?string $profileImageUrl = null, ?string $type = null, ?int $viewCount = null, ?\DateTimeInterface $createdAt = null): UserInterface
     {
         $static = new static();
         $static->setId($id);
@@ -115,6 +122,9 @@ class User implements UserInterface
         }
         if (!is_null($viewCount)) {
             $static->setViewCount($viewCount);
+        }
+        if (!is_null($createdAt)) {
+            $static->setCreatedAt($createdAt);
         }
         return $static;
     }
@@ -304,6 +314,24 @@ class User implements UserInterface
     public function setViewCount(?int $view_count = 0): self
     {
         $this->view_count = $view_count ?? 0;
+        return $this;
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @param \DateTimeInterface|null $created_at
+     * @return $this
+     */
+    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
         return $this;
     }
 }
