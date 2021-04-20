@@ -31,6 +31,7 @@ return static function (ContainerConfigurator $container) {
         ->args([
             service('serializer.mapping.class_metadata_factory'), // ClassMetadataFactoryInterface|null $classMetadataFactory
             service('serializer.name_converter.metadata_aware'), // NameConverterInterface|null $nameConverter
+            service('property_accessor')->ignoreOnInvalid(), // \Symfony\Component\PropertyAccess\PropertyAccessorInterface|null $propertyTypeExtractor
             service('property_info')->ignoreOnInvalid(), // PropertyTypeExtractorInterface|null $propertyTypeExtractor
             service('serializer.mapping.class_discriminator_resolver')->ignoreOnInvalid(), // ClassDiscriminatorResolverInterface|null $classDiscriminatorResolver
             null, // callable|null $objectClassResolver
