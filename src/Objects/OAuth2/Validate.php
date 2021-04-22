@@ -4,31 +4,42 @@
 namespace Bytes\TwitchResponseBundle\Objects\OAuth2;
 
 
+use Bytes\ResponseBundle\Token\Interfaces\TokenValidationResponseInterface;
+use JetBrains\PhpStorm\Pure;
+use Symfony\Component\Serializer\Annotation\SerializedName;
+
 /**
  * Class Validate
  * @package Bytes\TwitchResponseBundle\Objects\OAuth2
  */
-class Validate
+class Validate implements TokenValidationResponseInterface
 {
     /**
      * @var string|null
+     * @SerializedName("login")
      */
-    private $clientId;
+    private $userName;
 
     /**
-     * @var string|null
+     * Validate constructor.
+     * @param string|null $clientId
+     * @param string|null $userName
+     * @param array|null $scopes
+     * @param string|null $userId
      */
-    private $login;
+    public function __construct(private ?string $clientId = null, ?string $userName = null, private ?array $scopes = null, private ?string $userId = null)
+    {
+        $this->userName = $userName;
+    }
 
     /**
-     * @var string[]|null
+     * @param ...$args = clientId, userName, scopes, userId
+     * @return static
      */
-    private $scopes;
-
-    /**
-     * @var string|null
-     */
-    private $userId;
+    #[Pure] public static function create(...$args): static
+    {
+        return new static(...$args);
+    }
 
     /**
      * @return string|null
@@ -51,18 +62,18 @@ class Validate
     /**
      * @return string|null
      */
-    public function getLogin(): ?string
+    public function getUserName(): ?string
     {
-        return $this->login;
+        return $this->userName;
     }
 
     /**
-     * @param string|null $login
+     * @param string|null $userName
      * @return $this
      */
-    public function setLogin(?string $login): self
+    public function setUserName(?string $userName): self
     {
-        $this->login = $login;
+        $this->userName = $userName;
         return $this;
     }
 
@@ -100,5 +111,43 @@ class Validate
     {
         $this->userId = $userId;
         return $this;
+    }
+
+    /**
+     * @param ...$args
+     * @return bool
+     */
+    public function isMatch(...$args): bool
+    {
+        return $this->hasMatchingClientId($args['clientId'] ?? null) &&
+            $this->hasMatchingUserName($args['userName'] ?? null) &&
+            $this->hasMatchingUserId($args['userId'] ?? null);
+    }
+
+    /**
+     * @param string|null $clientId
+     * @return bool
+     */
+    public function hasMatchingClientId(?string $clientId): bool
+    {
+        return $this->clientId === $clientId;
+    }
+
+    /**
+     * @param string|null $userName
+     * @return bool
+     */
+    public function hasMatchingUserName(?string $userName): bool
+    {
+        return $this->userName === $userName;
+    }
+
+    /**
+     * @param string|null $id
+     * @return bool
+     */
+    public function hasMatchingUserId(?string $id): bool
+    {
+        return $this->userId === $id;
     }
 }
