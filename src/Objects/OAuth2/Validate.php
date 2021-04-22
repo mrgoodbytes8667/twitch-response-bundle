@@ -5,7 +5,10 @@ namespace Bytes\TwitchResponseBundle\Objects\OAuth2;
 
 
 use Bytes\ResponseBundle\Token\Interfaces\TokenValidationResponseInterface;
+use Bytes\TwitchResponseBundle\Objects\Traits\ErrorTrait;
+use InvalidArgumentException;
 use JetBrains\PhpStorm\Pure;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
@@ -14,6 +17,8 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  */
 class Validate implements TokenValidationResponseInterface
 {
+    use ErrorTrait;
+
     /**
      * @var string|null
      * @SerializedName("login")
@@ -27,7 +32,7 @@ class Validate implements TokenValidationResponseInterface
      * @param array|null $scopes
      * @param string|null $userId
      */
-    public function __construct(private ?string $clientId = null, ?string $userName = null, private ?array $scopes = null, private ?string $userId = null)
+    public function __construct(private ?string $clientId = null, ?string $userName = null, private ?array $scopes = null, private ?string $userId = null, private ?int $expiresIn = null)
     {
         $this->userName = $userName;
     }
@@ -114,6 +119,24 @@ class Validate implements TokenValidationResponseInterface
     }
 
     /**
+     * @return int|null
+     */
+    public function getExpiresIn(): ?int
+    {
+        return $this->expiresIn;
+    }
+
+    /**
+     * @param int|null $expiresIn
+     * @return $this
+     */
+    public function setExpiresIn(?int $expiresIn): self
+    {
+        $this->expiresIn = $expiresIn;
+        return $this;
+    }
+
+    /**
      * @param ...$args
      * @return bool
      */
@@ -149,5 +172,26 @@ class Validate implements TokenValidationResponseInterface
     public function hasMatchingUserId(?string $id): bool
     {
         return $this->userId === $id;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasExpired()
+    {
+        return ($this->expiresIn ?? 0) <= 0 || $this->status === Response::HTTP_UNAUTHORIZED;
+    }
+
+    /**
+     * Is this token an app/bot token?
+     * @return bool
+     */
+    public function isAppToken(): bool
+    {
+        if (empty($this->clientId)) {
+            throw new InvalidArgumentException('A client id must be present for the comparison to be possible.');
+        }
+
+        return empty($this->userName) && empty($this->scopes) && empty($this->userId);
     }
 }
