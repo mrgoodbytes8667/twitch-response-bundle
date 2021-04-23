@@ -4,7 +4,7 @@
 namespace Bytes\TwitchResponseBundle\Objects\OAuth2;
 
 
-use Bytes\Response\Common\Interfaces\AccessTokenInterface;
+use Bytes\ResponseBundle\Token\Interfaces\AccessTokenInterface;
 
 /**
  * Class Token
@@ -153,6 +153,17 @@ class Token implements AccessTokenInterface
     {
         $this->tokenType = $tokenType;
         return $this;
+    }
+
+    /**
+     * @param string $token
+     * @return static
+     */
+    public static function createFromAccessToken(string $token): static
+    {
+        $static = new static();
+        $static->setAccessToken($token);
+        return $static;
     }
 
 }
