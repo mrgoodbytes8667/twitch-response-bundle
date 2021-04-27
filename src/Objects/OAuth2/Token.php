@@ -4,7 +4,9 @@
 namespace Bytes\TwitchResponseBundle\Objects\OAuth2;
 
 
+use Bytes\ResponseBundle\Enums\TokenSource;
 use Bytes\ResponseBundle\Token\Interfaces\AccessTokenInterface;
+use Illuminate\Support\Arr;
 
 /**
  * Class Token
@@ -166,4 +168,35 @@ class Token implements AccessTokenInterface
         return $static;
     }
 
+    /**
+     * Update the current access token with details from another access token (ie: a refresh token)
+     * @param AccessTokenInterface $token
+     * @return $this
+     */
+    public function updateFromAccessToken(AccessTokenInterface $token): static
+    {
+        $this->setAccessToken($token->getAccessToken());
+        $this->setRefreshToken($token->getRefreshToken());
+        $this->setExpiresIn($token->getExpiresIn());
+        $this->setScope(implode(' ', Arr::wrap($token->getScope()) ?? []));
+        $this->setTokenType($token->getTokenType());
+
+        return $this;
+    }
+
+    /**
+     * @return TokenSource|null
+     */
+    public function getTokenSource(): ?TokenSource
+    {
+        return null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getClass(): ?string
+    {
+        return static::class;
+    }
 }
