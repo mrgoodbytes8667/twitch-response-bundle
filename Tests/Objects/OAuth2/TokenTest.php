@@ -4,6 +4,7 @@ namespace Bytes\TwitchResponseBundle\Tests\Objects\OAuth2;
 
 use Bytes\Common\Faker\Twitch\TestTwitchFakerTrait;
 use Bytes\TwitchResponseBundle\Objects\OAuth2\Token;
+use DateInterval;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
@@ -63,7 +64,7 @@ class TokenTest extends TestCase
         $this->assertNull($token->getExpiresIn());
 
         $this->assertInstanceOf(Token::class, $token->setExpiresIn($expiresIn));
-        $this->assertEquals($expiresIn, $token->getExpiresIn());
+        $this->assertEquals(new DateInterval('PT' . $expiresIn . 'S'), $token->getExpiresIn());
     }
 
     /**
@@ -74,13 +75,13 @@ class TokenTest extends TestCase
         $scopes = ["channel:read:hype_train", "user:read:email"];
 
         $token = new Token();
-        $this->assertNull($token->getScope());
+        $this->assertEmpty($token->getScope());
 
         $this->assertInstanceOf(Token::class, $token->setScope($scopes));
-        $this->assertCount(2, $token->getScope());
+        $this->assertEquals("channel:read:hype_train user:read:email", $token->getScope());
 
         $this->assertInstanceOf(Token::class, $token->setScope("channel:read:hype_train user:read:email"));
-        $this->assertCount(2, $token->getScope());
+        $this->assertEquals("channel:read:hype_train user:read:email", $token->getScope());
     }
 
     /**
@@ -170,7 +171,7 @@ class TokenTest extends TestCase
     {
         $this->setupFaker();
 
-        yield ['accessToken1' => $this->faker->accessToken(), 'refreshToken1' => $this->faker->refreshToken(), 'expiresIn1' => $this->faker->numberBetween(), 'scope1' => $this->faker->words(), 'tokenType1' => 'bearer',
-            'accessToken2' => $this->faker->accessToken(), 'refreshToken2' => $this->faker->refreshToken(), 'expiresIn2' => $this->faker->numberBetween(), 'scope2' => $this->faker->words(), 'tokenType2' => 'bearer'];
+        yield ['accessToken1' => $this->faker->accessToken(), 'refreshToken1' => $this->faker->refreshToken(), 'expiresIn1' => new DateInterval('PT' . $this->faker->numberBetween() . 'S'), 'scope1' => $this->faker->words(asText: true), 'tokenType1' => 'bearer',
+            'accessToken2' => $this->faker->accessToken(), 'refreshToken2' => $this->faker->refreshToken(), 'expiresIn2' => new DateInterval('PT' . $this->faker->numberBetween() . 'S'), 'scope2' => $this->faker->words(asText: true), 'tokenType2' => 'bearer'];
     }
 }
