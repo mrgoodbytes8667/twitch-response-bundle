@@ -5,10 +5,11 @@ namespace Bytes\TwitchResponseBundle\Objects\OAuth2;
 
 
 use Bytes\ResponseBundle\Token\AccessTokenCreateUpdateFromTrait;
-use Bytes\ResponseBundle\Token\AccessTokenTrait;
 use Bytes\ResponseBundle\Token\Interfaces\AccessTokenInterface;
+use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Illuminate\Support\Arr;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Token
