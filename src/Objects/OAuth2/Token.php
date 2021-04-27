@@ -29,13 +29,18 @@ class Token implements AccessTokenInterface
     use AccessTokenTrait;
 
     /**
-     * @param string $token
+     * @param AccessTokenInterface|string $token
      * @return static
+     * @throws Exception
      */
-    public static function createFromAccessToken(string $token): static
+    public static function createFromAccessToken(AccessTokenInterface|string $token): static
     {
         $static = new static();
-        $static->setAccessToken($token);
+        if($token instanceof AccessTokenInterface) {
+            $static->updateFromAccessToken($token);
+        } else {
+            $static->setAccessToken($token);
+        }
         return $static;
     }
 
