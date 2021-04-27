@@ -4,6 +4,7 @@
 namespace Bytes\TwitchResponseBundle\Objects\OAuth2;
 
 
+use Bytes\ResponseBundle\Token\AccessTokenCreateUpdateFromTrait;
 use Bytes\ResponseBundle\Token\AccessTokenTrait;
 use Bytes\ResponseBundle\Token\Interfaces\AccessTokenInterface;
 use Exception;
@@ -26,23 +27,7 @@ use Illuminate\Support\Arr;
  */
 class Token implements AccessTokenInterface
 {
-    use AccessTokenTrait;
-
-    /**
-     * @param AccessTokenInterface|string $token
-     * @return static
-     * @throws Exception
-     */
-    public static function createFromAccessToken(AccessTokenInterface|string $token): static
-    {
-        $static = new static();
-        if($token instanceof AccessTokenInterface) {
-            $static->updateFromAccessToken($token);
-        } else {
-            $static->setAccessToken($token);
-        }
-        return $static;
-    }
+    use AccessTokenCreateUpdateFromTrait;
 
     /**
      * Update the current access token with details from another access token (ie: a refresh token)
