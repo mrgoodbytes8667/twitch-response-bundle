@@ -2,7 +2,6 @@
 
 namespace Bytes\TwitchResponseBundle\Tests\Enums;
 
-use Bytes\Tests\Common\TestEnumTrait;
 use Bytes\TwitchResponseBundle\Enums\OAuthForceVerify;
 use PHPUnit\Framework\TestCase;
 
