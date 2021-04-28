@@ -19,11 +19,9 @@ class Configuration implements ConfigurationInterface
 
         $treeBuilder->getRootNode()
             ->children()
-                ->arrayNode('twitch')
-                    ->children()
-                        ->scalarNode('hub_secret')->end()
-                    ->end()
-                ->end() // twitch
+                ->scalarNode('hub_secret')
+                    ->info('The hub secret for EventSub')
+                ->end()
             ->end();
 
         return $treeBuilder;

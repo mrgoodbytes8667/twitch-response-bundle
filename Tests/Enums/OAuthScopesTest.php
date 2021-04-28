@@ -18,12 +18,4 @@ class OAuthScopesTest extends TestCase
     {
         $this->assertCount(0, OAuthScopes::getUserScopes());
     }
-
-    /**
-     *
-     */
-    public function testBuildOAuthString()
-    {
-        $this->assertEquals('user:read:email bits:read', OAuthScopes::buildOAuthString(OAuthScopes::userReadEmail(), OAuthScopes::bitsRead()));
-    }
 }
