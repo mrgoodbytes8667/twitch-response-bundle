@@ -57,11 +57,11 @@ class OAuthScopes extends Enum
      * @param mixed ...$scopes
      * @return string
      *
-     * @deprecated Since 0.3.0, use \Bytes\ResponseBundle\HttpClient\AbstractClient::buildOAuthString() instead from mrgoodbytes8667/response-bundle
+     * @deprecated Since 0.3.0, use \Bytes\ResponseBundle\HttpClient\Token\AbstractTokenClient::buildOAuthString() instead from mrgoodbytes8667/response-bundle
      */
     public static function buildOAuthString(...$scopes)
     {
-        trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.3.0', 'Using "%s" is deprecated, use "%s" in "mrgoodbytes8667/response-bundle" instead.', __METHOD__, '\Bytes\ResponseBundle\HttpClient\AbstractClient::buildOAuthString()');
+        trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.3.0', 'Using "%s" is deprecated, use "%s" in "mrgoodbytes8667/response-bundle" instead.', __METHOD__, '\Bytes\ResponseBundle\HttpClient\Token\AbstractTokenClient::buildOAuthString()');
         return implode(' ', Arr::flatten($scopes));
     }
 
