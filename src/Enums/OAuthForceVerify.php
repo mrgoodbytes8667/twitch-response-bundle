@@ -5,7 +5,7 @@ namespace Bytes\TwitchResponseBundle\Enums;
 
 
 use Bytes\EnumSerializerBundle\Enums\Enum;
-use Bytes\ResponseBundle\Services\OAuthPromptInterface;
+use Bytes\ResponseBundle\Routing\OAuthPromptInterface;
 
 /**
  * Class OAuthForceVerify
@@ -18,6 +18,7 @@ use Bytes\ResponseBundle\Services\OAuthPromptInterface;
 class OAuthForceVerify extends Enum implements OAuthPromptInterface
 {
     /**
+     * Returns the prompt value
      * @return bool
      */
     public function prompt()
