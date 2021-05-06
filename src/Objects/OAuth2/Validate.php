@@ -177,7 +177,7 @@ class Validate implements TokenValidationResponseInterface
     /**
      * @return bool
      */
-    public function hasExpired()
+    public function hasExpired(): bool
     {
         return ($this->expiresIn ?? 0) <= 0 || $this->status === Response::HTTP_UNAUTHORIZED;
     }
