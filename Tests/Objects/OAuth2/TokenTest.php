@@ -3,8 +3,12 @@
 namespace Bytes\TwitchResponseBundle\Tests\Objects\OAuth2;
 
 use Bytes\Common\Faker\Twitch\TestTwitchFakerTrait;
+use Bytes\ResponseBundle\Enums\TokenSource;
+use Bytes\ResponseBundle\Objects\ComparableDateInterval;
+use Bytes\ResponseBundle\Token\Interfaces\AccessTokenInterface;
 use Bytes\TwitchResponseBundle\Objects\OAuth2\Token;
 use DateInterval;
+use Exception;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
@@ -55,7 +59,7 @@ class TokenTest extends TestCase
      */
     public function testGetSetExpiresIn()
     {
-        $expiresIn = $this->faker->numberBetween();
+        $expiresIn = $this->faker->numberBetween(1, 500000);
 
         $token = new Token();
         $this->assertNull($token->getExpiresIn());
@@ -64,7 +68,7 @@ class TokenTest extends TestCase
         $this->assertNull($token->getExpiresIn());
 
         $this->assertInstanceOf(Token::class, $token->setExpiresIn($expiresIn));
-        $this->assertEquals(new DateInterval('PT' . $expiresIn . 'S'), $token->getExpiresIn());
+        $this->assertObjectEquals(ComparableDateInterval::create($expiresIn), ComparableDateInterval::create($token->getExpiresIn()), 'equals');
     }
 
     /**
@@ -173,5 +177,14 @@ class TokenTest extends TestCase
 
         yield ['accessToken1' => $this->faker->accessToken(), 'refreshToken1' => $this->faker->refreshToken(), 'expiresIn1' => new DateInterval('PT' . $this->faker->numberBetween() . 'S'), 'scope1' => $this->faker->words(asText: true), 'tokenType1' => 'bearer',
             'accessToken2' => $this->faker->accessToken(), 'refreshToken2' => $this->faker->refreshToken(), 'expiresIn2' => new DateInterval('PT' . $this->faker->numberBetween() . 'S'), 'scope2' => $this->faker->words(asText: true), 'tokenType2' => 'bearer'];
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testCreateFromParts()
+    {
+        $token = Token::createFromParts(accessToken: $this->faker->accessToken(), tokenSource: TokenSource::app());
+        $this->assertInstanceOf(AccessTokenInterface::class, $token);
     }
 }
