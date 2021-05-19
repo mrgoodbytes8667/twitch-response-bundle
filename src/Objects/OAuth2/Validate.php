@@ -4,8 +4,12 @@
 namespace Bytes\TwitchResponseBundle\Objects\OAuth2;
 
 
+use Bytes\ResponseBundle\Objects\ComparableDateInterval;
 use Bytes\ResponseBundle\Token\Interfaces\TokenValidationResponseInterface;
 use Bytes\TwitchResponseBundle\Objects\Traits\ErrorTrait;
+use DateInterval;
+use DateTimeImmutable;
+use DateTimeInterface;
 use InvalidArgumentException;
 use JetBrains\PhpStorm\Pure;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,15 +30,24 @@ class Validate implements TokenValidationResponseInterface
     private $userName;
 
     /**
+     * @var DateTimeInterface|null
+     */
+    private $expiresAt = null;
+
+    /**
      * Validate constructor.
      * @param string|null $clientId
      * @param string|null $userName
      * @param array|null $scopes
      * @param string|null $userId
+     * @param int|null $expiresIn
      */
     public function __construct(private ?string $clientId = null, ?string $userName = null, private ?array $scopes = null, private ?string $userId = null, private ?int $expiresIn = null)
     {
         $this->userName = $userName;
+        if (!is_null($expiresIn)) {
+            $this->setExpiresAt($expiresIn);
+        }
     }
 
     /**
@@ -133,6 +146,9 @@ class Validate implements TokenValidationResponseInterface
     public function setExpiresIn(?int $expiresIn): self
     {
         $this->expiresIn = $expiresIn;
+        if (!is_null($expiresIn)) {
+            $this->setExpiresAt($expiresIn);
+        }
         return $this;
     }
 
@@ -193,5 +209,32 @@ class Validate implements TokenValidationResponseInterface
         }
 
         return empty($this->userName) && empty($this->scopes) && empty($this->userId);
+    }
+
+    /**
+     * @return DateTimeInterface|null
+     */
+    public function getExpiresAt(): ?DateTimeInterface
+    {
+        return $this->expiresAt;
+    }
+
+    /**
+     * @param DateTimeInterface|DateInterval|int|null $expiresAt
+     * @return $this
+     */
+    protected function setExpiresAt(DateTimeInterface|DateInterval|int|null $expiresAt): self
+    {
+        if (!is_null($expiresAt)) {
+            if (is_int($expiresAt)) {
+                $expiresAt = ComparableDateInterval::secondsToInterval($expiresAt);
+            }
+            if ($expiresAt instanceof DateInterval) {
+                $now = new DateTimeImmutable();
+                $expiresAt = $now->add($expiresAt);
+            }
+        }
+        $this->expiresAt = $expiresAt;
+        return $this;
     }
 }
