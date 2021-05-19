@@ -150,7 +150,7 @@ class ValidateTest extends TestCase
     {
         $this->setupFaker();
         yield ['date' => 0, 'expired' => true];
-        yield ['date' => $this->faker->randomDigitNotZero() * 100, 'expired' => false];
+        yield ['date' => (($this->faker->randomDigit() ?? 0) + 1) * 100, 'expired' => false];
     }
 
     /**
