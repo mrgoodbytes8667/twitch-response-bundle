@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
-trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.3.0', 'The "%s" normalizer is deprecated, use "%s" instead.', __CLASS__, TwitchDateTimeInterface::class);
+trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.3.0', 'The "%s" normalizer is deprecated, use "%s" instead.', 'Bytes\TwitchResponseBundle\Serializer\SubscriptionNormalizer', TwitchDateTimeInterface::class);
 
 /**
  * Class SubscriptionNormalizer
