@@ -83,5 +83,18 @@ class Game
         return $this;
     }
 
-
+    /**
+     * @param int|string $gameId
+     * @param string $name
+     * @param string $boxArtUrl
+     * @return static
+     */
+    public static function make(int|string $gameId, string $name, string $boxArtUrl): static
+    {
+        $static = new static();
+        $static->setGameID($gameId)
+            ->setName($name)
+            ->setBoxArtURL($boxArtUrl);
+        return $static;
+    }
 }
