@@ -66,6 +66,7 @@ class FollowTest extends TestCase
 
         yield ['date' => new DateTime('2021-04-16T19:22:39Z'), 'json' => '{ "followed_at": "2021-04-16T19:22:39.109266699Z" }'];
         yield ['date' => new DateTime('2021-04-16T19:22:39+00:00'), 'json' => '{ "followed_at": "2021-04-16T19:22:39.109266699+00:00" }'];
+        yield ['date' => new DateTime('2021-05-11T04:02:09Z'), 'json' => '{ "followed_at": "2021-05-11T04:02:09Z" }'];
 
         $timezones = [
             'Z',

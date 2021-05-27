@@ -51,9 +51,9 @@ class TwitchDateTimeNormalizer extends ObjectNormalizer
                         }
                     });
                     $createdAt = $createdAt
-                        ->when($createdAt->contains('.'), function ($string) {
-                            return $string->before('.');
-                        })->append($timezone);
+                        ->when($createdAt->contains('.'), function ($string) use ($timezone) {
+                            return $string->before('.')->append($timezone);
+                        });
 
                     $data[$camelKey] = (string)$createdAt;
                     unset($data[$key]);
