@@ -4,6 +4,7 @@
 namespace Bytes\TwitchResponseBundle\Request;
 
 
+use Bytes\ResponseBundle\Handler\LocatorInterface;
 use Symfony\Component\HttpFoundation\HeaderBag;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
@@ -11,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  * Class AbstractSignature
  * @package Bytes\TwitchResponseBundle\Request
  */
-abstract class AbstractSignature
+abstract class AbstractSignature implements LocatorInterface
 {
     /**
      * AbstractSignature constructor.

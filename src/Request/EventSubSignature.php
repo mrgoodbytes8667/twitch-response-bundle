@@ -17,6 +17,15 @@ class EventSubSignature extends AbstractSignature implements SignatureInterface
     const TWITCH_EVENTSUB_MESSAGE_TIMESTAMP = 'twitch-eventsub-message-timestamp';
 
     /**
+     * Return the locator name
+     * @return string
+     */
+    public static function getDefaultIndexName(): string
+    {
+        return 'EVENTSUB';
+    }
+
+    /**
      * @param HeaderBag $headers
      * @param bool|string|null $content
      * @return string

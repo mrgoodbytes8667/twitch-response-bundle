@@ -3,6 +3,7 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use Bytes\ResponseBundle\Handler\Locator;
 use Bytes\TwitchResponseBundle\Normalizer\TwitchDateTimeNormalizer;
 use Bytes\TwitchResponseBundle\Request\EventSubSignature;
 use Bytes\TwitchResponseBundle\Request\SignatureInterface;
@@ -20,11 +21,13 @@ return static function (ContainerConfigurator $container) {
     $services->set('bytes_twitch_response.signature.eventsub', EventSubSignature::class)
         ->public()
         ->args([''])
+        ->tag('bytes_twitch_response.signature')
         ->alias(SignatureInterface::class . ' $eventSubSignature', 'bytes_twitch_response.signature.eventsub');
 
     $services->set('bytes_twitch_response.signature.webhook', WebhookSignature::class)
         ->public()
         ->args([''])
+        ->tag('bytes_twitch_response.signature')
         ->alias(SignatureInterface::class . ' $webhookSignature', 'bytes_twitch_response.signature.webhook');
 
     $services->set('bytes_twitch_response.normalizer.twitchdatetime', TwitchDateTimeNormalizer::class)
@@ -60,5 +63,11 @@ return static function (ContainerConfigurator $container) {
             [], // array $defaultContext
         ])
         ->tag('serializer.normalizer');
+
+    $services->set('bytes_twitch_response.locator.signature', Locator::class)
+        ->args([tagged_locator('bytes_twitch_response.signature', 'key', 'getDefaultIndexName')])
+        ->public();
+
+    $services->alias(Locator::class . ' $twitchSignatureLocator', 'bytes_twitch_response.locator.signature');
 
 };
