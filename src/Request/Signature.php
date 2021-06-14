@@ -7,9 +7,13 @@ namespace Bytes\TwitchResponseBundle\Request;
 use Symfony\Component\HttpFoundation\HeaderBag;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
+trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.3.0', 'Using "%s" is deprecated, use "%s" or "%s" instead.', __CLASS__, EventSubSignature::class, WebhookSignature::class);
+
 /**
  * Class Signature
  * @package Bytes\TwitchResponseBundle\Services
+ *
+ * @deprecated Use EventSubSignature or WebhookSignature instead
  */
 class Signature
 {
