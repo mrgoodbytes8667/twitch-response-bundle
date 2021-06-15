@@ -7,7 +7,7 @@
         "php": "^8.0",
         "ext-json": "*",
         "illuminate/support": "^8.0",
-        "mrgoodbytes8667/response-bundle": "dev-main",
+        "mrgoodbytes8667/response-bundle": "^2.0",
         "symfony/config": "^5.3",
         "symfony/console": "^5.3",
         "symfony/dependency-injection": "^5.3",
