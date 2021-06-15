@@ -1,21 +1,21 @@
 {
     "name": "mrgoodbytes8667/twitch-response-bundle",
     "type": "symfony-bundle",
-    "description": "A Symfony bundle for Twitch API Response objects and enums",
+    "description": "A Symfony bundle for Twitch API response objects, enums, and signature verification",
     "license": "CC-BY-NC-4.0",
     "require": {
         "php": "^8.0",
         "ext-json": "*",
         "illuminate/support": "^8.0",
         "mrgoodbytes8667/response-bundle": "dev-main",
-        "symfony/config": "^5.2",
-        "symfony/console": "^5.2",
-        "symfony/dependency-injection": "^5.2",
-        "symfony/framework-bundle": "^5.2",
-        "symfony/messenger": "^5.2",
-        "symfony/serializer": "^5.2",
-        "symfony/string": "^5.2",
-        "symfony/validator": "^5.2"
+        "symfony/config": "^5.3",
+        "symfony/console": "^5.3",
+        "symfony/dependency-injection": "^5.3",
+        "symfony/framework-bundle": "^5.3",
+        "symfony/messenger": "^5.3",
+        "symfony/serializer": "^5.3",
+        "symfony/string": "^5.3",
+        "symfony/validator": "^5.3"
     },
     "require-dev": {
         "doctrine/common": "^3.0",
@@ -23,8 +23,8 @@
         "mrgoodbytes8667/test-common": ">=0.0.15",
         "mrgoodbytes8667/test-common-faker": "^0.3.3",
         "mrgoodbytes8667/test-twitch-faker": ">=0.0.1",
-        "symfony/phpunit-bridge": "^5.2",
-        "symfony/var-dumper": "^5.2"
+        "symfony/test-pack": "^1.0",
+        "symfony/var-dumper": "^5.3"
     },
     "authors": [
         {
@@ -43,6 +43,7 @@
         "doctrine/inflector": "<1.4.3",
         "doctrine/lexer": "<1.2.1",
         "doctrine/persistence": "<2.1.0",
+        "phpunit/phpunit": "<9.5",
         "spatie/enum": "<3.7.2",
         "symfony/serializer": "<5.2.2"
     },
