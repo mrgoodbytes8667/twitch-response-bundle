@@ -24,6 +24,16 @@ class Subscriptions implements DataPaginationResponseInterface
     private $data = null;
 
     /**
+     * @var int|null
+     */
+    private $max_total_cost;
+
+    /**
+     * @var int|null
+     */
+    private $total_cost;
+
+    /**
      * @return Subscription[]|null
      */
     public function getData(): ?array
@@ -60,5 +70,41 @@ class Subscriptions implements DataPaginationResponseInterface
             return array_shift($data);
         }
         return null;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getMaxTotalCost(): ?int
+    {
+        return $this->max_total_cost;
+    }
+
+    /**
+     * @param int|null $max_total_cost
+     * @return $this
+     */
+    public function setMaxTotalCost(?int $max_total_cost): self
+    {
+        $this->max_total_cost = $max_total_cost;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTotalCost(): ?int
+    {
+        return $this->total_cost;
+    }
+
+    /**
+     * @param int|null $total_cost
+     * @return $this
+     */
+    public function setTotalCost(?int $total_cost): self
+    {
+        $this->total_cost = $total_cost;
+        return $this;
     }
 }
