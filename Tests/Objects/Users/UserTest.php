@@ -39,11 +39,11 @@ class UserTest extends TestCase
     public function testGetSetId()
     {
         $id = (string)$this->faker->numberBetween(1);
-        $this->assertNull($this->user->getId());
-        $this->assertInstanceOf(User::class, $this->user->setId(null));
-        $this->assertNull($this->user->getId());
-        $this->assertInstanceOf(User::class, $this->user->setId($id));
-        $this->assertEquals($id, $this->user->getId());
+        $this->assertNull($this->user->getUserId());
+        $this->assertInstanceOf(User::class, $this->user->setUserId(null));
+        $this->assertNull($this->user->getUserId());
+        $this->assertInstanceOf(User::class, $this->user->setUserId($id));
+        $this->assertEquals($id, $this->user->getUserId());
     }
 
     /**
@@ -208,7 +208,7 @@ class UserTest extends TestCase
         $this->assertInstanceOf(User::class, $user);
         $this->assertInstanceOf(UserInterface::class, $user);
 
-        $this->assertEquals($id, $user->getId());
+        $this->assertEquals($id, $user->getUserId());
         if (empty($login)) {
             $this->assertEmpty($user->getLogin());
         } else {

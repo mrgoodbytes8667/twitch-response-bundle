@@ -6,6 +6,7 @@ namespace Bytes\TwitchResponseBundle\Objects\Users;
 
 use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\UserInterface;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
  * Class User
@@ -95,7 +96,7 @@ class User implements UserInterface, TwitchDateTimeInterface
     public static function make(string $id, ?string $login = null, ?string $broadcasterType = null, ?string $description = null, ?string $displayName = null, ?string $email = null, ?string $offlineImageUrl = null, ?string $profileImageUrl = null, ?string $type = null, ?int $viewCount = null, ?\DateTimeInterface $createdAt = null): UserInterface
     {
         $static = new static();
-        $static->setId($id);
+        $static->setUserId($id);
         if (!empty($login)) {
             $static->setLogin($login);
         }
@@ -211,8 +212,9 @@ class User implements UserInterface, TwitchDateTimeInterface
 
     /**
      * @return string|null
+     * @SerializedName("id")
      */
-    public function getId(): ?string
+    public function getUserId(): ?string
     {
         return $this->id;
     }
@@ -221,7 +223,7 @@ class User implements UserInterface, TwitchDateTimeInterface
      * @param string|null $id
      * @return $this
      */
-    public function setId(?string $id): self
+    public function setUserId(?string $id): self
     {
         $this->id = $id;
         return $this;

@@ -13,13 +13,13 @@ interface UserInterface
     /**
      * @return string|null
      */
-    public function getId(): ?string;
+    public function getUserId(): ?string;
 
     /**
      * @param string|null $id
      * @return $this
      */
-    public function setId(?string $id);
+    public function setUserId(?string $id);
 
     /**
      * @return string|null
