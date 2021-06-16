@@ -23,7 +23,7 @@
         "mrgoodbytes8667/test-common": ">=0.0.15",
         "mrgoodbytes8667/test-common-faker": "^0.3.3",
         "mrgoodbytes8667/test-twitch-faker": ">=0.0.1",
-        "symfony/test-pack": "^1.0",
+        "symfony/test-pack": "^1.0.8",
         "symfony/var-dumper": "^5.3"
     },
     "authors": [
