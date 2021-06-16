@@ -25,7 +25,7 @@ use function Symfony\Component\String\u;
  */
 class SubscriptionTest extends TestCase
 {
-    use TestSerializerTrait, TestTwitchFakerTrait {
+    use CostProviderTrait, TestSerializerTrait, TestTwitchFakerTrait {
         TestTwitchFakerTrait::getProviders as parentProviders;
     }
 
@@ -263,6 +263,20 @@ class SubscriptionTest extends TestCase
                 yield ['date' => new DateTime($goodDate), 'json' => '{ "created_at": "' . $date . '" }'];
             }
         }
+    }
+
+    /**
+     * @dataProvider provideCost
+     * @param mixed $cost
+     */
+    public function testGetSetCost($cost)
+    {
+        $subscription = new Subscription();
+        $this->assertNull($subscription->getCost());
+        $this->assertInstanceOf(Subscription::class, $subscription->setCost(null));
+        $this->assertNull($subscription->getCost());
+        $this->assertInstanceOf(Subscription::class, $subscription->setCost($cost));
+        $this->assertEquals($cost, $subscription->getCost());
     }
 
     /**

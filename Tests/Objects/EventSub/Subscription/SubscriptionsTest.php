@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class SubscriptionsTest extends TestCase
 {
-    use TestTwitchFakerTrait;
+    use CostProviderTrait, TestTwitchFakerTrait;
 
     /**
      * @dataProvider provideData
@@ -101,5 +101,33 @@ class SubscriptionsTest extends TestCase
 
         $this->assertInstanceOf(Subscriptions::class, $subscriptions->setPagination(['cursor' => $this->faker->uuid()]));
 
+    }
+    
+    /**
+     * @dataProvider provideCost
+     * @param mixed $cost
+     */
+    public function testGetSetTotalCost($cost)
+    {
+        $subscription = new Subscriptions();
+        $this->assertNull($subscription->getTotalCost());
+        $this->assertInstanceOf(Subscriptions::class, $subscription->setTotalCost(null));
+        $this->assertNull($subscription->getTotalCost());
+        $this->assertInstanceOf(Subscriptions::class, $subscription->setTotalCost($cost));
+        $this->assertEquals($cost, $subscription->getTotalCost());
+    }
+
+    /**
+     * @dataProvider provideCost
+     * @param mixed $cost
+     */
+    public function testGetSetMaxTotalCost($cost)
+    {
+        $subscription = new Subscriptions();
+        $this->assertNull($subscription->getMaxTotalCost());
+        $this->assertInstanceOf(Subscriptions::class, $subscription->setMaxTotalCost(null));
+        $this->assertNull($subscription->getMaxTotalCost());
+        $this->assertInstanceOf(Subscriptions::class, $subscription->setMaxTotalCost($cost));
+        $this->assertEquals($cost, $subscription->getMaxTotalCost());
     }
 }
