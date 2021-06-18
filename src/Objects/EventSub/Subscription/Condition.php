@@ -5,6 +5,7 @@ namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 
 use Illuminate\Support\Str;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
@@ -120,6 +121,7 @@ class Condition
     /**
      * Gets the broadcaster or user id
      * @return string|null
+     * @Ignore
      */
     public function getBroadcasterOrUserId()
     {
