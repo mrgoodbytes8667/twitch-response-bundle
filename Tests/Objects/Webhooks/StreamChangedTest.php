@@ -12,12 +12,13 @@ use Exception;
 use Generator;
 use PHPUnit\Framework\TestCase;
 use Spatie\Enum\Faker\FakerEnumProvider;
+use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 use Symfony\Component\Serializer\SerializerInterface;
 use function Symfony\Component\String\u;
 
 class StreamChangedTest extends TestCase
 {
-    use TestSerializerTrait, TestTwitchFakerTrait {
+    use ExpectDeprecationTrait, TestSerializerTrait, TestTwitchFakerTrait {
         TestTwitchFakerTrait::getProviders as parentProviders;
     }
 
@@ -40,11 +41,14 @@ class StreamChangedTest extends TestCase
 
     /**
      * @dataProvider provideDateNormalization
+     * @group legacy
      * @param DateTimeInterface $date
      * @param $json
+     * @throws Exception
      */
     public function testDateNormalization($date, $json)
     {
+        $this->expectDeprecation('Using "%s" is deprecated, there is no replacement.');
         $streamChanged = new StreamChanged();
         $streamChanged->setGameId($this->faker->id());
         $streamChanged->setGameName($this->faker->word());
