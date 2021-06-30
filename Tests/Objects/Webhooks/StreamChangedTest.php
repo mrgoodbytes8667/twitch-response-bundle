@@ -135,4 +135,16 @@ class StreamChangedTest extends TestCase
     {
         return array_merge($this->parentProviders(), [FakerEnumProvider::class]);
     }
+
+    /**
+     * @group legacy
+     */
+    public function testGetSetCommunityIds()
+    {
+        $this->expectDeprecation('Using "%s" is deprecated, there is no replacement.');
+        $streamChanged = new StreamChanged();
+        $this->assertEmpty($streamChanged->getCommunityIds());
+        $streamChanged->setCommunityIds(['abc']);
+        $this->assertCount(1, $streamChanged->getCommunityIds());
+    }
 }
