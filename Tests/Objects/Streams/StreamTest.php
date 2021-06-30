@@ -1,24 +1,27 @@
 <?php
 
-namespace Bytes\TwitchResponseBundle\Tests\Objects\Webhooks;
+namespace Bytes\TwitchResponseBundle\Tests\Objects\Streams;
 
 use Bytes\Common\Faker\Twitch\TestTwitchFakerTrait;
 use Bytes\Tests\Common\TestSerializerTrait;
 use Bytes\TwitchResponseBundle\Normalizer\TwitchDateTimeNormalizer;
-use Bytes\TwitchResponseBundle\Objects\Webhooks\StreamChanged;
+use Bytes\TwitchResponseBundle\Objects\Streams\Stream;
 use DateTime;
 use DateTimeInterface;
 use Exception;
 use Generator;
 use PHPUnit\Framework\TestCase;
 use Spatie\Enum\Faker\FakerEnumProvider;
-use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 use Symfony\Component\Serializer\SerializerInterface;
 use function Symfony\Component\String\u;
 
-class StreamChangedTest extends TestCase
+/**
+ * Class StreamTest
+ * @package Bytes\TwitchResponseBundle\Tests\Objects\Streams
+ */
+class StreamTest extends TestCase
 {
-    use ExpectDeprecationTrait, TestSerializerTrait, TestTwitchFakerTrait {
+    use TestSerializerTrait, TestTwitchFakerTrait {
         TestTwitchFakerTrait::getProviders as parentProviders;
     }
 
@@ -34,36 +37,34 @@ class StreamChangedTest extends TestCase
      */
     public function testDateDenormalization($date, $json)
     {
-        /** @var StreamChanged $deserialized */
-        $deserialized = $this->serializer->deserialize($json, StreamChanged::class, 'json');
+        /** @var Stream $deserialized */
+        $deserialized = $this->serializer->deserialize($json, Stream::class, 'json');
         $this->assertEquals($date->format(DateTimeInterface::ISO8601), $deserialized->getStartedAt()->format(DateTimeInterface::ISO8601));
     }
 
     /**
      * @dataProvider provideDateNormalization
-     * @group legacy
      * @param DateTimeInterface $date
      * @param $json
      * @throws Exception
      */
     public function testDateNormalization($date, $json)
     {
-        $this->expectDeprecation('Using "%s" is deprecated, there is no replacement.');
-        $streamChanged = new StreamChanged();
-        $streamChanged->setGameId($this->faker->id());
-        $streamChanged->setGameName($this->faker->word());
-        $streamChanged->setId($this->faker->id());
-        $streamChanged->setLanguage($this->faker->locale());
-        $streamChanged->setThumbnailUrl($this->faker->imageUrl());
-        $streamChanged->setTitle($this->faker->paragraph());
-        $streamChanged->setType($this->faker->word());
-        $streamChanged->setUserId($this->faker->id());
-        $streamChanged->setUserName($this->faker->userName());
-        $streamChanged->setViewerCount($this->faker->numberBetween());
+        $stream = new Stream();
+        $stream->setGameId($this->faker->id());
+        $stream->setGameName($this->faker->word());
+        $stream->setId($this->faker->id());
+        $stream->setLanguage($this->faker->locale());
+        $stream->setThumbnailUrl($this->faker->imageUrl());
+        $stream->setTitle($this->faker->paragraph());
+        $stream->setType($this->faker->word());
+        $stream->setUserId($this->faker->id());
+        $stream->setUserName($this->faker->userName());
+        $stream->setViewerCount($this->faker->numberBetween());
 
-        $streamChanged->setStartedAt($date);
+        $stream->setStartedAt($date);
 
-        $serialized = $this->serializer->serialize($streamChanged, 'json');
+        $serialized = $this->serializer->serialize($stream, 'json');
         $this->assertStringContainsString($date->format('Y'), $serialized);
         $this->assertStringContainsString($date->format('m'), $serialized);
         $this->assertStringContainsString($date->format('d'), $serialized);
@@ -134,17 +135,5 @@ class StreamChangedTest extends TestCase
     protected function getProviders()
     {
         return array_merge($this->parentProviders(), [FakerEnumProvider::class]);
-    }
-
-    /**
-     * @group legacy
-     */
-    public function testGetSetCommunityIds()
-    {
-        $this->expectDeprecation('Using "%s" is deprecated, there is no replacement.');
-        $streamChanged = new StreamChanged();
-        $this->assertEmpty($streamChanged->getCommunityIds());
-        $streamChanged->setCommunityIds(['abc']);
-        $this->assertCount(1, $streamChanged->getCommunityIds());
     }
 }
