@@ -4,6 +4,7 @@
 namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 
 
+use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Interfaces\SubscriptionInterface;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Traits\SubscriptionTrait;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
 
@@ -11,7 +12,7 @@ use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
  * Class Subscription
  * @package Bytes\TwitchResponseBundle\Objects\EventSub\Subscription
  */
-class Subscription implements TwitchDateTimeInterface
+class Subscription implements SubscriptionInterface, TwitchDateTimeInterface
 {
     use SubscriptionTrait;
 
@@ -36,5 +37,21 @@ class Subscription implements TwitchDateTimeInterface
     {
         $this->cost = $cost;
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEventSubId(): ?string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCallback(): ?string
+    {
+        return $this->getTransport()?->getCallback();
     }
 }

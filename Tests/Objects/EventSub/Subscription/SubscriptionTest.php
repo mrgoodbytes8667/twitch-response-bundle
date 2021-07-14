@@ -135,6 +135,7 @@ class SubscriptionTest extends TestCase
         $this->assertNull($subscription->getTransport());
         $this->assertInstanceOf(Subscription::class, $subscription->setTransport($transport));
         $this->assertEquals($transport, $subscription->getTransport());
+        $this->assertEquals($transport->getCallback(), $subscription->getCallback());
     }
 
     /**
@@ -181,6 +182,7 @@ class SubscriptionTest extends TestCase
         $this->assertNull($subscription->getId());
         $this->assertInstanceOf(Subscription::class, $subscription->setId($id));
         $this->assertEquals($id, $subscription->getId());
+        $this->assertEquals($id, $subscription->getEventSubId());
     }
 
     /**
