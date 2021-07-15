@@ -8,7 +8,7 @@ namespace Bytes\TwitchResponseBundle\Objects\Interfaces;
  * Interface UserInterface
  * @package Bytes\TwitchResponseBundle\Objects\Interfaces
  */
-interface UserInterface extends UserIdInterface
+interface UserInterface extends \Bytes\ResponseBundle\Interfaces\UserIdInterface
 {
     /**
      * @param string|null $id
