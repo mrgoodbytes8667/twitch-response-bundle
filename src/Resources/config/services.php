@@ -42,17 +42,6 @@ return static function (ContainerConfigurator $container) {
         ])
         ->tag('serializer.normalizer');
 
-    $services->set('bytes_twitch_response.normalizer.subscription', SubscriptionNormalizer::class)
-        ->args([
-            service('serializer.mapping.class_metadata_factory'), // ClassMetadataFactoryInterface|null $classMetadataFactory
-            service('serializer.name_converter.metadata_aware'), // NameConverterInterface|null $nameConverter
-            service('property_info')->ignoreOnInvalid(), // PropertyTypeExtractorInterface|null $propertyTypeExtractor
-            service('serializer.mapping.class_discriminator_resolver')->ignoreOnInvalid(), // ClassDiscriminatorResolverInterface|null $classDiscriminatorResolver
-            null, // callable|null $objectClassResolver
-            [], // array $defaultContext
-        ])
-        ->tag('serializer.normalizer');
-
     $services->set('bytes_twitch_response.normalizer.condition', ConditionNormalizer::class)
         ->args([
             service('serializer.mapping.class_metadata_factory'), // ClassMetadataFactoryInterface|null $classMetadataFactory
