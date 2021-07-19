@@ -7,6 +7,10 @@ namespace Bytes\TwitchResponseBundle\Objects\Traits;
 use DateTimeInterface;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
+/**
+ * Trait StreamTrait
+ * @package Bytes\TwitchResponseBundle\Objects\Traits
+ */
 trait StreamTrait
 {
     /**
@@ -60,6 +64,7 @@ trait StreamTrait
     protected $user_id;
 
     /**
+     * Login of the user who is streaming.
      * @var string
      */
     protected $user_login;
@@ -82,6 +87,7 @@ trait StreamTrait
     protected $mature;
 
     /**
+     * Stream ID.
      * @return string|null
      */
     public function getId(): ?string
@@ -100,6 +106,7 @@ trait StreamTrait
     }
 
     /**
+     * ID of the game being played on the stream.
      * @return string
      */
     public function getGameId(): string
@@ -118,6 +125,7 @@ trait StreamTrait
     }
 
     /**
+     * Name of the game being played.
      * @return string
      */
     public function getGameName(): string
@@ -154,6 +162,7 @@ trait StreamTrait
     }
 
     /**
+     * Stream language. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”.
      * @return string
      */
     public function getLanguage(): string
@@ -172,6 +181,7 @@ trait StreamTrait
     }
 
     /**
+     * UTC timestamp.
      * @return DateTimeInterface
      */
     public function getStartedAt(): DateTimeInterface
@@ -190,6 +200,7 @@ trait StreamTrait
     }
 
     /**
+     * Shows tag IDs that apply to the stream.
      * @return string[]|null
      */
     public function getTagIds(): ?array
@@ -208,6 +219,7 @@ trait StreamTrait
     }
 
     /**
+     * 	Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image
      * @return string
      */
     public function getThumbnailUrl(): string
@@ -226,6 +238,7 @@ trait StreamTrait
     }
 
     /**
+     * Stream title.
      * @return string
      */
     public function getTitle(): string
@@ -244,7 +257,8 @@ trait StreamTrait
     }
 
     /**
-     * @return string
+     * Stream type: "live" or "" (in case of error).
+     * @return string = ['live', ''][$any]
      */
     public function getType(): string
     {
@@ -252,7 +266,7 @@ trait StreamTrait
     }
 
     /**
-     * @param string $type
+     * @param string $type = ['live', ''][$any]
      * @return $this
      */
     public function setType(string $type): self
@@ -262,6 +276,7 @@ trait StreamTrait
     }
 
     /**
+     * ID of the user who is streaming.
      * @return string
      */
     public function getUserId(): string
@@ -280,6 +295,7 @@ trait StreamTrait
     }
 
     /**
+     * Login of the user who is streaming.
      * @return string
      */
     public function getUserLogin(): string
@@ -298,6 +314,7 @@ trait StreamTrait
     }
 
     /**
+     * Display name corresponding to user_id.
      * @return string
      */
     public function getUserName(): string
@@ -316,6 +333,7 @@ trait StreamTrait
     }
 
     /**
+     * Number of viewers watching the stream at the time of the query.
      * @return int
      */
     public function getViewerCount(): int

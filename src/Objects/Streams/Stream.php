@@ -10,6 +10,8 @@ use Bytes\TwitchResponseBundle\Objects\Traits\StreamTrait;
 /**
  * Class Stream
  * @package Bytes\TwitchResponseBundle\Objects\Streams
+ *
+ * @link https://dev.twitch.tv/docs/api/reference#get-streams
  */
 class Stream implements TwitchDateTimeInterface
 {
