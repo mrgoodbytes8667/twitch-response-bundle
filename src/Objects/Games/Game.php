@@ -30,9 +30,9 @@ class Game
     private ?string $boxArtURL = '';
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getGameID(): ?int
+    public function getGameID(): ?string
     {
         return $this->gameID;
     }
