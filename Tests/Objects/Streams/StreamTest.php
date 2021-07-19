@@ -59,6 +59,7 @@ class StreamTest extends TestCase
         $stream->setTitle($this->faker->paragraph());
         $stream->setType($this->faker->word());
         $stream->setUserId($this->faker->id());
+        $stream->setUserLogin($this->faker->userName());
         $stream->setUserName($this->faker->userName());
         $stream->setViewerCount($this->faker->numberBetween());
 
@@ -341,6 +342,26 @@ class StreamTest extends TestCase
     {
         $this->setupFaker();
         yield [$this->faker->id()];
+    }
+
+    /**
+     * @dataProvider provideUserLogin
+     * @param mixed $userLogin
+     */
+    public function testGetSetUserLogin($userLogin)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setUserLogin($userLogin));
+        $this->assertEquals($userLogin, $stream->getUserLogin());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideUserLogin()
+    {
+        $this->setupFaker();
+        yield [$this->faker->userName()];
     }
 
     /**

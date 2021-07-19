@@ -58,6 +58,7 @@ class StreamChangedTest extends TestCase
         $streamChanged->setTitle($this->faker->paragraph());
         $streamChanged->setType($this->faker->word());
         $streamChanged->setUserId($this->faker->id());
+        $streamChanged->setUserLogin($this->faker->userName());
         $streamChanged->setUserName($this->faker->userName());
         $streamChanged->setViewerCount($this->faker->numberBetween());
 

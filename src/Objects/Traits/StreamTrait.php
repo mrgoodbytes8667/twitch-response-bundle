@@ -61,6 +61,11 @@ trait StreamTrait
     /**
      * @var string
      */
+    protected $user_login;
+
+    /**
+     * @var string
+     */
     protected $user_name;
 
     /**
@@ -263,6 +268,24 @@ trait StreamTrait
     public function setUserId(string $user_id): self
     {
         $this->user_id = $user_id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserLogin(): string
+    {
+        return $this->user_login;
+    }
+
+    /**
+     * @param string $userLogin
+     * @return $this
+     */
+    public function setUserLogin(string $userLogin): self
+    {
+        $this->user_login = $userLogin;
         return $this;
     }
 
