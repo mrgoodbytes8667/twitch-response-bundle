@@ -263,6 +263,7 @@ class StreamTest extends TestCase
         yield [[]];
         yield [$this->faker->words(3)];
         yield [$this->faker->words(6)];
+        yield [[$this->faker->uuid()]];
     }
 
     /**
@@ -282,7 +283,7 @@ class StreamTest extends TestCase
     public function provideThumbnailUrl()
     {
         $this->setupFaker();
-        yield [$this->faker->word()];
+        yield [$this->faker->imageUrl()];
     }
 
     /**
