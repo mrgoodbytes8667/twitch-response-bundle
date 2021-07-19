@@ -10,6 +10,8 @@ use Bytes\TwitchResponseBundle\Objects\EventSub\Event\User\Update as UserUpdateE
 /**
  * Class Update
  * @package Bytes\TwitchResponseBundle\Objects\EventSub\Notification\User
+ *
+ * @method UserUpdateEvent|null getEvent()
  */
 class Update extends Notification
 {

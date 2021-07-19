@@ -10,6 +10,8 @@ use Bytes\TwitchResponseBundle\Objects\EventSub\Event\Stream\Offline as StreamOf
 /**
  * Class Offline
  * @package Bytes\TwitchResponseBundle\Objects\EventSub\Notification\Stream
+ *
+ * @method StreamOfflineEvent|null getEvent()
  */
 class Offline extends Notification
 {

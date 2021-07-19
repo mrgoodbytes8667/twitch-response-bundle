@@ -10,6 +10,8 @@ use Bytes\TwitchResponseBundle\Objects\EventSub\Event\Channel\Update as ChannelU
 /**
  * Class Update
  * @package Bytes\TwitchResponseBundle\Objects\EventSub\Notification\Channel
+ *
+ * @method ChannelUpdateEvent|null getEvent()
  */
 class Update extends Notification
 {

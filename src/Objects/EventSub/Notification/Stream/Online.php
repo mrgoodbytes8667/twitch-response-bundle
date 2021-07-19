@@ -10,6 +10,8 @@ use Bytes\TwitchResponseBundle\Objects\EventSub\Event\Stream\Online as StreamOnl
 /**
  * Class Online
  * @package Bytes\TwitchResponseBundle\Objects\EventSub\Notification\Stream
+ *
+ * @method StreamOnlineEvent|null getEvent()
  */
 class Online extends Notification
 {
