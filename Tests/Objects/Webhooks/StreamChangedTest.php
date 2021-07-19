@@ -61,6 +61,7 @@ class StreamChangedTest extends TestCase
         $streamChanged->setUserLogin($this->faker->userName());
         $streamChanged->setUserName($this->faker->userName());
         $streamChanged->setViewerCount($this->faker->numberBetween());
+        $streamChanged->setMature($this->faker->boolean());
 
         $streamChanged->setStartedAt($date);
 

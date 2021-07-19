@@ -62,6 +62,7 @@ class StreamTest extends TestCase
         $stream->setUserLogin($this->faker->userName());
         $stream->setUserName($this->faker->userName());
         $stream->setViewerCount($this->faker->numberBetween());
+        $stream->setMature($this->faker->boolean());
 
         $stream->setStartedAt($date);
 
@@ -431,5 +432,25 @@ class StreamTest extends TestCase
     protected function getProviders()
     {
         return array_merge($this->parentProviders(), [FakerEnumProvider::class]);
+    }
+
+    /**
+     * @dataProvider provideMature
+     * @param bool $mature
+     */
+    public function testGetSetMature($mature)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setMature($mature));
+        $this->assertEquals($mature, $stream->isMature());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideMature()
+    {
+        yield [true];
+        yield [false];
     }
 }

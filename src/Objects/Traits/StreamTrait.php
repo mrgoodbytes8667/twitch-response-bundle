@@ -5,6 +5,7 @@ namespace Bytes\TwitchResponseBundle\Objects\Traits;
 
 
 use DateTimeInterface;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 trait StreamTrait
 {
@@ -72,6 +73,13 @@ trait StreamTrait
      * @var int
      */
     protected $viewer_count;
+
+    /**
+     * Indicates if the broadcaster has specified their channel contains mature content that may be inappropriate for younger audiences.
+     * @var bool
+     * @SerializedName("is_mature")
+     */
+    protected $mature;
 
     /**
      * @return string|null
@@ -322,6 +330,25 @@ trait StreamTrait
     public function setViewerCount(int $viewer_count): self
     {
         $this->viewer_count = $viewer_count;
+        return $this;
+    }
+
+    /**
+     * Indicates if the broadcaster has specified their channel contains mature content that may be inappropriate for younger audiences.
+     * @return bool
+     */
+    public function isMature(): bool
+    {
+        return $this->mature;
+    }
+
+    /**
+     * @param bool $mature
+     * @return $this
+     */
+    public function setMature(bool $mature): self
+    {
+        $this->mature = $mature;
         return $this;
     }
 }
