@@ -172,6 +172,19 @@ class UserTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testGetSetCreatedAt()
+    {
+        $createdAt = $this->faker->dateTime();
+        $this->assertNull($this->user->getCreatedAt());
+        $this->assertInstanceOf(User::class, $this->user->setCreatedAt(null));
+        $this->assertNull($this->user->getCreatedAt());
+        $this->assertInstanceOf(User::class, $this->user->setCreatedAt($createdAt));
+        $this->assertEquals($createdAt, $this->user->getCreatedAt());
+    }
+
+    /**
      * @return Generator
      * @throws Exception
      */
@@ -179,13 +192,15 @@ class UserTest extends TestCase
     {
         $this->setupFaker();
 
-        yield ['id' => (string)$this->faker->numberBetween(1000, 9999999), 'login' => null, 'broadcasterType' => null, 'description' => null, 'displayName' => null, 'email' => null, 'offlineImageUrl' => null, 'profileImageUrl' => null, 'type' => null, 'viewCount' => null];
-        yield ['id' => (string)$this->faker->numberBetween(1000, 9999999), 'login' => '', 'broadcasterType' => null, 'description' => null, 'displayName' => null, 'email' => null, 'offlineImageUrl' => null, 'profileImageUrl' => null, 'type' => null, 'viewCount' => null];
-        yield ['id' => (string)$this->faker->numberBetween(1000, 9999999), 'login' => $this->faker->userName(), 'broadcasterType' => null, 'description' => null, 'displayName' => null, 'email' => null, 'offlineImageUrl' => null, 'profileImageUrl' => null, 'type' => null, 'viewCount' => null];
+        yield ['id' => (string)$this->faker->numberBetween(1000, 9999999), 'login' => null, 'broadcasterType' => null, 'description' => null, 'displayName' => null, 'email' => null, 'offlineImageUrl' => null, 'profileImageUrl' => null, 'type' => null, 'viewCount' => null, 'createdAt' => null];
+        yield ['id' => (string)$this->faker->numberBetween(1000, 9999999), 'login' => '', 'broadcasterType' => null, 'description' => null, 'displayName' => null, 'email' => null, 'offlineImageUrl' => null, 'profileImageUrl' => null, 'type' => null, 'viewCount' => null, 'createdAt' => null];
+        yield ['id' => (string)$this->faker->numberBetween(1000, 9999999), 'login' => $this->faker->userName(), 'broadcasterType' => null, 'description' => null, 'displayName' => null, 'email' => null, 'offlineImageUrl' => null, 'profileImageUrl' => null, 'type' => null, 'viewCount' => null, 'createdAt' => null];
 
         foreach (range(1, 10) as $i) {
             $login = $this->faker->userName();
-            yield ['id' => (string)$this->faker->numberBetween(1000, 9999999), 'login' => $login, 'broadcasterType' => $this->faker->optional()->randomElement(['partner', 'affiliate', '']), 'description' => $this->faker->optional()->paragraph(), 'displayName' => $this->faker->optional()->passthrough($login), 'email' => $this->faker->optional()->email(), 'offlineImageUrl' => $this->faker->optional()->imageUrl(), 'profileImageUrl' => $this->faker->optional()->imageUrl(), 'type' => $this->faker->optional()->randomElement(['staff', 'admin', 'global_mod', '']), 'viewCount' => $this->faker->optional()->numberBetween()];
+            $createdAt = $this->faker->dateTime();
+            $createdAtImmutable = \DateTimeImmutable::createFromMutable($createdAt);
+            yield ['id' => (string)$this->faker->numberBetween(1000, 9999999), 'login' => $login, 'broadcasterType' => $this->faker->optional()->randomElement(['partner', 'affiliate', '']), 'description' => $this->faker->optional()->paragraph(), 'displayName' => $this->faker->optional()->passthrough($login), 'email' => $this->faker->optional()->email(), 'offlineImageUrl' => $this->faker->optional()->imageUrl(), 'profileImageUrl' => $this->faker->optional()->imageUrl(), 'type' => $this->faker->optional()->randomElement(['staff', 'admin', 'global_mod', '']), 'viewCount' => $this->faker->optional()->numberBetween(), 'createdAt' => $this->faker->optional()->randomElement([$createdAt, $createdAtImmutable])];
         }
     }
 
@@ -201,10 +216,11 @@ class UserTest extends TestCase
      * @param $profileImageUrl
      * @param $type
      * @param $viewCount
+     * @param $createdAt
      */
-    public function testCreate($id, $login, $broadcasterType, $description, $displayName, $email, $offlineImageUrl, $profileImageUrl, $type, $viewCount)
+    public function testCreate($id, $login, $broadcasterType, $description, $displayName, $email, $offlineImageUrl, $profileImageUrl, $type, $viewCount, $createdAt)
     {
-        $user = User::make($id, $login, $broadcasterType, $description, $displayName, $email, $offlineImageUrl, $profileImageUrl, $type, $viewCount);
+        $user = User::make($id, $login, $broadcasterType, $description, $displayName, $email, $offlineImageUrl, $profileImageUrl, $type, $viewCount, $createdAt);
         $this->assertInstanceOf(User::class, $user);
         $this->assertInstanceOf(UserInterface::class, $user);
 
