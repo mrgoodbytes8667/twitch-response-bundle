@@ -5,15 +5,14 @@ namespace Bytes\TwitchResponseBundle\Objects\Traits;
 
 
 use DateTimeInterface;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
+/**
+ * Trait StreamTrait
+ * @package Bytes\TwitchResponseBundle\Objects\Traits
+ */
 trait StreamTrait
 {
-    /**
-     * @var string[]|null
-     * @deprecated No longer offered by Twitch
-     */
-    protected $community_ids;
-
     /**
      * @var string
      */
@@ -65,6 +64,12 @@ trait StreamTrait
     protected $user_id;
 
     /**
+     * Login of the user who is streaming.
+     * @var string
+     */
+    protected $user_login;
+
+    /**
      * @var string
      */
     protected $user_name;
@@ -75,6 +80,14 @@ trait StreamTrait
     protected $viewer_count;
 
     /**
+     * Indicates if the broadcaster has specified their channel contains mature content that may be inappropriate for younger audiences.
+     * @var bool
+     * @SerializedName("is_mature")
+     */
+    protected $mature;
+
+    /**
+     * Stream ID.
      * @return string|null
      */
     public function getId(): ?string
@@ -93,29 +106,10 @@ trait StreamTrait
     }
 
     /**
-     * @return string[]|null
-     * @deprecated No longer offered by Twitch
+     * ID of the game being played on the stream.
+     * @return string
      */
-    public function getCommunityIds(): ?array
-    {
-        return $this->community_ids;
-    }
-
-    /**
-     * @param string[]|null $community_ids
-     * @return $this
-     * @deprecated No longer offered by Twitch
-     */
-    public function setCommunityIds(?array $community_ids): self
-    {
-        $this->community_ids = $community_ids;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getGameId(): int
+    public function getGameId(): string
     {
         return intval($this->game_id) ?? 0;
     }
@@ -131,6 +125,7 @@ trait StreamTrait
     }
 
     /**
+     * Name of the game being played.
      * @return string
      */
     public function getGameName(): string
@@ -167,6 +162,7 @@ trait StreamTrait
     }
 
     /**
+     * Stream language. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”.
      * @return string
      */
     public function getLanguage(): string
@@ -185,6 +181,7 @@ trait StreamTrait
     }
 
     /**
+     * UTC timestamp.
      * @return DateTimeInterface
      */
     public function getStartedAt(): DateTimeInterface
@@ -203,6 +200,7 @@ trait StreamTrait
     }
 
     /**
+     * Shows tag IDs that apply to the stream.
      * @return string[]|null
      */
     public function getTagIds(): ?array
@@ -221,6 +219,7 @@ trait StreamTrait
     }
 
     /**
+     * 	Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image
      * @return string
      */
     public function getThumbnailUrl(): string
@@ -239,6 +238,7 @@ trait StreamTrait
     }
 
     /**
+     * Stream title.
      * @return string
      */
     public function getTitle(): string
@@ -257,7 +257,8 @@ trait StreamTrait
     }
 
     /**
-     * @return string
+     * Stream type: "live" or "" (in case of error).
+     * @return string = ['live', ''][$any]
      */
     public function getType(): string
     {
@@ -265,7 +266,7 @@ trait StreamTrait
     }
 
     /**
-     * @param string $type
+     * @param string $type = ['live', ''][$any]
      * @return $this
      */
     public function setType(string $type): self
@@ -275,6 +276,7 @@ trait StreamTrait
     }
 
     /**
+     * ID of the user who is streaming.
      * @return string
      */
     public function getUserId(): string
@@ -293,6 +295,26 @@ trait StreamTrait
     }
 
     /**
+     * Login of the user who is streaming.
+     * @return string
+     */
+    public function getUserLogin(): string
+    {
+        return $this->user_login;
+    }
+
+    /**
+     * @param string $userLogin
+     * @return $this
+     */
+    public function setUserLogin(string $userLogin): self
+    {
+        $this->user_login = $userLogin;
+        return $this;
+    }
+
+    /**
+     * Display name corresponding to user_id.
      * @return string
      */
     public function getUserName(): string
@@ -311,6 +333,7 @@ trait StreamTrait
     }
 
     /**
+     * Number of viewers watching the stream at the time of the query.
      * @return int
      */
     public function getViewerCount(): int
@@ -325,6 +348,25 @@ trait StreamTrait
     public function setViewerCount(int $viewer_count): self
     {
         $this->viewer_count = $viewer_count;
+        return $this;
+    }
+
+    /**
+     * Indicates if the broadcaster has specified their channel contains mature content that may be inappropriate for younger audiences.
+     * @return bool
+     */
+    public function isMature(): bool
+    {
+        return $this->mature;
+    }
+
+    /**
+     * @param bool $mature
+     * @return $this
+     */
+    public function setMature(bool $mature): self
+    {
+        $this->mature = $mature;
         return $this;
     }
 }

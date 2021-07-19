@@ -59,8 +59,10 @@ class StreamTest extends TestCase
         $stream->setTitle($this->faker->paragraph());
         $stream->setType($this->faker->word());
         $stream->setUserId($this->faker->id());
+        $stream->setUserLogin($this->faker->userName());
         $stream->setUserName($this->faker->userName());
         $stream->setViewerCount($this->faker->numberBetween());
+        $stream->setMature($this->faker->boolean());
 
         $stream->setStartedAt($date);
 
@@ -112,6 +114,302 @@ class StreamTest extends TestCase
     }
 
     /**
+     * @dataProvider provideId
+     * @param mixed $id
+     */
+    public function testGetSetId($id)
+    {
+        $stream = new Stream();
+        $this->assertNull($stream->getId());
+        $this->assertInstanceOf(Stream::class, $stream->setId($id));
+        $this->assertEquals($id, $stream->getId());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideId()
+    {
+        $this->setupFaker();
+        yield [$this->faker->id()];
+    }
+
+    /**
+     * @dataProvider provideGameId
+     * @param mixed $gameId
+     */
+    public function testGetSetGameId($gameId)
+    {
+        $stream = new Stream();
+        $this->assertEquals('0', $stream->getGameId());
+        $this->assertInstanceOf(Stream::class, $stream->setGameId($gameId));
+        $this->assertEquals($gameId, $stream->getGameId());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideGameId()
+    {
+        $this->setupFaker();
+        yield ['0'];
+        yield [0];
+        yield ['1'];
+        yield [1];
+        yield [$this->faker->id()];
+        yield [(int)$this->faker->id()];
+        yield [(string)$this->faker->id()];
+    }
+
+    /**
+     * @dataProvider provideGameName
+     * @param mixed $gameName
+     */
+    public function testGetSetGameName($gameName)
+    {
+        $stream = new Stream();
+        $this->assertEquals('', $stream->getGameName());
+        $this->assertInstanceOf(Stream::class, $stream->setGameName($gameName));
+        $this->assertEquals($gameName, $stream->getGameName());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideGameName()
+    {
+        $this->setupFaker();
+        yield [$this->faker->word()];
+    }
+
+    /**
+     * @dataProvider provideStreamId
+     * @param mixed $streamId
+     */
+    public function testGetSetStreamId($streamId)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setStreamId($streamId));
+        $this->assertEquals($streamId, $stream->getStreamId());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideStreamId()
+    {
+        $this->setupFaker();
+        yield [$this->faker->id()];
+    }
+
+    /**
+     * @dataProvider provideLanguage
+     * @param mixed $language
+     */
+    public function testGetSetLanguage($language)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setLanguage($language));
+        $this->assertEquals($language, $stream->getLanguage());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideLanguage()
+    {
+        $this->setupFaker();
+        yield [(string)$this->faker->languageCode()];
+    }
+
+    /**
+     * @dataProvider provideStartedAt
+     * @param mixed $startedAt
+     */
+    public function testGetSetStartedAt($startedAt)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setStartedAt($startedAt));
+        $this->assertEquals($startedAt, $stream->getStartedAt());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideStartedAt()
+    {
+        $this->setupFaker();
+        yield [$this->faker->dateTimeInInterval('-1 week', 'now')];
+    }
+
+    /**
+     * @dataProvider provideTagIds
+     * @param mixed $tagIds
+     */
+    public function testGetSetTagIds($tagIds)
+    {
+        $stream = new Stream();
+        $this->assertNull($stream->getTagIds());
+        $this->assertInstanceOf(Stream::class, $stream->setTagIds($tagIds));
+        $this->assertEquals($tagIds, $stream->getTagIds());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideTagIds()
+    {
+        $this->setupFaker();
+        yield [[]];
+        yield [$this->faker->words(3)];
+        yield [$this->faker->words(6)];
+        yield [[$this->faker->uuid()]];
+    }
+
+    /**
+     * @dataProvider provideThumbnailUrl
+     * @param mixed $thumbnailUrl
+     */
+    public function testGetSetThumbnailUrl($thumbnailUrl)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setThumbnailUrl($thumbnailUrl));
+        $this->assertEquals($thumbnailUrl, $stream->getThumbnailUrl());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideThumbnailUrl()
+    {
+        $this->setupFaker();
+        yield [$this->faker->imageUrl()];
+    }
+
+    /**
+     * @dataProvider provideTitle
+     * @param mixed $title
+     */
+    public function testGetSetTitle($title)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setTitle($title));
+        $this->assertEquals($title, $stream->getTitle());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideTitle()
+    {
+        $this->setupFaker();
+        yield [(string)$this->faker->sentence()];
+    }
+
+    /**
+     * @dataProvider provideType
+     * @param mixed $type
+     */
+    public function testGetSetType($type)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setType($type));
+        $this->assertEquals($type, $stream->getType());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideType()
+    {
+        $this->setupFaker();
+        yield [$this->faker->word()];
+    }
+
+    /**
+     * @dataProvider provideUserId
+     * @param mixed $userId
+     */
+    public function testGetSetUserId($userId)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setUserId($userId));
+        $this->assertEquals($userId, $stream->getUserId());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideUserId()
+    {
+        $this->setupFaker();
+        yield [$this->faker->id()];
+    }
+
+    /**
+     * @dataProvider provideUserLogin
+     * @param mixed $userLogin
+     */
+    public function testGetSetUserLogin($userLogin)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setUserLogin($userLogin));
+        $this->assertEquals($userLogin, $stream->getUserLogin());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideUserLogin()
+    {
+        $this->setupFaker();
+        yield [$this->faker->userName()];
+    }
+
+    /**
+     * @dataProvider provideUserName
+     * @param mixed $userName
+     */
+    public function testGetSetUserName($userName)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setUserName($userName));
+        $this->assertEquals($userName, $stream->getUserName());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideUserName()
+    {
+        $this->setupFaker();
+        yield [$this->faker->userName()];
+    }
+
+    /**
+     * @dataProvider provideViewerCount
+     * @param mixed $viewerCount
+     */
+    public function testGetSetViewerCount($viewerCount)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setViewerCount($viewerCount));
+        $this->assertEquals($viewerCount, $stream->getViewerCount());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideViewerCount()
+    {
+        $this->setupFaker();
+        yield [$this->faker->numberBetween()];
+        foreach (range(0, 5) as $index) {
+            yield [$index];
+        }
+    }
+
+    /**
      * @before
      */
     protected function setUpSerializer()
@@ -135,5 +433,25 @@ class StreamTest extends TestCase
     protected function getProviders()
     {
         return array_merge($this->parentProviders(), [FakerEnumProvider::class]);
+    }
+
+    /**
+     * @dataProvider provideMature
+     * @param bool $mature
+     */
+    public function testGetSetMature($mature)
+    {
+        $stream = new Stream();
+        $this->assertInstanceOf(Stream::class, $stream->setMature($mature));
+        $this->assertEquals($mature, $stream->isMature());
+    }
+
+    /**
+     * @return Generator
+     */
+    public function provideMature()
+    {
+        yield [true];
+        yield [false];
     }
 }
