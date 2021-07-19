@@ -9,12 +9,6 @@ use DateTimeInterface;
 trait StreamTrait
 {
     /**
-     * @var string[]|null
-     * @deprecated No longer offered by Twitch
-     */
-    protected $community_ids;
-
-    /**
      * @var string
      */
     protected $game_id;
@@ -93,29 +87,9 @@ trait StreamTrait
     }
 
     /**
-     * @return string[]|null
-     * @deprecated No longer offered by Twitch
+     * @return string
      */
-    public function getCommunityIds(): ?array
-    {
-        return $this->community_ids;
-    }
-
-    /**
-     * @param string[]|null $community_ids
-     * @return $this
-     * @deprecated No longer offered by Twitch
-     */
-    public function setCommunityIds(?array $community_ids): self
-    {
-        $this->community_ids = $community_ids;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getGameId(): int
+    public function getGameId(): string
     {
         return intval($this->game_id) ?? 0;
     }
