@@ -52,6 +52,9 @@ class GameTest extends TestCase
         $this->assertEquals($id, $game->getGameID());
         $this->assertEquals($name, $game->getName());
         $this->assertEquals($boxArtUrl, $game->getBoxArtURL());
+
+        $this->assertIsString($game->getGameID());
+        $this->assertIsNotInt($game->getGameID());
     }
 
     /**
@@ -60,5 +63,6 @@ class GameTest extends TestCase
     public function provideGame()
     {
         yield ['id' => '497057', 'name' => 'Destiny 2', 'boxArtUrl' => 'https://static-cdn.jtvnw.net/ttv-boxart/Destiny%202-{width}x{height}.jpg'];
+        yield ['id' => 497057, 'name' => 'Destiny 2', 'boxArtUrl' => 'https://static-cdn.jtvnw.net/ttv-boxart/Destiny%202-{width}x{height}.jpg'];
     }
 }
