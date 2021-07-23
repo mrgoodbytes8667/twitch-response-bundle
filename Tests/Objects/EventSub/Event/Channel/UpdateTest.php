@@ -3,13 +3,18 @@
 namespace Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Event\Channel;
 
 use Bytes\Common\Faker\TestFakerTrait;
+use Bytes\Tests\Common\TestFullSerializerTrait;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Event\Channel\Update;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class UpdateTest
+ * @package Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Event\Channel
+ */
 class UpdateTest extends TestCase
 {
-    use TestFakerTrait;
+    use TestFakerTrait, TestFullSerializerTrait;
 
     /**
      * @dataProvider provideTitle
@@ -172,5 +177,36 @@ class UpdateTest extends TestCase
     {
         $this->setupFaker();
         yield [$this->faker->userName()];
+    }
+
+    /**
+     *
+     */
+    public function testDeserialization()
+    {
+        $json = '{
+  "broadcaster_user_id": "111111111",
+  "broadcaster_user_login": "fakeuser1",
+  "broadcaster_user_name": "FaKeUsEr1",
+  "title": "Testing testing 4 5 6",
+  "language": "en",
+  "category_id": "509658",
+  "category_name": "Just Chatting",
+  "is_mature": false
+}';
+
+        /** @var Update $results */
+        $results = $this->serializer->deserialize($json, Update::class, 'json');
+
+        $this->assertInstanceOf(Update::class, $results);
+        $this->assertEquals('Testing testing 4 5 6', $results->getTitle());
+        $this->assertEquals('en', $results->getLanguage());
+        $this->assertEquals('509658', $results->getCategoryId());
+        $this->assertEquals('Just Chatting', $results->getCategoryName());
+        $this->assertFalse($results->getIsMature());
+        $this->assertEquals('111111111', $results->getUserId());
+        $this->assertEquals('FaKeUsEr1', $results->getUserName());
+
+        $this->assertNotEmpty($results);
     }
 }
