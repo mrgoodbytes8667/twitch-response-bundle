@@ -137,14 +137,14 @@ class UpdateTest extends TestCase
      * @dataProvider provideUserId
      * @param mixed $userId
      */
-    public function testGetSetUserId($userId)
+    public function testGetSetBroadcasterUserId($userId)
     {
         $update = new Update();
-        $this->assertNull($update->getUserId());
-        $this->assertInstanceOf(Update::class, $update->setUserId(null));
-        $this->assertNull($update->getUserId());
-        $this->assertInstanceOf(Update::class, $update->setUserId($userId));
-        $this->assertEquals($userId, $update->getUserId());
+        $this->assertNull($update->getBroadcasterUserId());
+        $this->assertInstanceOf(Update::class, $update->setBroadcasterUserId(null));
+        $this->assertNull($update->getBroadcasterUserId());
+        $this->assertInstanceOf(Update::class, $update->setBroadcasterUserId($userId));
+        $this->assertEquals($userId, $update->getBroadcasterUserId());
     }
 
     /**
@@ -160,14 +160,14 @@ class UpdateTest extends TestCase
      * @dataProvider provideUserName
      * @param mixed $userName
      */
-    public function testGetSetUserName($userName)
+    public function testGetSetBroadcasterUserName($userName)
     {
         $update = new Update();
-        $this->assertNull($update->getUserName());
-        $this->assertInstanceOf(Update::class, $update->setUserName(null));
-        $this->assertNull($update->getUserName());
-        $this->assertInstanceOf(Update::class, $update->setUserName($userName));
-        $this->assertEquals($userName, $update->getUserName());
+        $this->assertNull($update->getBroadcasterUserName());
+        $this->assertInstanceOf(Update::class, $update->setBroadcasterUserName(null));
+        $this->assertNull($update->getBroadcasterUserName());
+        $this->assertInstanceOf(Update::class, $update->setBroadcasterUserName($userName));
+        $this->assertEquals($userName, $update->getBroadcasterUserName());
     }
 
     /**
@@ -204,6 +204,8 @@ class UpdateTest extends TestCase
         $this->assertEquals('509658', $results->getCategoryId());
         $this->assertEquals('Just Chatting', $results->getCategoryName());
         $this->assertFalse($results->getIsMature());
+        $this->assertEquals('111111111', $results->getBroadcasterUserId());
+        $this->assertEquals('FaKeUsEr1', $results->getBroadcasterUserName());
         $this->assertEquals('111111111', $results->getUserId());
         $this->assertEquals('FaKeUsEr1', $results->getUserName());
 

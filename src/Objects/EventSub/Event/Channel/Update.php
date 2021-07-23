@@ -5,7 +5,7 @@ namespace Bytes\TwitchResponseBundle\Objects\EventSub\Event\Channel;
 
 
 use Bytes\TwitchResponseBundle\Objects\EventSub\Event\AbstractEvent;
-use Bytes\TwitchResponseBundle\Objects\EventSub\Traits\UserTrait;
+use Bytes\TwitchResponseBundle\Objects\EventSub\Traits\BroadcasterUserTrait;
 
 /**
  * Class Update
@@ -13,7 +13,7 @@ use Bytes\TwitchResponseBundle\Objects\EventSub\Traits\UserTrait;
  */
 class Update extends AbstractEvent
 {
-    use UserTrait;
+    use BroadcasterUserTrait;
 
     /**
      * @var string|null
