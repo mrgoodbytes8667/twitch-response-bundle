@@ -3,13 +3,18 @@
 namespace Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Event\Channel;
 
 use Bytes\Common\Faker\TestFakerTrait;
+use Bytes\Tests\Common\TestFullSerializerTrait;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Event\Channel\Update;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class UpdateTest
+ * @package Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Event\Channel
+ */
 class UpdateTest extends TestCase
 {
-    use TestFakerTrait;
+    use TestFakerTrait, TestFullSerializerTrait;
 
     /**
      * @dataProvider provideTitle
@@ -132,14 +137,14 @@ class UpdateTest extends TestCase
      * @dataProvider provideUserId
      * @param mixed $userId
      */
-    public function testGetSetUserId($userId)
+    public function testGetSetBroadcasterUserId($userId)
     {
         $update = new Update();
-        $this->assertNull($update->getUserId());
-        $this->assertInstanceOf(Update::class, $update->setUserId(null));
-        $this->assertNull($update->getUserId());
-        $this->assertInstanceOf(Update::class, $update->setUserId($userId));
-        $this->assertEquals($userId, $update->getUserId());
+        $this->assertNull($update->getBroadcasterUserId());
+        $this->assertInstanceOf(Update::class, $update->setBroadcasterUserId(null));
+        $this->assertNull($update->getBroadcasterUserId());
+        $this->assertInstanceOf(Update::class, $update->setBroadcasterUserId($userId));
+        $this->assertEquals($userId, $update->getBroadcasterUserId());
     }
 
     /**
@@ -155,14 +160,14 @@ class UpdateTest extends TestCase
      * @dataProvider provideUserName
      * @param mixed $userName
      */
-    public function testGetSetUserName($userName)
+    public function testGetSetBroadcasterUserName($userName)
     {
         $update = new Update();
-        $this->assertNull($update->getUserName());
-        $this->assertInstanceOf(Update::class, $update->setUserName(null));
-        $this->assertNull($update->getUserName());
-        $this->assertInstanceOf(Update::class, $update->setUserName($userName));
-        $this->assertEquals($userName, $update->getUserName());
+        $this->assertNull($update->getBroadcasterUserName());
+        $this->assertInstanceOf(Update::class, $update->setBroadcasterUserName(null));
+        $this->assertNull($update->getBroadcasterUserName());
+        $this->assertInstanceOf(Update::class, $update->setBroadcasterUserName($userName));
+        $this->assertEquals($userName, $update->getBroadcasterUserName());
     }
 
     /**
@@ -172,5 +177,38 @@ class UpdateTest extends TestCase
     {
         $this->setupFaker();
         yield [$this->faker->userName()];
+    }
+
+    /**
+     *
+     */
+    public function testDeserialization()
+    {
+        $json = '{
+  "broadcaster_user_id": "111111111",
+  "broadcaster_user_login": "fakeuser1",
+  "broadcaster_user_name": "FaKeUsEr1",
+  "title": "Testing testing 4 5 6",
+  "language": "en",
+  "category_id": "509658",
+  "category_name": "Just Chatting",
+  "is_mature": false
+}';
+
+        /** @var Update $results */
+        $results = $this->serializer->deserialize($json, Update::class, 'json');
+
+        $this->assertInstanceOf(Update::class, $results);
+        $this->assertEquals('Testing testing 4 5 6', $results->getTitle());
+        $this->assertEquals('en', $results->getLanguage());
+        $this->assertEquals('509658', $results->getCategoryId());
+        $this->assertEquals('Just Chatting', $results->getCategoryName());
+        $this->assertFalse($results->getIsMature());
+        $this->assertEquals('111111111', $results->getBroadcasterUserId());
+        $this->assertEquals('FaKeUsEr1', $results->getBroadcasterUserName());
+        $this->assertEquals('111111111', $results->getUserId());
+        $this->assertEquals('FaKeUsEr1', $results->getUserName());
+
+        $this->assertNotEmpty($results);
     }
 }
