@@ -4,9 +4,15 @@
 namespace Bytes\TwitchResponseBundle\Services;
 
 
+use JetBrains\PhpStorm\Deprecated;
+
+trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.4.10', 'The "%s" class is deprecated, use "%s" instead.', TwitchImageResize::class, '\Bytes\TwitchClientBundle\Objects\TwitchImageResize');
+
 /**
  * Class TwitchImageResize
  * @package Bytes\TwitchResponseBundle\Services
+ *
+ * @deprecated since 0.4.10, use \Bytes\TwitchClientBundle\Objects\TwitchImageResize instead
  */
 class TwitchImageResize
 {
@@ -44,6 +50,10 @@ class TwitchImageResize
      *
      * @return string
      */
+    #[Deprecated(
+        reason: 'Since 0.4.10, use \Bytes\TwitchClientBundle\Objects\TwitchImageResize::thumbnail() instead.',
+        replacement: '\Bytes\TwitchClientBundle\Objects\TwitchImageResize::%name%(%parametersList%)'
+    )]
     public static function thumbnail(string $url, int $width = null, int $height = null)
     {
         if(empty($url))
@@ -68,6 +78,10 @@ class TwitchImageResize
      *
      * @return string
      */
+    #[Deprecated(
+        reason: 'Since 0.4.10, use \Bytes\TwitchClientBundle\Objects\TwitchImageResize::twitchGameThumbnail() instead.',
+        replacement: '\Bytes\TwitchClientBundle\Objects\TwitchImageResize::%name%(%parametersList%)'
+    )]
     public static function twitchGameThumbnail(string $url, int $width = null, int $height = null)
     {
         if(empty($url))
@@ -92,6 +106,10 @@ class TwitchImageResize
      *
      * @return string
      */
+    #[Deprecated(
+        reason: 'Since 0.4.10, use \Bytes\TwitchClientBundle\Objects\TwitchImageResize::sixteenByNine() instead.',
+        replacement: '\Bytes\TwitchClientBundle\Objects\TwitchImageResize::%name%(%parametersList%)'
+    )]
     public static function sixteenByNine(string $url, int $width = null, int $height = null)
     {
         if(empty($url))
@@ -115,6 +133,10 @@ class TwitchImageResize
      * @param int $height
      * @return string
      */
+    #[Deprecated(
+        reason: 'Since 0.4.10, use \Bytes\TwitchClientBundle\Objects\TwitchImageResize::resize() instead.',
+        replacement: '\Bytes\TwitchClientBundle\Objects\TwitchImageResize::%name%(%parametersList%)'
+    )]
     public static function resize(string $url, int $width, int $height)
     {
         if(empty($url))
