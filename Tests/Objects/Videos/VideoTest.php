@@ -5,6 +5,9 @@ namespace Bytes\TwitchResponseBundle\Tests\Objects\Videos;
 use Bytes\Common\Faker\Twitch\TestTwitchFakerTrait;
 use Bytes\Tests\Common\DataProvider\NullProviderTrait;
 use Bytes\TwitchResponseBundle\Objects\Videos\Video;
+use DateTime;
+use DateTimeImmutable;
+use Generator;
 use PHPUnit\Framework\TestCase;
 
 class VideoTest extends TestCase
@@ -18,16 +21,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetVideoId($videoId)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getVideoId());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setVideoId(null));
+        $this->assertInstanceOf(Video::class, $video->setVideoId(null));
         $this->assertNull($video->getVideoId());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setVideoId($videoId));
+        $this->assertInstanceOf(Video::class, $video->setVideoId($videoId));
         $this->assertEquals($videoId, $video->getVideoId());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideVideoId()
     {
@@ -42,16 +45,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetStreamId($streamId)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getStreamId());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setStreamId(null));
+        $this->assertInstanceOf(Video::class, $video->setStreamId(null));
         $this->assertNull($video->getStreamId());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setStreamId($streamId));
+        $this->assertInstanceOf(Video::class, $video->setStreamId($streamId));
         $this->assertEquals($streamId, $video->getStreamId());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideStreamId()
     {
@@ -66,16 +69,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetUserId($userId)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getUserId());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setUserId(null));
+        $this->assertInstanceOf(Video::class, $video->setUserId(null));
         $this->assertNull($video->getUserId());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setUserId($userId));
+        $this->assertInstanceOf(Video::class, $video->setUserId($userId));
         $this->assertEquals($userId, $video->getUserId());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideUserId()
     {
@@ -90,16 +93,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetUserLogin($userLogin)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getUserLogin());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setUserLogin(null));
+        $this->assertInstanceOf(Video::class, $video->setUserLogin(null));
         $this->assertNull($video->getUserLogin());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setUserLogin($userLogin));
+        $this->assertInstanceOf(Video::class, $video->setUserLogin($userLogin));
         $this->assertEquals($userLogin, $video->getUserLogin());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideUserLogin()
     {
@@ -114,16 +117,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetUserName($userName)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getUserName());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setUserName(null));
+        $this->assertInstanceOf(Video::class, $video->setUserName(null));
         $this->assertNull($video->getUserName());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setUserName($userName));
+        $this->assertInstanceOf(Video::class, $video->setUserName($userName));
         $this->assertEquals($userName, $video->getUserName());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideUserName()
     {
@@ -138,21 +141,21 @@ class VideoTest extends TestCase
      */
     public function testGetSetTitle($title)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getTitle());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setTitle(null));
+        $this->assertInstanceOf(Video::class, $video->setTitle(null));
         $this->assertNull($video->getTitle());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setTitle($title));
+        $this->assertInstanceOf(Video::class, $video->setTitle($title));
         $this->assertEquals($title, $video->getTitle());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideTitle()
     {
         $this->setupFaker();
-        yield [(string) $this->faker->sentence()];
+        yield [(string)$this->faker->sentence()];
     }
 
     /**
@@ -162,21 +165,21 @@ class VideoTest extends TestCase
      */
     public function testGetSetDescription($description)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getDescription());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setDescription(null));
+        $this->assertInstanceOf(Video::class, $video->setDescription(null));
         $this->assertNull($video->getDescription());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setDescription($description));
+        $this->assertInstanceOf(Video::class, $video->setDescription($description));
         $this->assertEquals($description, $video->getDescription());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideDescription()
     {
         $this->setupFaker();
-        yield [(string) $this->faker->sentence()];
+        yield [(string)$this->faker->sentence()];
     }
 
     /**
@@ -186,23 +189,23 @@ class VideoTest extends TestCase
      */
     public function testGetSetCreatedAt($createdAt)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getCreatedAt());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setCreatedAt(null));
+        $this->assertInstanceOf(Video::class, $video->setCreatedAt(null));
         $this->assertNull($video->getCreatedAt());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setCreatedAt($createdAt));
+        $this->assertInstanceOf(Video::class, $video->setCreatedAt($createdAt));
         $this->assertEquals($createdAt, $video->getCreatedAt());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideCreatedAt()
     {
         $this->setupFaker();
-        yield [new \DateTime()];
+        yield [new DateTime()];
         yield [$this->faker->dateTimeInInterval('-1 week', 'now')];
-        yield [new \DateTimeImmutable()];
+        yield [new DateTimeImmutable()];
     }
 
     /**
@@ -212,23 +215,23 @@ class VideoTest extends TestCase
      */
     public function testGetSetPublishedAt($publishedAt)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getPublishedAt());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setPublishedAt(null));
+        $this->assertInstanceOf(Video::class, $video->setPublishedAt(null));
         $this->assertNull($video->getPublishedAt());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setPublishedAt($publishedAt));
+        $this->assertInstanceOf(Video::class, $video->setPublishedAt($publishedAt));
         $this->assertEquals($publishedAt, $video->getPublishedAt());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function providePublishedAt()
     {
         $this->setupFaker();
-        yield [new \DateTime()];
+        yield [new DateTime()];
         yield [$this->faker->dateTimeInInterval('-1 week', 'now')];
-        yield [new \DateTimeImmutable()];
+        yield [new DateTimeImmutable()];
     }
 
     /**
@@ -238,16 +241,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetUrl($url)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getUrl());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setUrl(null));
+        $this->assertInstanceOf(Video::class, $video->setUrl(null));
         $this->assertNull($video->getUrl());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setUrl($url));
+        $this->assertInstanceOf(Video::class, $video->setUrl($url));
         $this->assertEquals($url, $video->getUrl());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideUrl()
     {
@@ -262,16 +265,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetThumbnailUrl($thumbnailUrl)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getThumbnailUrl());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setThumbnailUrl(null));
+        $this->assertInstanceOf(Video::class, $video->setThumbnailUrl(null));
         $this->assertNull($video->getThumbnailUrl());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setThumbnailUrl($thumbnailUrl));
+        $this->assertInstanceOf(Video::class, $video->setThumbnailUrl($thumbnailUrl));
         $this->assertEquals($thumbnailUrl, $video->getThumbnailUrl());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideThumbnailUrl()
     {
@@ -286,16 +289,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetViewable($viewable)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getViewable());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setViewable(null));
+        $this->assertInstanceOf(Video::class, $video->setViewable(null));
         $this->assertNull($video->getViewable());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setViewable($viewable));
+        $this->assertInstanceOf(Video::class, $video->setViewable($viewable));
         $this->assertEquals($viewable, $video->getViewable());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideViewable()
     {
@@ -312,16 +315,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetViewCount($viewCount)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getViewCount());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setViewCount(null));
+        $this->assertInstanceOf(Video::class, $video->setViewCount(null));
         $this->assertNull($video->getViewCount());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setViewCount($viewCount));
+        $this->assertInstanceOf(Video::class, $video->setViewCount($viewCount));
         $this->assertEquals($viewCount, $video->getViewCount());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideViewCount()
     {
@@ -337,21 +340,21 @@ class VideoTest extends TestCase
      */
     public function testGetSetLanguage($language)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getLanguage());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setLanguage(null));
+        $this->assertInstanceOf(Video::class, $video->setLanguage(null));
         $this->assertNull($video->getLanguage());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setLanguage($language));
+        $this->assertInstanceOf(Video::class, $video->setLanguage($language));
         $this->assertEquals($language, $video->getLanguage());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideLanguage()
     {
         $this->setupFaker();
-        yield [(string) $this->faker->languageCode()];
+        yield [(string)$this->faker->languageCode()];
     }
 
     /**
@@ -361,16 +364,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetType($type)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getType());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setType(null));
+        $this->assertInstanceOf(Video::class, $video->setType(null));
         $this->assertNull($video->getType());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setType($type));
+        $this->assertInstanceOf(Video::class, $video->setType($type));
         $this->assertEquals($type, $video->getType());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideType()
     {
@@ -388,16 +391,16 @@ class VideoTest extends TestCase
      */
     public function testGetSetDuration($duration)
     {
-        $video = new \Bytes\TwitchResponseBundle\Objects\Videos\Video();
+        $video = new Video();
         $this->assertNull($video->getDuration());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setDuration(null));
+        $this->assertInstanceOf(Video::class, $video->setDuration(null));
         $this->assertNull($video->getDuration());
-        $this->assertInstanceOf(\Bytes\TwitchResponseBundle\Objects\Videos\Video::class, $video->setDuration($duration));
+        $this->assertInstanceOf(Video::class, $video->setDuration($duration));
         $this->assertEquals($duration, $video->getDuration());
     }
 
     /**
-     * @return \Generator
+     * @return Generator
      */
     public function provideDuration()
     {
