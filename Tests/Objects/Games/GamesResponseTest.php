@@ -138,6 +138,21 @@ class GamesResponseTest extends TestCase
      * @param $first
      * @param $last
      */
+    public function testRandom($games, $count, $first, $last)
+    {
+        $g = new GamesResponse();
+        $g->setData($games);
+
+        $this->assertInstanceOf(Game::class, $g->random());
+    }
+
+    /**
+     * @dataProvider provideGames
+     * @param $games
+     * @param $count
+     * @param $first
+     * @param $last
+     */
     public function testPointers($games, $count, $first, $last)
     {
         $g = new GamesResponse();

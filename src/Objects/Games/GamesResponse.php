@@ -6,6 +6,7 @@ namespace Bytes\TwitchResponseBundle\Objects\Games;
 
 use Bytes\TwitchResponseBundle\Objects\Traits\PaginationTrait;
 use Countable;
+use Illuminate\Support\Arr;
 
 /**
  * Class GamesResponse
@@ -78,5 +79,18 @@ class GamesResponse implements Countable
     public function get($key)
     {
         return $this->data[$key] ?? null;
+    }
+
+    /**
+     * Get a random element.
+     *
+     * @return Game|null
+     */
+    public function random(): ?Game
+    {
+        if (empty($this->data)) {
+            return null;
+        }
+        return Arr::random($this->data);
     }
 }
