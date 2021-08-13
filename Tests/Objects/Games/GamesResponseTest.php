@@ -147,6 +147,15 @@ class GamesResponseTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testRandomNull()
+    {
+        $g = new GamesResponse();
+        $this->assertNull($g->random());
+    }
+
+    /**
      * @dataProvider provideGames
      * @param $games
      * @param $count
