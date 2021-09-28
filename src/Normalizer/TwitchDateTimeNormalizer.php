@@ -31,7 +31,7 @@ class TwitchDateTimeNormalizer extends ObjectNormalizer
      *
      * @throws ExceptionInterface Occurs for all the other cases of errors
      */
-    public function denormalize($data, string $type, string $format = null, array $context = [])
+    public function denormalize($data, string $type, string $format = null, array $context = []): mixed
     {
         foreach ($data as $key => $value) {
             switch ($key) {
@@ -73,7 +73,7 @@ class TwitchDateTimeNormalizer extends ObjectNormalizer
      *
      * @return bool
      */
-    public function supportsDenormalization($data, string $type, string $format = null)
+    public function supportsDenormalization($data, string $type, string $format = null): bool
     {
         return is_subclass_of($type, TwitchDateTimeInterface::class) && is_array($data) && parent::supportsDenormalization($data, $type, $format);
     }
@@ -86,7 +86,7 @@ class TwitchDateTimeNormalizer extends ObjectNormalizer
      *
      * @return bool
      */
-    public function supportsNormalization($data, string $format = null)
+    public function supportsNormalization($data, string $format = null): bool
     {
         return ($data instanceof TwitchDateTimeInterface) && parent::supportsNormalization($data, $format);
     }

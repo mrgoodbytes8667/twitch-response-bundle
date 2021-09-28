@@ -31,7 +31,7 @@ class TwitchTagNormalizer extends ObjectNormalizer implements CacheableSupportsM
      *
      * @throws ExceptionInterface Occurs for all the other cases of errors
      */
-    public function denormalize($data, string $type, string $format = null, array $context = [])
+    public function denormalize($data, string $type, string $format = null, array $context = []): mixed
     {
         if ((isset($context['allowed_locales']) && !empty($context['allowed_locales'])) || (isset($context['filtered_locales']) && !empty($context['filtered_locales']))) {
             foreach ($data as $key => $value) {
@@ -79,7 +79,7 @@ class TwitchTagNormalizer extends ObjectNormalizer implements CacheableSupportsM
      *
      * @return bool
      */
-    public function supportsDenormalization($data, string $type, string $format = null)
+    public function supportsDenormalization($data, string $type, string $format = null): bool
     {
         return is_subclass_of($type, TagInterface::class) && parent::supportsDenormalization($data, $type, $format);
     }
