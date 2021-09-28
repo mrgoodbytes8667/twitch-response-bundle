@@ -6,15 +6,8 @@
     "require": {
         "php": "^8.0",
         "ext-json": "*",
-        "illuminate/support": "^8.0",
         "mrgoodbytes8667/response-bundle": "^2.0.9",
-        "symfony/config": "^5.3",
-        "symfony/console": "^5.3",
-        "symfony/dependency-injection": "^5.3",
-        "symfony/framework-bundle": "^5.3",
         "symfony/messenger": "^5.3",
-        "symfony/serializer": "^5.3",
-        "symfony/string": "^5.3",
         "symfony/validator": "^5.3"
     },
     "require-dev": {
