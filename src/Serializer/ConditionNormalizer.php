@@ -19,7 +19,7 @@ class ConditionNormalizer extends GetSetMethodNormalizer
     /**
      * {@inheritdoc}
      */
-    public function normalize($object, string $format = null, array $context = [])
+    public function normalize($object, string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         return parent::normalize($object, $format, $context);
     }
@@ -33,7 +33,7 @@ class ConditionNormalizer extends GetSetMethodNormalizer
      *
      * @return bool
      */
-    public function supportsDenormalization($data, string $type, string $format = null)
+    public function supportsDenormalization($data, string $type, string $format = null): bool
     {
         return ($type == Condition::class) && parent::supportsDenormalization($data, $type, $format);
     }
@@ -46,7 +46,7 @@ class ConditionNormalizer extends GetSetMethodNormalizer
      *
      * @return bool
      */
-    public function supportsNormalization($data, string $format = null)
+    public function supportsNormalization($data, string $format = null): bool
     {
         return ($data instanceof Condition) && parent::supportsNormalization($data, $format);
     }
