@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.0",
         "ext-json": "*",
-        "mrgoodbytes8667/response-bundle": "^2.0.9",
+        "mrgoodbytes8667/response-bundle": "^2.1",
         "symfony/messenger": "^5.3 | ^6.0",
         "symfony/validator": "^5.3 | ^6.0"
     },
