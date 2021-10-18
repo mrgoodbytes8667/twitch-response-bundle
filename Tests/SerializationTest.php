@@ -82,27 +82,6 @@ class SerializationTest extends TestSerializationCase
         $this->assertEquals($this->buildFixtureResponse('offline'), $output);
     }
 
-    public function testSubscriptionTopicsSerialization()
-    {
-        $serializer = $this->createSerializer();
-
-        foreach ([
-                     'streamChanged' => 'streams',
-                     'userChanged' => 'users',
-                     'follows' => 'users/follows',
-                     'extensionsTransactions' => 'extensions/transactions',
-                     'moderatorChanged' => 'moderation/moderators/events',
-                     'channelBan' => 'moderation/banned/events',
-                     'subscriptionChanged' => 'subscriptions/events',
-                     'hypeTrain' => 'hypetrain/events',
-                 ] as $label => $value) {
-            $output = $serializer->serialize(new SubscriptionTopics($label), 'json');
-
-            $this->assertEquals($this->buildFixtureResponse($value, $label), $output);
-        }
-
-    }
-
     public function testTwitchColorsSerialization()
     {
         $serializer = $this->createSerializer();

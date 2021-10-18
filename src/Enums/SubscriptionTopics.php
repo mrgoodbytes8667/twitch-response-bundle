@@ -5,6 +5,8 @@ namespace Bytes\TwitchResponseBundle\Enums;
 
 use Bytes\EnumSerializerBundle\Enums\Enum;
 
+trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.5.1', 'The "\Bytes\TwitchResponseBundle\Enums\SubscriptionTopics" class is deprecated, there is no replacement.');
+
 /**
  * Class SubscriptionTopics
  * All values are the Subscription Hub Topic URL without https://api.twitch.tv/helix/
@@ -23,6 +25,8 @@ use Bytes\EnumSerializerBundle\Enums\Enum;
  * @link https://dev.twitch.tv/docs/api/webhooks-reference
  *
  * @since 0.1.3 As of 2020-10-26
+ *
+ * @deprecated since 0.5.1. This functionality is no longer provided by Twitch and will be removed in the next version.
  */
 class SubscriptionTopics extends Enum
 {
