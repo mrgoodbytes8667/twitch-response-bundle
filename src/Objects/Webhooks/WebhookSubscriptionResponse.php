@@ -6,9 +6,13 @@ namespace Bytes\TwitchResponseBundle\Objects\Webhooks;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\DataPaginationResponseInterface;
 use Bytes\TwitchResponseBundle\Objects\Traits\PaginationTrait;
 
+trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.5.1', 'The "\Bytes\TwitchResponseBundle\Objects\Webhooks\WebhookSubscriptionResponse" class is deprecated, there is no replacement.');
+
 /**
  * Class WebhookSubscriptionResponse
  * @package Bytes\TwitchResponseBundle\Objects\Webhooks
+ *
+ * @deprecated since 0.5.1. This functionality is no longer provided by Twitch and will be removed in the next version.
  */
 class WebhookSubscriptionResponse implements DataPaginationResponseInterface
 {
