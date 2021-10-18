@@ -8,13 +8,13 @@ use DateTime;
 use Exception;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
-trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.5.1', 'The "\Bytes\TwitchResponseBundle\Objects\Webhooks\Hub" class is deprecated, there is no replacement.');
+trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.5.2', 'The "\Bytes\TwitchResponseBundle\Objects\Webhooks\Hub" class is deprecated, there is no replacement.');
 
 /**
  * Class Hub
  * @package Bytes\TwitchResponseBundle\Objects\Webhooks
  *
- * @deprecated since 0.5.1. This functionality is no longer provided by Twitch and will be removed in the next version.
+ * @deprecated since 0.5.2. This functionality is no longer provided by Twitch and will be removed in the next version.
  */
 class Hub
 {

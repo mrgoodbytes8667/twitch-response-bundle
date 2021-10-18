@@ -5,7 +5,7 @@ namespace Bytes\TwitchResponseBundle\Enums;
 
 use Bytes\EnumSerializerBundle\Enums\Enum;
 
-trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.5.1', 'The "\Bytes\TwitchResponseBundle\Enums\SubscriptionTopics" class is deprecated, there is no replacement.');
+trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.5.2', 'The "\Bytes\TwitchResponseBundle\Enums\SubscriptionTopics" class is deprecated, there is no replacement.');
 
 /**
  * Class SubscriptionTopics
@@ -26,7 +26,7 @@ trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.5.1', 'The "\By
  *
  * @since 0.1.3 As of 2020-10-26
  *
- * @deprecated since 0.5.1. This functionality is no longer provided by Twitch and will be removed in the next version.
+ * @deprecated since 0.5.2. This functionality is no longer provided by Twitch and will be removed in the next version.
  */
 class SubscriptionTopics extends Enum
 {

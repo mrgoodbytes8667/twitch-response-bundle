@@ -9,13 +9,13 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
 
-trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.5.1', 'The "\Bytes\TwitchResponseBundle\Objects\Webhooks\WebhookQuery" class is deprecated, there is no replacement.');
+trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.5.2', 'The "\Bytes\TwitchResponseBundle\Objects\Webhooks\WebhookQuery" class is deprecated, there is no replacement.');
 
 /**
  * Class WebhookQuery
  * @package Bytes\TwitchResponseBundle\Objects\Webhooks
  *
- * @deprecated since 0.5.1. This functionality is no longer provided by Twitch and will be removed in the next version.
+ * @deprecated since 0.5.2. This functionality is no longer provided by Twitch and will be removed in the next version.
  */
 class WebhookQuery
 {
