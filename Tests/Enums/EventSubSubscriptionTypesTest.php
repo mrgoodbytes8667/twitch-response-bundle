@@ -24,11 +24,11 @@ class EventSubSubscriptionTypesTest extends TestCase
      */
     public function testEnum($label, $value)
     {
-        $enum = EventSubSubscriptionTypes::make($value);
+        $enum = EventSubSubscriptionTypes::from($value);
         $this->assertEquals($label, $enum->label);
         $this->assertEquals($value, $enum->value);
 
-        $enum = EventSubSubscriptionTypes::make($label);
+        $enum = EventSubSubscriptionTypes::from($label);
         $this->assertEquals($label, $enum->label);
         $this->assertEquals($value, $enum->value);
     }
@@ -41,7 +41,7 @@ class EventSubSubscriptionTypesTest extends TestCase
     public function testEnumSerialization($label, $value)
     {
         $serializer = $this->createSerializer();
-        $enum = EventSubSubscriptionTypes::make($value);
+        $enum = EventSubSubscriptionTypes::from($value);
 
         $output = $serializer->serialize($enum, 'json');
 
@@ -85,7 +85,7 @@ class EventSubSubscriptionTypesTest extends TestCase
     public function testInvalidValue()
     {
         $this->expectException(BadMethodCallException::class);
-        EventSubSubscriptionTypes::make('abc123');
+        EventSubSubscriptionTypes::from('abc123');
     }
 
     /**

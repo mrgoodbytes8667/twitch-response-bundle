@@ -118,7 +118,7 @@ class SerializationTest extends TestSerializationCase
                      'notification' => 'notification',
                      'revocation' => 'revocation',
                  ] as $label => $value) {
-            $output = $serializer->serialize(EventSubMessageType::make($label), 'json');
+            $output = $serializer->serialize(EventSubMessageType::from($label), 'json');
 
             $this->assertEquals(json_encode([
                 'label' => $label,
@@ -130,7 +130,7 @@ class SerializationTest extends TestSerializationCase
     public function testEventSubMessageTypeSerializationFakeValue()
     {
         $this->expectException(\BadMethodCallException::class);
-        EventSubMessageType::make('abc123');
+        EventSubMessageType::from('abc123');
     }
 
     public function testEventSubStatusSerialization()
