@@ -5,7 +5,6 @@ namespace Bytes\TwitchResponseBundle\Enums;
 
 
 use Bytes\EnumSerializerBundle\Enums\Enum;
-use Illuminate\Support\Arr;
 
 /**
  * Class OAuthScopes
