@@ -5,7 +5,6 @@ namespace Bytes\TwitchResponseBundle\Enums;
 
 
 use Bytes\EnumSerializerBundle\Enums\Enum;
-use Illuminate\Support\Arr;
 
 /**
  * Class OAuthScopes
@@ -34,38 +33,6 @@ use Illuminate\Support\Arr;
 class OAuthScopes extends Enum
 {
     /**
-     * Edit your channel's broadcast configuration, including extension configuration. (This scope implies user:read:broadcast capability.)
-     * @return static
-     * @deprecated 0.1.4 No longer available on Twitch
-     */
-    public static function userEditBroadcast()
-    {
-        return static::from('userEditBroadcast');
-    }
-
-    /**
-     * Read authorized user's stream key.
-     * @return static
-     * @deprecated 0.1.4 No longer available on Twitch
-     */
-    public static function userReadStreamKey()
-    {
-        return static::from('userReadStreamKey');
-    }
-
-    /**
-     * @param mixed ...$scopes
-     * @return string
-     *
-     * @deprecated Since 0.3.0, use \Bytes\ResponseBundle\HttpClient\Token\AbstractTokenClient::buildOAuthString() instead from mrgoodbytes8667/response-bundle
-     */
-    public static function buildOAuthString(...$scopes)
-    {
-        trigger_deprecation('mrgoodbytes8667/twitch-response-bundle', '0.3.0', 'Using "%s" is deprecated, use "%s" in "mrgoodbytes8667/response-bundle" instead.', __METHOD__, '\Bytes\ResponseBundle\HttpClient\Token\AbstractTokenClient::buildOAuthString()');
-        return implode(' ', Arr::flatten($scopes));
-    }
-
-    /**
      * @return array
      */
     public static function getUserScopes()
@@ -90,11 +57,9 @@ class OAuthScopes extends Enum
             'channelReadSubscriptions' => 'channel:read:subscriptions',
             'clipsEdit' => 'clips:edit',
             'userEdit' => 'user:edit',
-            'userEditBroadcast' => 'user:edit:broadcast', // Deprecated
             'userEditFollows' => 'user:edit:follows',
             'userReadBroadcast' => 'user:read:broadcast',
             'userReadEmail' => 'user:read:email',
-            'userReadStreamKey' => 'user:read:stream_key', // Deprecated
         ];
     }
 }
