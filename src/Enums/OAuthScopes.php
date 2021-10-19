@@ -40,7 +40,7 @@ class OAuthScopes extends Enum
      */
     public static function userEditBroadcast()
     {
-        return static::make('userEditBroadcast');
+        return static::from('userEditBroadcast');
     }
 
     /**
@@ -50,7 +50,7 @@ class OAuthScopes extends Enum
      */
     public static function userReadStreamKey()
     {
-        return static::make('userReadStreamKey');
+        return static::from('userReadStreamKey');
     }
 
     /**
