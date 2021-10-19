@@ -42,18 +42,6 @@ class SerializationTest extends TestSerializationCase
 
     }
 
-    public function testOAuthScopesDeprecatedSerializationUserEditBroadcast()
-    {
-        $this->expectException(\BadMethodCallException::class);
-        OAuthScopes::userEditBroadcast();
-    }
-
-    public function testOAuthScopesDeprecatedSerializationUserReadStreamKey()
-    {
-        $this->expectException(\BadMethodCallException::class);
-        OAuthScopes::userReadStreamKey();
-    }
-
     public function testStreamTypeSerialization()
     {
         $serializer = $this->createSerializer();

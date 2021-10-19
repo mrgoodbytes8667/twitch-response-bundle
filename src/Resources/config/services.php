@@ -8,9 +8,7 @@ use Bytes\TwitchResponseBundle\Normalizer\TwitchDateTimeNormalizer;
 use Bytes\TwitchResponseBundle\Normalizer\TwitchTagNormalizer;
 use Bytes\TwitchResponseBundle\Request\EventSubSignature;
 use Bytes\TwitchResponseBundle\Request\SignatureInterface;
-use Bytes\TwitchResponseBundle\Request\WebhookSignature;
 use Bytes\TwitchResponseBundle\Serializer\ConditionNormalizer;
-use Bytes\TwitchResponseBundle\Serializer\SubscriptionNormalizer;
 
 /**
  * @param ContainerConfigurator $container
@@ -24,12 +22,6 @@ return static function (ContainerConfigurator $container) {
         ->args([''])
         ->tag('bytes_twitch_response.signature')
         ->alias(SignatureInterface::class . ' $eventSubSignature', 'bytes_twitch_response.signature.eventsub');
-
-    $services->set('bytes_twitch_response.signature.webhook', WebhookSignature::class)
-        ->public()
-        ->args([''])
-        ->tag('bytes_twitch_response.signature')
-        ->alias(SignatureInterface::class . ' $webhookSignature', 'bytes_twitch_response.signature.webhook');
 
     $services->set('bytes_twitch_response.normalizer.twitchdatetime', TwitchDateTimeNormalizer::class)
         ->args([
