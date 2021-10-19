@@ -4,10 +4,8 @@
 namespace Bytes\TwitchResponseBundle\Tests;
 
 
-use Bytes\TwitchResponseBundle\Enums\HubMode;
 use Bytes\TwitchResponseBundle\Enums\OAuthScopes;
 use Bytes\TwitchResponseBundle\Enums\StreamType;
-use Bytes\TwitchResponseBundle\Enums\SubscriptionTopics;
 use Bytes\TwitchResponseBundle\Enums\EventSubMessageType;
 use Bytes\TwitchResponseBundle\Enums\EventSubStatus;
 use Bytes\TwitchResponseBundle\Enums\EventSubSubscriptionTypes;
@@ -16,19 +14,6 @@ use Bytes\TwitchResponseBundle\Enums\TwitchColors;
 
 class SerializationTest extends TestSerializationCase
 {
-    public function testHubModeSerialization()
-    {
-        $serializer = $this->createSerializer();
-
-        $output = $serializer->serialize(HubMode::subscribe(), 'json');
-
-        $this->assertEquals($this->buildFixtureResponse('subscribe'), $output);
-
-        $output = $serializer->serialize(HubMode::unsubscribe(), 'json');
-
-        $this->assertEquals($this->buildFixtureResponse('unsubscribe'), $output);
-    }
-
     public function testOAuthScopesSerialization()
     {
         $serializer = $this->createSerializer();
