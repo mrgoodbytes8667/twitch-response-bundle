@@ -5,9 +5,6 @@ namespace Bytes\TwitchResponseBundle\Serializer;
 
 
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Condition;
-use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Subscription;
-use Illuminate\Support\Str;
-use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 /**
