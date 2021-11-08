@@ -13,7 +13,7 @@
     "require-dev": {
         "doctrine/common": "^3.0",
         "fakerphp/faker": "^1.13",
-        "mrgoodbytes8667/test-common": ">=0.0.19",
+        "mrgoodbytes8667/test-common": ">=0.0.22",
         "mrgoodbytes8667/test-common-faker": "^0.3.5",
         "mrgoodbytes8667/test-twitch-faker": ">=0.0.5",
         "symfony/test-pack": "^1.0.8",
