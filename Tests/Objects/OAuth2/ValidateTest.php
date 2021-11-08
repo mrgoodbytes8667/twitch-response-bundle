@@ -164,12 +164,12 @@ class ValidateTest extends TestCase
         $this->assertNull($validate->getExpiresIn());
         $this->assertInstanceOf(Validate::class, $validate->setExpiresIn($expiresIn));
         $this->assertEquals($expiresIn, $validate->getExpiresIn());
-        $this->assertGreaterThan($now, $validate->getExpiresAt());
+        $this->assertGreaterThan($now->getTimestamp(), $validate->getExpiresAt()->getTimestamp());
 
 
         $validate = Validate::create(expiresIn: $expiresIn);
         $this->assertEquals($expiresIn, $validate->getExpiresIn());
-        $this->assertGreaterThan($now, $validate->getExpiresAt());
+        $this->assertGreaterThan($now->getTimestamp(), $validate->getExpiresAt()->getTimestamp());
     }
 
     /**

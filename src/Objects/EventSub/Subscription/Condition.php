@@ -3,10 +3,10 @@
 
 namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 
-use Illuminate\Support\Str;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use function Symfony\Component\String\u;
 
 /**
  * Class Condition
@@ -132,12 +132,12 @@ class Condition
      * @param string[] $array = ['broadcasterUserId' => '', 'userId' => '', 'rewardId' => '', 'clientId' => '']
      * @return static
      */
-    public static function createFromArray(array $array)
+    public static function createFromArray(array $array): static
     {
         $static = new static();
         foreach ($array as $key => $value)
         {
-            switch (Str::snake($key)){
+            switch (u($key)->snake()->toString()){
                 case 'broadcaster_user_id':
                     $static->setBroadcasterUserId($value);
                     break;
