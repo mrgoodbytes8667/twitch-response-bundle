@@ -30,10 +30,7 @@ class BytesTwitchResponseExtension extends Extension implements ExtensionInterfa
 
         $config = $this->processConfiguration($configuration, $configs);
 
-        foreach(['eventsub', 'webhook'] as $item) {
-            $id = 'bytes_twitch_response.signature.' . $item;
-            $definition = $container->getDefinition($id);
-            $definition->replaceArgument(0, $config['hub_secret']);
-        }
+        $definition = $container->getDefinition('bytes_twitch_response.signature.eventsub');
+        $definition->replaceArgument(0, $config['hub_secret']);
     }
 }
