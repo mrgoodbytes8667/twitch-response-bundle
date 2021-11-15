@@ -46,5 +46,6 @@
             "Bytes\\TwitchResponseBundle\\": "src/",
             "Bytes\\TwitchResponseBundle\\Tests\\": "Tests/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
