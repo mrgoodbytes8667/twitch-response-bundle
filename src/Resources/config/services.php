@@ -58,11 +58,4 @@ return static function (ContainerConfigurator $container) {
         ])
         ->tag('serializer.normalizer');
 
-    $services->set('bytes_twitch_response.locator.signature', Locator::class)
-        ->args([tagged_locator('bytes_twitch_response.signature', 'key', 'getDefaultIndexName')])
-        ->deprecate('mrgoodbytes8667/twitch-response-bundle', '0.5.6', 'The "%service_id%" is deprecated: Twitch has deprecated webhooks, leaving just one method to locate. Use bytes_twitch_response.signature.eventsub directly.')
-        ->public();
-
-    $services->alias(Locator::class . ' $twitchSignatureLocator', 'bytes_twitch_response.locator.signature');
-
 };
