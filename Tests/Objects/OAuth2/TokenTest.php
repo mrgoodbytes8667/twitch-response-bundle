@@ -184,7 +184,7 @@ class TokenTest extends TestCase
      */
     public function testCreateFromParts()
     {
-        $token = Token::createFromParts(accessToken: $this->faker->accessToken(), tokenSource: TokenSource::app());
+        $token = Token::createFromParts(accessToken: $this->faker->accessToken(), tokenSource: TokenSource::app);
         $this->assertInstanceOf(AccessTokenInterface::class, $token);
     }
 }

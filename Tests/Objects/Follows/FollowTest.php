@@ -35,7 +35,7 @@ class FollowTest extends TestCase
     {
         /** @var Follow $deserialized */
         $deserialized = $this->serializer->deserialize($json, Follow::class, 'json');
-        $this->assertEquals($date->format(DateTimeInterface::ISO8601), $deserialized->getFollowedAt()->format(DateTimeInterface::ISO8601));
+        $this->assertEquals($date->format(DateTimeInterface::ATOM), $deserialized->getFollowedAt()->format(DateTimeInterface::ATOM));
     }
 
     /**

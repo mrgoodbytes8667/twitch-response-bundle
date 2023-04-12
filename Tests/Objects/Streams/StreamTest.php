@@ -39,7 +39,7 @@ class StreamTest extends TestCase
     {
         /** @var Stream $deserialized */
         $deserialized = $this->serializer->deserialize($json, Stream::class, 'json');
-        $this->assertEquals($date->format(DateTimeInterface::ISO8601), $deserialized->getStartedAt()->format(DateTimeInterface::ISO8601));
+        $this->assertEquals($date->format(DateTimeInterface::ATOM), $deserialized->getStartedAt()->format(DateTimeInterface::ATOM));
     }
 
     /**

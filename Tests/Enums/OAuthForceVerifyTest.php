@@ -12,7 +12,7 @@ class OAuthForceVerifyTest extends TestCase
      */
     public function testPrompt()
     {
-        $this->assertTrue(OAuthForceVerify::true()->prompt());
-        $this->assertFalse(OAuthForceVerify::false()->prompt());
+        $this->assertTrue(OAuthForceVerify::TRUE->prompt());
+        $this->assertFalse(OAuthForceVerify::FALSE->prompt());
     }
 }
