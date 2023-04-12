@@ -2,6 +2,7 @@
 
 namespace Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Subscription;
 
+use Bytes\Common\Faker\Providers\EnumProvider;
 use Bytes\Common\Faker\Providers\MiscProvider;
 use Bytes\Common\Faker\Providers\Twitch;
 use Bytes\Common\Faker\Twitch\TestTwitchFakerTrait;
@@ -38,7 +39,7 @@ use PHPUnit\Framework\TestCase;
  * Class CreateTest
  * @package Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Subscription
  *
- * @property FakerGenerator|MiscProvider|Twitch|Address|Barcode|Biased|Color|Company|DateTime|File|HtmlLorem|Image|Internet|Lorem|Medical|Miscellaneous|Payment|Person|PhoneNumber|Text|UserAgent|Uuid $faker
+ * @property FakerGenerator|MiscProvider|EnumProvider|Twitch|Address|Barcode|Biased|Color|Company|DateTime|File|HtmlLorem|Image|Internet|Lorem|Medical|Miscellaneous|Payment|Person|PhoneNumber|Text|UserAgent|Uuid $faker
  */
 class CreateTest extends TestCase
 {
@@ -109,6 +110,6 @@ class CreateTest extends TestCase
      */
     protected function getProviders()
     {
-        return $this->parentProviders();
+        return array_merge($this->parentProviders(), [EnumProvider::class]);
     }
 }

@@ -4,13 +4,6 @@ namespace Bytes\TwitchResponseBundle\Tests\Enums;
 
 use Bytes\Tests\Common\TestEnumTrait;
 use Bytes\Tests\Common\TestSerializerTrait;
-use Bytes\TwitchResponseBundle\Enums\EventSubMessageType;
-use Bytes\TwitchResponseBundle\Enums\EventSubStatus;
-use Bytes\TwitchResponseBundle\Enums\EventSubSubscriptionTypes;
-use Bytes\TwitchResponseBundle\Enums\EventSubTransportMethod;
-use Bytes\TwitchResponseBundle\Enums\OAuthForceVerify;
-use Bytes\TwitchResponseBundle\Enums\OAuthScopes;
-use Bytes\TwitchResponseBundle\Enums\StreamType;
 use Generator;
 use PHPUnit\Framework\TestCase;
 use ValueError;
@@ -20,34 +13,20 @@ use ValueError;
  */
 class AllStringBackedEnumsTest extends TestCase
 {
-    use TestSerializerTrait, TestEnumTrait;
+    use TestSerializerTrait, TestEnumTrait, StringBackedEnumClassesTestTrait;
 
     /**
      * @return Generator
      */
     public static function provideLabelsValues()
     {
-        foreach (static::provideEnumClasses() as $x) {
+        foreach (static::provideStringBackedEnumClasses() as $x) {
             foreach ($x as $class) {
                 foreach ($class::cases() as $type) {
                     yield $class . '::' . $type->name => ['label' => $type->name, 'value' => $type->value, 'enum' => $type];
                 }
             }
         }
-    }
-
-    /**
-     * @return Generator
-     */
-    public static function provideEnumClasses()
-    {
-        yield [EventSubMessageType::class];
-        yield [EventSubStatus::class];
-        yield [EventSubSubscriptionTypes::class];
-        yield [EventSubTransportMethod::class];
-        yield [OAuthForceVerify::class];
-        yield [OAuthScopes::class];
-        yield [StreamType::class];
     }
 
     /**
@@ -84,7 +63,7 @@ class AllStringBackedEnumsTest extends TestCase
     }
 
     /**
-     * @dataProvider provideEnumClasses
+     * @dataProvider provideStringBackedEnumClasses
      */
     public function testInvalidValue($enum)
     {
@@ -93,7 +72,7 @@ class AllStringBackedEnumsTest extends TestCase
     }
 
     /**
-     * @dataProvider provideEnumClasses
+     * @dataProvider provideStringBackedEnumClasses
      */
     public function testCoverage($enum)
     {

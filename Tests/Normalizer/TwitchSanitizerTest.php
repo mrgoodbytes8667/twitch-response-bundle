@@ -20,7 +20,7 @@ class TwitchSanitizerTest extends TestCase
     /**
      * @return Generator
      */
-    public function provideUsernames()
+    public static function provideUsernames()
     {
         yield ['input' => '    SFlkjhdfSDSd9dflkjgh&34`   q ', 'output' => 'sflkjhdfsdsd9dflkjgh34q'];
         yield ['input' => '⪗⍋⮣ₛ⁨⊑↫⌋⳥⿯➩⥓⚛➙ⴎ⿛⤟⬻Ⰾ⟞⛼⚇⥙⩘◊₲ℂ↑aAa④⢸⿻⟃⻏ⶤ⩡Ⓟ⦙ⓞ⟠⋷ⓐ⥗≹↧⽇⽿␔⩟⺺ⴰ❈ⷎ⓪⠅⿾⩂␱ Ⱝ⽝⅟≭⦠⬽⤺⣟⓽⧩ⵈ⟆–⫹⩉ⲡ␪≆⡍₃⒈⩧⽵☏⤧√↞⽫⨡❗⊑⨲⼢⒄⌥⡓⢒⩓⥬⧐⤚⛒≾', 'output' => 'aaa'];
