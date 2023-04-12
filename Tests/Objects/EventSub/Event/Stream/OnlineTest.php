@@ -107,7 +107,7 @@ class OnlineTest extends TestCase
     {
         /** @var Online $deserialized */
         $deserialized = $this->serializer->deserialize($json, Online::class, 'json');
-        $this->assertEquals($date->format(DateTimeInterface::ISO8601), $deserialized->getStartedAt()->format(DateTimeInterface::ISO8601));
+        $this->assertEquals($date->format(DateTimeInterface::ATOM), $deserialized->getStartedAt()->format(DateTimeInterface::ATOM));
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Subscription;
 
+use Bytes\Common\Faker\Enum\TestEnumFakerTrait;
+use Bytes\Common\Faker\Providers\EnumProvider;
 use Bytes\Common\Faker\Twitch\TestTwitchFakerTrait;
 use Bytes\Tests\Common\TestSerializerTrait;
 use Bytes\TwitchResponseBundle\Enums\EventSubTransportMethod;
@@ -14,7 +16,6 @@ use DateTimeInterface;
 use Exception;
 use Generator;
 use PHPUnit\Framework\TestCase;
-use Spatie\Enum\Faker\FakerEnumProvider;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use function Symfony\Component\String\u;
@@ -144,7 +145,8 @@ class SubscriptionTest extends TestCase
     public function provideTransport()
     {
         $this->setupFaker();
-        yield [Transport::create($this->faker->url(), $this->faker->accessToken(), $this->faker->optional()->randomEnum(EventSubTransportMethod::class))];
+        yield [Transport::create($this->faker->url(), $this->faker->accessToken(), $this->faker->randomEnum(EventSubTransportMethod::class))];
+        yield [Transport::create($this->faker->url(), $this->faker->accessToken())];
     }
 
     /**
@@ -208,7 +210,7 @@ class SubscriptionTest extends TestCase
     {
         /** @var Subscription $deserialized */
         $deserialized = $this->serializer->deserialize($json, Subscription::class, 'json');
-        $this->assertEquals($date->format(DateTimeInterface::ISO8601), $deserialized->getCreatedAt()->format(DateTimeInterface::ISO8601));
+        $this->assertEquals($date->format(DateTimeInterface::ATOM), $deserialized->getCreatedAt()->format(DateTimeInterface::ATOM));
     }
 
     /**
@@ -304,6 +306,6 @@ class SubscriptionTest extends TestCase
      */
     protected function getProviders()
     {
-        return array_merge($this->parentProviders(), [FakerEnumProvider::class]);
+        return array_merge($this->parentProviders(), [EnumProvider::class]);
     }
 }

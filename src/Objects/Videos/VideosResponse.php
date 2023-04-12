@@ -43,7 +43,7 @@ class VideosResponse implements Countable
      * @link https://php.net/manual/en/countable.count.php
      * @return int The custom count as an integer.
      */
-    public function count()
+    public function count(): int
     {
         return count($this->data);
     }

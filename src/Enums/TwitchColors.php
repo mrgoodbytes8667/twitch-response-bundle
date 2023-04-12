@@ -3,176 +3,148 @@
 
 namespace Bytes\TwitchResponseBundle\Enums;
 
-
-use Bytes\EnumSerializerBundle\Enums\Enum;
+use Bytes\EnumSerializerBundle\Enums\BackedEnumInterface;
+use Bytes\EnumSerializerBundle\Enums\BackedEnumTrait;
+use JetBrains\PhpStorm\Deprecated;
 
 /**
- * Class TwitchColors
- * @package Bytes\TwitchResponseBundle\Enums
- *
- * @method static self primaryTwitchPurple() #9146FF Main purple
- * @method static self primaryBlackOps() #000000
- * @method static self mutedIce() #F0F0FF Ice is both a primary and muted color
- * @method static self mutedJiggle() #FAB4FF
- * @method static self mutedWorm() #FACDCD
- * @method static self mutedIsabelle() #FEEE85
- * @method static self mutedDroid() #BEFAE1
- * @method static self mutedWipeOut() #00C8AF
- * @method static self mutedSmoke() #D2D2E6
- * @method static self mutedWidow() #BFABFF
- * @method static self mutedPeach() #FC6675
- * @method static self mutedPacman() #FFCA5F
- * @method static self mutedFelicia() #57BEE6
- * @method static self mutedSonic() #0014A5
- * @method static self accentDragon() #8205B4
- * @method static self accentCuddle() #FA1ED2
- * @method static self accentBandit() #FF6905
- * @method static self accentLightning() #FAFA19
- * @method static self accentKo() #BEFF00
- * @method static self accentMega() #00FAFA
- * @method static self accentNights() #41145F
- * @method static self accentOsu() #BE0078
- * @method static self accentSniper() #FA2828
- * @method static self accentEgg() #00FA05
- * @method static self accentLegend() #69FFC3
- * @method static self accentZero() #1E69FF
- *
  * @since 0.1.3
- *
  */
-class TwitchColors extends Enum
+enum TwitchColors: int implements BackedEnumInterface
 {
+    use BackedEnumTrait;
+
     /**
      * Main purple
      * #9146FF
      */
-    const PRIMARY_TWITCH_PURPLE = 0x9146FF;
+    case PRIMARY_TWITCH_PURPLE = 0x9146FF;
 
     /**
      * #000000
      */
-    const PRIMARY_BLACK_OPS = 0x000000;
+    case PRIMARY_BLACK_OPS = 0x000000;
 
     /**
      * Ice is both a primary and muted color
      * #F0F0FF
      */
-    const MUTED_ICE = 0xF0F0FF;
+    case MUTED_ICE = 0xF0F0FF;
 
     /**
      * #FAB4FF
      */
-    const MUTED_JIGGLE = 0xFAB4FF;
+    case MUTED_JIGGLE = 0xFAB4FF;
 
     /**
      * #FACDCD
      */
-    const MUTED_WORM = 0xFACDCD;
+    case MUTED_WORM = 0xFACDCD;
 
     /**
      * #FEEE85
      */
-    const MUTED_ISABELLE = 0xFEEE85;
+    case MUTED_ISABELLE = 0xFEEE85;
 
     /**
      * #BEFAE1
      */
-    const MUTED_DROID = 0xBEFAE1;
+    case MUTED_DROID = 0xBEFAE1;
 
     /**
      * #00C8AF
      */
-    const MUTED_WIPE_OUT = 0x00C8AF;
+    case MUTED_WIPE_OUT = 0x00C8AF;
 
     /**
      * #D2D2E6
      */
-    const MUTED_SMOKE = 0xD2D2E6;
+    case MUTED_SMOKE = 0xD2D2E6;
 
     /**
      * #BFABFF
      */
-    const MUTED_WIDOW = 0xBFABFF;
+    case MUTED_WIDOW = 0xBFABFF;
 
     /**
      * #FC6675
      */
-    const MUTED_PEACH = 0xFC6675;
+    case MUTED_PEACH = 0xFC6675;
 
     /**
      * #FFCA5F
      */
-    const MUTED_PACMAN = 0xFFCA5F;
+    case MUTED_PACMAN = 0xFFCA5F;
 
     /**
      * #57BEE6
      */
-    const MUTED_FELICIA = 0x57BEE6;
+    case MUTED_FELICIA = 0x57BEE6;
 
     /**
      * #0014A5
      */
-    const MUTED_SONIC = 0x0014A5;
+    case MUTED_SONIC = 0x0014A5;
 
     /**
      * #8205B4
      */
-    const ACCENT_DRAGON = 0x8205B4;
+    case ACCENT_DRAGON = 0x8205B4;
 
     /**
      * #FA1ED2
      */
-    const ACCENT_CUDDLE = 0xFA1ED2;
+    case ACCENT_CUDDLE = 0xFA1ED2;
 
     /**
      * #FF6905
      */
-    const ACCENT_BANDIT = 0xFF6905;
+    case ACCENT_BANDIT = 0xFF6905;
 
     /**
      * #FAFA19
      */
-    const ACCENT_LIGHTNING = 0xFAFA19;
+    case ACCENT_LIGHTNING = 0xFAFA19;
 
     /**
      * #BEFF00
      */
-    const ACCENT_KO = 0xBEFF00;
+    case ACCENT_KO = 0xBEFF00;
 
     /**
      * #00FAFA
      */
-    const ACCENT_MEGA = 0x00FAFA;
+    case ACCENT_MEGA = 0x00FAFA;
 
     /**
      * #41145F
      */
-    const ACCENT_NIGHTS = 0x41145F;
+    case ACCENT_NIGHTS = 0x41145F;
 
     /**
      * #BE0078
      */
-    const ACCENT_OSU = 0xBE0078;
+    case ACCENT_OSU = 0xBE0078;
 
     /**
      * #FA2828
      */
-    const ACCENT_SNIPER = 0xFA2828;
+    case ACCENT_SNIPER = 0xFA2828;
 
     /**
      * #00FA05
      */
-    const ACCENT_EGG = 0x00FA05;
+    case ACCENT_EGG = 0x00FA05;
 
     /**
      * #69FFC3
      */
-    const ACCENT_LEGEND = 0x69FFC3;
+    case ACCENT_LEGEND = 0x69FFC3;
 
     /**
      * #1E69FF
      */
-    const ACCENT_ZERO = 0x1E69FF;
+    case ACCENT_ZERO = 0x1E69FF;
 
     /**
      * Returns the three primary colors
@@ -181,9 +153,9 @@ class TwitchColors extends Enum
     public static function primary()
     {
         return [
-            static::primaryTwitchPurple(),
-            static::primaryBlackOps(),
-            static::mutedIce(),
+            TwitchColors::PRIMARY_TWITCH_PURPLE,
+            TwitchColors::PRIMARY_BLACK_OPS,
+            TwitchColors::MUTED_ICE,
         ];
     }
 
@@ -194,18 +166,18 @@ class TwitchColors extends Enum
     public static function muted()
     {
         return [
-            static::mutedIce(),
-            static::mutedJiggle(),
-            static::mutedWorm(),
-            static::mutedIsabelle(),
-            static::mutedDroid(),
-            static::mutedWipeOut(),
-            static::mutedSmoke(),
-            static::mutedWidow(),
-            static::mutedPeach(),
-            static::mutedPacman(),
-            static::mutedFelicia(),
-            static::mutedSonic(),
+            TwitchColors::MUTED_ICE,
+            TwitchColors::MUTED_JIGGLE,
+            TwitchColors::MUTED_WORM,
+            TwitchColors::MUTED_ISABELLE,
+            TwitchColors::MUTED_DROID,
+            TwitchColors::MUTED_WIPE_OUT,
+            TwitchColors::MUTED_SMOKE,
+            TwitchColors::MUTED_WIDOW,
+            TwitchColors::MUTED_PEACH,
+            TwitchColors::MUTED_PACMAN,
+            TwitchColors::MUTED_FELICIA,
+            TwitchColors::MUTED_SONIC,
 
         ];
     }
@@ -217,53 +189,175 @@ class TwitchColors extends Enum
     public static function accent()
     {
         return [
-            static::accentDragon(),
-            static::accentCuddle(),
-            static::accentBandit(),
-            static::accentLightning(),
-            static::accentKo(),
-            static::accentMega(),
-            static::accentNights(),
-            static::accentOsu(),
-            static::accentSniper(),
-            static::accentEgg(),
-            static::accentLegend(),
-            static::accentZero(),
+            TwitchColors::ACCENT_DRAGON,
+            TwitchColors::ACCENT_CUDDLE,
+            TwitchColors::ACCENT_BANDIT,
+            TwitchColors::ACCENT_LIGHTNING,
+            TwitchColors::ACCENT_KO,
+            TwitchColors::ACCENT_MEGA,
+            TwitchColors::ACCENT_NIGHTS,
+            TwitchColors::ACCENT_OSU,
+            TwitchColors::ACCENT_SNIPER,
+            TwitchColors::ACCENT_EGG,
+            TwitchColors::ACCENT_LEGEND,
+            TwitchColors::ACCENT_ZERO,
         ];
     }
 
-    /**
-     * @return int[]
-     */
-    protected static function values(): array
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::PRIMARY_TWITCH_PURPLE')]
+    public static function primaryTwitchPurple(): TwitchColors
     {
-        return [
-            'primaryTwitchPurple' => static::PRIMARY_TWITCH_PURPLE,
-            'primaryBlackOps' => static::PRIMARY_BLACK_OPS,
-            'mutedIce' => static::MUTED_ICE,
-            'mutedJiggle' => static::MUTED_JIGGLE,
-            'mutedWorm' => static::MUTED_WORM,
-            'mutedIsabelle' => static::MUTED_ISABELLE,
-            'mutedDroid' => static::MUTED_DROID,
-            'mutedWipeOut' => static::MUTED_WIPE_OUT,
-            'mutedSmoke' => static::MUTED_SMOKE,
-            'mutedWidow' => static::MUTED_WIDOW,
-            'mutedPeach' => static::MUTED_PEACH,
-            'mutedPacman' => static::MUTED_PACMAN,
-            'mutedFelicia' => static::MUTED_FELICIA,
-            'mutedSonic' => static::MUTED_SONIC,
-            'accentDragon' => static::ACCENT_DRAGON,
-            'accentCuddle' => static::ACCENT_CUDDLE,
-            'accentBandit' => static::ACCENT_BANDIT,
-            'accentLightning' => static::ACCENT_LIGHTNING,
-            'accentKo' => static::ACCENT_KO,
-            'accentMega' => static::ACCENT_MEGA,
-            'accentNights' => static::ACCENT_NIGHTS,
-            'accentOsu' => static::ACCENT_OSU,
-            'accentSniper' => static::ACCENT_SNIPER,
-            'accentEgg' => static::ACCENT_EGG,
-            'accentLegend' => static::ACCENT_LEGEND,
-            'accentZero' => static::ACCENT_ZERO,
-        ];
+        return TwitchColors::PRIMARY_TWITCH_PURPLE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::PRIMARY_BLACK_OPS')]
+    public static function primaryBlackOps(): TwitchColors
+    {
+        return TwitchColors::PRIMARY_BLACK_OPS;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_ICE')]
+    public static function mutedIce(): TwitchColors
+    {
+        return TwitchColors::MUTED_ICE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_JIGGLE')]
+    public static function mutedJiggle(): TwitchColors
+    {
+        return TwitchColors::MUTED_JIGGLE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_WORM')]
+    public static function mutedWorm(): TwitchColors
+    {
+        return TwitchColors::MUTED_WORM;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_ISABELLE')]
+    public static function mutedIsabelle(): TwitchColors
+    {
+        return TwitchColors::MUTED_ISABELLE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_DROID')]
+    public static function mutedDroid(): TwitchColors
+    {
+        return TwitchColors::MUTED_DROID;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_WIPE_OUT')]
+    public static function mutedWipeOut(): TwitchColors
+    {
+        return TwitchColors::MUTED_WIPE_OUT;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_SMOKE')]
+    public static function mutedSmoke(): TwitchColors
+    {
+        return TwitchColors::MUTED_SMOKE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_WIDOW')]
+    public static function mutedWidow(): TwitchColors
+    {
+        return TwitchColors::MUTED_WIDOW;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_PEACH')]
+    public static function mutedPeach(): TwitchColors
+    {
+        return TwitchColors::MUTED_PEACH;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_PACMAN')]
+    public static function mutedPacman(): TwitchColors
+    {
+        return TwitchColors::MUTED_PACMAN;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_FELICIA')]
+    public static function mutedFelicia(): TwitchColors
+    {
+        return TwitchColors::MUTED_FELICIA;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::MUTED_SONIC')]
+    public static function mutedSonic(): TwitchColors
+    {
+        return TwitchColors::MUTED_SONIC;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_DRAGON')]
+    public static function accentDragon(): TwitchColors
+    {
+        return TwitchColors::ACCENT_DRAGON;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_CUDDLE')]
+    public static function accentCuddle(): TwitchColors
+    {
+        return TwitchColors::ACCENT_CUDDLE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_BANDIT')]
+    public static function accentBandit(): TwitchColors
+    {
+        return TwitchColors::ACCENT_BANDIT;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_LIGHTNING')]
+    public static function accentLightning(): TwitchColors
+    {
+        return TwitchColors::ACCENT_LIGHTNING;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_KO')]
+    public static function accentKo(): TwitchColors
+    {
+        return TwitchColors::ACCENT_KO;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_MEGA')]
+    public static function accentMega(): TwitchColors
+    {
+        return TwitchColors::ACCENT_MEGA;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_NIGHTS')]
+    public static function accentNights(): TwitchColors
+    {
+        return TwitchColors::ACCENT_NIGHTS;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_OSU')]
+    public static function accentOsu(): TwitchColors
+    {
+        return TwitchColors::ACCENT_OSU;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_SNIPER')]
+    public static function accentSniper(): TwitchColors
+    {
+        return TwitchColors::ACCENT_SNIPER;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_EGG')]
+    public static function accentEgg(): TwitchColors
+    {
+        return TwitchColors::ACCENT_EGG;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_LEGEND')]
+    public static function accentLegend(): TwitchColors
+    {
+        return TwitchColors::ACCENT_LEGEND;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::ACCENT_ZERO')]
+    public static function accentZero(): TwitchColors
+    {
+        return TwitchColors::ACCENT_ZERO;
     }
 }

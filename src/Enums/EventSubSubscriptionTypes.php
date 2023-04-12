@@ -4,7 +4,8 @@
 namespace Bytes\TwitchResponseBundle\Enums;
 
 
-use Bytes\EnumSerializerBundle\Enums\Enum;
+use Bytes\EnumSerializerBundle\Enums\StringBackedEnumInterface;
+use Bytes\EnumSerializerBundle\Enums\StringBackedEnumTrait;
 use JetBrains\PhpStorm\Deprecated;
 
 /**
@@ -13,171 +14,269 @@ use JetBrains\PhpStorm\Deprecated;
  *
  * @since 0.5.3 As of 2021-10-19
  *
- * @method static self channelUpdate() A broadcaster updates their channel properties e.g., category, title, mature flag, broadcast, or language.
- * @method static self channelFollow() A specified channel receives a follow.
- * @method static self channelSubscribe() A notification when a specified channel receives a subscriber. This does not include resubscribes.
- * @method static self channelSubscriptionEnd() A notification when a subscription to the specified channel ends.
- * @method static self channelSubscriptionGift() A notification when a viewer gives a gift subscription to one or more users in the specified channel.
- * @method static self channelSubscriptionMessage() A notification when a user sends a resubscription chat message in a specific channel.
- * @method static self channelCheer() A user cheers on the specified channel.
- * @method static self channelRaid() A broadcaster raids another broadcaster’s channel.
- * @method static self channelBan() A viewer is banned from the specified channel.
- * @method static self channelUnban() A viewer is unbanned from the specified channel.
- * @method static self channelModeratorAdd() Moderator privileges were added to a user on a specified channel.
- * @method static self channelModeratorRemove() Moderator privileges were removed from a user on a specified channel.
- * @method static self channelPointsCustomRewardAdd() A custom channel points reward has been created for the specified channel.
- * @method static self channelPointsCustomRewardUpdate() A custom channel points reward has been updated for the specified channel.
- * @method static self channelPointsCustomRewardRemove() A custom channel points reward has been removed from the specified channel.
- * @method static self channelPointsCustomRewardRedemptionAdd() A viewer has redeemed a custom channel points reward on the specified channel.
- * @method static self channelPointsCustomRewardRedemptionUpdate() A redemption of a channel points custom reward has been updated for the specified channel.
- * @method static self channelPollBegin() A poll started on a specified channel.
- * @method static self channelPollProgress() Users respond to a poll on a specified channel.
- * @method static self channelPollEnd() A poll ended on a specified channel.
- * @method static self channelPredictionBegin() A Prediction started on a specified channel.
- * @method static self channelPredictionProgress() Users participated in a Prediction on a specified channel.
- * @method static self channelPredictionLock() A Prediction was locked on a specified channel.
- * @method static self channelPredictionEnd() A Prediction ended on a specified channel.
- * @method static self dropEntitlementGrant() An entitlement for a Drop is granted to a user.
- * @method static self extensionBitsTransactionCreate() A Bits transaction occurred for a specified Twitch Extension.
- * @method static self goalBegin() Get notified when a broadcaster begins a goal.
- * @method static self goalProgress() Get notified when progress (either positive or negative) is made towards a broadcaster’s goal.
- * @method static self goalEnd() Get notified when a broadcaster ends a goal.
- * @method static self hypeTrainBegin() A Hype Train begins on the specified channel.
- * @method static self hypeTrainProgress() A Hype Train makes progress on the specified channel.
- * @method static self hypeTrainEnd() A Hype Train ends on the specified channel.
- * @method static self streamOnline() The specified broadcaster starts a stream.
- * @method static self streamOffline() The specified broadcaster stops a stream.
- * @method static self userAuthorizationGrant() A user’s authorization has been granted to your client id.
- * @method static self userAuthorizationRevoke() A user’s authorization has been revoked for your client id.
- * @method static self userUpdate() A user has updated their account.
- *
  * @link https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types
  */
-class EventSubSubscriptionTypes extends Enum
+enum EventSubSubscriptionTypes: string implements StringBackedEnumInterface
 {
-    /**
-     * @return string[]
-     */
-    protected static function values(): array
+    use StringBackedEnumTrait;
+
+    case CHANNEL_UPDATE = 'channel.update';
+    case CHANNEL_FOLLOW = 'channel.follow';
+    case CHANNEL_SUBSCRIBE = 'channel.subscribe';
+    case CHANNEL_SUBSCRIPTION_END = 'channel.subscription.end';
+    case CHANNEL_SUBSCRIPTION_GIFT = 'channel.subscription.gift';
+    case CHANNEL_SUBSCRIPTION_MESSAGE = 'channel.subscription.message';
+    case CHANNEL_CHEER = 'channel.cheer';
+    case CHANNEL_RAID = 'channel.raid';
+    case CHANNEL_BAN = 'channel.ban';
+    case CHANNEL_UNBAN = 'channel.unban';
+    case CHANNEL_MODERATOR_ADD = 'channel.moderator.add';
+    case CHANNEL_MODERATOR_REMOVE = 'channel.moderator.remove';
+    case CHANNEL_POINTS_CUSTOM_REWARD_ADD = 'channel.channel_points_custom_reward.add';
+    case CHANNEL_POINTS_CUSTOM_REWARD_UPDATE = 'channel.channel_points_custom_reward.update';
+    case CHANNEL_POINTS_CUSTOM_REWARD_REMOVE = 'channel.channel_points_custom_reward.remove';
+    case CHANNEL_POINTS_CUSTOM_REWARD_REDEMPTION_ADD = 'channel.channel_points_custom_reward_redemption.add';
+    case CHANNEL_POINTS_CUSTOM_REWARD_REDEMPTION_UPDATE = 'channel.channel_points_custom_reward_redemption.update';
+    case CHANNEL_POLL_BEGIN = 'channel.poll.begin';
+    case CHANNEL_POLL_PROGRESS = 'channel.poll.progress';
+    case CHANNEL_POLL_END = 'channel.poll.end';
+    case CHANNEL_PREDICTION_BEGIN = 'channel.prediction.begin';
+    case CHANNEL_PREDICTION_PROGRESS = 'channel.prediction.progress';
+    case CHANNEL_PREDICTION_LOCK = 'channel.prediction.lock';
+    case CHANNEL_PREDICTION_END = 'channel.prediction.end';
+    case DROP_ENTITLEMENT_GRANT = 'drop.entitlement.grant';
+    case EXTENSION_BITS_TRANSACTION_CREATE = 'extension.bits_transaction.create';
+    case GOAL_BEGIN = 'channel.goal.begin';
+    case GOAL_PROGRESS = 'channel.goal.progress';
+    case GOAL_END = 'channel.goal.end';
+    case HYPE_TRAIN_BEGIN = 'channel.hype_train.begin';
+    case HYPE_TRAIN_PROGRESS = 'channel.hype_train.progress';
+    case HYPE_TRAIN_END = 'channel.hype_train.end';
+    case STREAM_ONLINE = 'stream.online';
+    case STREAM_OFFLINE = 'stream.offline';
+    case USER_AUTHORIZATION_GRANT = 'user.authorization.grant';
+    case USER_AUTHORIZATION_REVOKE = 'user.authorization.revoke';
+    case USER_UPDATE = 'user.update';
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_UPDATE')]
+    public static function channelUpdate(): EventSubSubscriptionTypes
     {
-        return [
-            'channelUpdate' => 'channel.update',
-            'channelFollow' => 'channel.follow',
-            'channelSubscribe' => 'channel.subscribe',
-            'channelSubscriptionEnd' => 'channel.subscription.end',
-            'channelSubscriptionGift' => 'channel.subscription.gift',
-            'channelSubscriptionMessage' => 'channel.subscription.message',
-            'channelCheer' => 'channel.cheer',
-            'channelRaid' => 'channel.raid',
-            'channelBan' => 'channel.ban',
-            'channelUnban' => 'channel.unban',
-            'channelModeratorAdd' => 'channel.moderator.add',
-            'channelModeratorRemove' => 'channel.moderator.remove',
-            'channelPointsCustomRewardAdd' => 'channel.channel_points_custom_reward.add',
-            'channelPointsCustomRewardUpdate' => 'channel.channel_points_custom_reward.update',
-            'channelPointsCustomRewardRemove' => 'channel.channel_points_custom_reward.remove',
-            'channelPointsCustomRewardRedemptionAdd' => 'channel.channel_points_custom_reward_redemption.add',
-            'channelPointsCustomRewardRedemptionUpdate' => 'channel.channel_points_custom_reward_redemption.update',
-            'channelPollBegin' => 'channel.poll.begin',
-            'channelPollProgress' => 'channel.poll.progress',
-            'channelPollEnd' => 'channel.poll.end',
-            'channelPredictionBegin' => 'channel.prediction.begin',
-            'channelPredictionProgress' => 'channel.prediction.progress',
-            'channelPredictionLock' => 'channel.prediction.lock',
-            'channelPredictionEnd' => 'channel.prediction.end',
-            'dropEntitlementGrant' => 'drop.entitlement.grant',
-            'extensionBitsTransactionCreate' => 'extension.bits_transaction.create',
-            'goalBegin' => 'channel.goal.begin',
-            'goalProgress' => 'channel.goal.progress',
-            'goalEnd' => 'channel.goal.end',
-            'hypeTrainBegin' => 'channel.hype_train.begin',
-            'hypeTrainProgress' => 'channel.hype_train.progress',
-            'hypeTrainEnd' => 'channel.hype_train.end',
-            'streamOnline' => 'stream.online',
-            'streamOffline' => 'stream.offline',
-            'userAuthorizationGrant' => 'user.authorization.grant',
-            'userAuthorizationRevoke' => 'user.authorization.revoke',
-            'userUpdate' => 'user.update',
-        ];
+        return EventSubSubscriptionTypes::CHANNEL_UPDATE;
     }
 
-    /**
-     * A custom channel points reward has been created for the specified channel.
-     * @return static
-     */
-    #[Deprecated('since 0.5.3, use channelPointsCustomRewardAdd() instead', '%class%::channelPointsCustomRewardAdd()')]
-    public static function channelChannelPointsCustomRewardAdd()
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_FOLLOW')]
+    public static function channelFollow(): EventSubSubscriptionTypes
     {
-        return static::from('channelPointsCustomRewardAdd');
+        return EventSubSubscriptionTypes::CHANNEL_FOLLOW;
     }
 
-    /**
-     * A custom channel points reward has been updated for the specified channel.
-     * @return static
-     */
-    #[Deprecated('since 0.5.3, use channelPointsCustomRewardUpdate() instead', '%class%::channelPointsCustomRewardUpdate()')]
-    public static function channelChannelPointsCustomRewardUpdate()
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_SUBSCRIBE')]
+    public static function channelSubscribe(): EventSubSubscriptionTypes
     {
-        return static::from('channelPointsCustomRewardUpdate');
+        return EventSubSubscriptionTypes::CHANNEL_SUBSCRIBE;
     }
 
-    /**
-     * A custom channel points reward has been removed from the specified channel.
-     * @return static
-     */
-    #[Deprecated('since 0.5.3, use channelPointsCustomRewardRemove() instead', '%class%::channelPointsCustomRewardRemove()')]
-    public static function channelChannelPointsCustomRewardRemove()
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_SUBSCRIPTION_END')]
+    public static function channelSubscriptionEnd(): EventSubSubscriptionTypes
     {
-        return static::from('channelPointsCustomRewardRemove');
+        return EventSubSubscriptionTypes::CHANNEL_SUBSCRIPTION_END;
     }
 
-    /**
-     * A viewer has redeemed a custom channel points reward on the specified channel.
-     * @return static
-     */
-    #[Deprecated('since 0.5.3, use channelPointsCustomRewardRedemptionAdd() instead', '%class%::channelPointsCustomRewardRedemptionAdd()')]
-    public static function channelChannelPointsCustomRewardRedemptionAdd()
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_SUBSCRIPTION_GIFT')]
+    public static function channelSubscriptionGift(): EventSubSubscriptionTypes
     {
-        return static::from('channelPointsCustomRewardRedemptionAdd');
+        return EventSubSubscriptionTypes::CHANNEL_SUBSCRIPTION_GIFT;
     }
 
-    /**
-     * A redemption of a channel points custom reward has been updated for the specified channel.
-     * @return static
-     */
-    #[Deprecated('since 0.5.3, use channelPointsCustomRewardRedemptionUpdate() instead', '%class%::channelPointsCustomRewardRedemptionUpdate()')]
-    public static function channelChannelPointsCustomRewardRedemptionUpdate()
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_SUBSCRIPTION_MESSAGE')]
+    public static function channelSubscriptionMessage(): EventSubSubscriptionTypes
     {
-        return static::from('channelPointsCustomRewardRedemptionUpdate');
+        return EventSubSubscriptionTypes::CHANNEL_SUBSCRIPTION_MESSAGE;
     }
 
-    /**
-     * A hype train begins on the specified channel.
-     * @return static
-     */
-    #[Deprecated('since 0.5.3, use hypeTrainBegin() instead', '%class%::hypeTrainBegin()')]
-    public static function channelHypeTrainBegin()
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_CHEER')]
+    public static function channelCheer(): EventSubSubscriptionTypes
     {
-        return static::from('hypeTrainBegin');
+        return EventSubSubscriptionTypes::CHANNEL_CHEER;
     }
 
-    /**
-     * A hype train makes progress on the specified channel.
-     * @return static
-     */
-    #[Deprecated('since 0.5.3, use hypeTrainProgress() instead', '%class%::hypeTrainProgress()')]
-    public static function channelHypeTrainProgress()
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_RAID')]
+    public static function channelRaid(): EventSubSubscriptionTypes
     {
-        return static::from('hypeTrainProgress');
+        return EventSubSubscriptionTypes::CHANNEL_RAID;
     }
 
-    /**
-     * A hype train ends on the specified channel.
-     * @return static
-     */
-    #[Deprecated('since 0.5.3, use hypeTrainEnd() instead', '%class%::hypeTrainEnd()')]
-    public static function channelHypeTrainEnd()
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_BAN')]
+    public static function channelBan(): EventSubSubscriptionTypes
     {
-        return static::from('hypeTrainEnd');
+        return EventSubSubscriptionTypes::CHANNEL_BAN;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_UNBAN')]
+    public static function channelUnban(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_UNBAN;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_MODERATOR_ADD')]
+    public static function channelModeratorAdd(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_MODERATOR_ADD;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_MODERATOR_REMOVE')]
+    public static function channelModeratorRemove(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_MODERATOR_REMOVE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_POINTS_CUSTOM_REWARD_ADD')]
+    public static function channelPointsCustomRewardAdd(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_POINTS_CUSTOM_REWARD_ADD;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_POINTS_CUSTOM_REWARD_UPDATE')]
+    public static function channelPointsCustomRewardUpdate(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_POINTS_CUSTOM_REWARD_UPDATE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_POINTS_CUSTOM_REWARD_REMOVE')]
+    public static function channelPointsCustomRewardRemove(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_POINTS_CUSTOM_REWARD_REMOVE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_POINTS_CUSTOM_REWARD_REDEMPTION_ADD')]
+    public static function channelPointsCustomRewardRedemptionAdd(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_POINTS_CUSTOM_REWARD_REDEMPTION_ADD;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_POINTS_CUSTOM_REWARD_REDEMPTION_UPDATE')]
+    public static function channelPointsCustomRewardRedemptionUpdate(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_POINTS_CUSTOM_REWARD_REDEMPTION_UPDATE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_POLL_BEGIN')]
+    public static function channelPollBegin(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_POLL_BEGIN;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_POLL_PROGRESS')]
+    public static function channelPollProgress(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_POLL_PROGRESS;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_POLL_END')]
+    public static function channelPollEnd(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_POLL_END;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_PREDICTION_BEGIN')]
+    public static function channelPredictionBegin(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_PREDICTION_BEGIN;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_PREDICTION_PROGRESS')]
+    public static function channelPredictionProgress(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_PREDICTION_PROGRESS;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_PREDICTION_LOCK')]
+    public static function channelPredictionLock(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_PREDICTION_LOCK;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::CHANNEL_PREDICTION_END')]
+    public static function channelPredictionEnd(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::CHANNEL_PREDICTION_END;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::DROP_ENTITLEMENT_GRANT')]
+    public static function dropEntitlementGrant(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::DROP_ENTITLEMENT_GRANT;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::EXTENSION_BITS_TRANSACTION_CREATE')]
+    public static function extensionBitsTransactionCreate(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::EXTENSION_BITS_TRANSACTION_CREATE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::GOAL_BEGIN')]
+    public static function goalBegin(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::GOAL_BEGIN;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::GOAL_PROGRESS')]
+    public static function goalProgress(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::GOAL_PROGRESS;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::GOAL_END')]
+    public static function goalEnd(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::GOAL_END;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::HYPE_TRAIN_BEGIN')]
+    public static function hypeTrainBegin(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::HYPE_TRAIN_BEGIN;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::HYPE_TRAIN_PROGRESS')]
+    public static function hypeTrainProgress(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::HYPE_TRAIN_PROGRESS;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::HYPE_TRAIN_END')]
+    public static function hypeTrainEnd(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::HYPE_TRAIN_END;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::STREAM_ONLINE')]
+    public static function streamOnline(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::STREAM_ONLINE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::STREAM_OFFLINE')]
+    public static function streamOffline(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::STREAM_OFFLINE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::USER_AUTHORIZATION_GRANT')]
+    public static function userAuthorizationGrant(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::USER_AUTHORIZATION_GRANT;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::USER_AUTHORIZATION_REVOKE')]
+    public static function userAuthorizationRevoke(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::USER_AUTHORIZATION_REVOKE;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::USER_UPDATE')]
+    public static function userUpdate(): EventSubSubscriptionTypes
+    {
+        return EventSubSubscriptionTypes::USER_UPDATE;
     }
 }

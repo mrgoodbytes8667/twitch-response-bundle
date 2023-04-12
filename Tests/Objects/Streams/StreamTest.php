@@ -2,6 +2,7 @@
 
 namespace Bytes\TwitchResponseBundle\Tests\Objects\Streams;
 
+use Bytes\Common\Faker\Providers\EnumProvider;
 use Bytes\Common\Faker\Twitch\TestTwitchFakerTrait;
 use Bytes\Tests\Common\TestSerializerTrait;
 use Bytes\TwitchResponseBundle\Normalizer\TwitchDateTimeNormalizer;
@@ -11,7 +12,6 @@ use DateTimeInterface;
 use Exception;
 use Generator;
 use PHPUnit\Framework\TestCase;
-use Spatie\Enum\Faker\FakerEnumProvider;
 use Symfony\Component\Serializer\SerializerInterface;
 use function Symfony\Component\String\u;
 
@@ -39,7 +39,7 @@ class StreamTest extends TestCase
     {
         /** @var Stream $deserialized */
         $deserialized = $this->serializer->deserialize($json, Stream::class, 'json');
-        $this->assertEquals($date->format(DateTimeInterface::ISO8601), $deserialized->getStartedAt()->format(DateTimeInterface::ISO8601));
+        $this->assertEquals($date->format(DateTimeInterface::ATOM), $deserialized->getStartedAt()->format(DateTimeInterface::ATOM));
     }
 
     /**
@@ -432,7 +432,7 @@ class StreamTest extends TestCase
      */
     protected function getProviders()
     {
-        return array_merge($this->parentProviders(), [FakerEnumProvider::class]);
+        return array_merge($this->parentProviders(), [EnumProvider::class]);
     }
 
     /**

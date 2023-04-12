@@ -2,6 +2,7 @@
 
 namespace Bytes\TwitchResponseBundle\Tests\Objects\Follows;
 
+use Bytes\Common\Faker\Providers\EnumProvider;
 use Bytes\Common\Faker\Twitch\TestTwitchFakerTrait;
 use Bytes\Tests\Common\TestSerializerTrait;
 use Bytes\TwitchResponseBundle\Normalizer\TwitchDateTimeNormalizer;
@@ -11,7 +12,6 @@ use DateTimeInterface;
 use Exception;
 use Generator;
 use PHPUnit\Framework\TestCase;
-use Spatie\Enum\Faker\FakerEnumProvider;
 use Symfony\Component\Serializer\SerializerInterface;
 use function Symfony\Component\String\u;
 
@@ -35,7 +35,7 @@ class FollowTest extends TestCase
     {
         /** @var Follow $deserialized */
         $deserialized = $this->serializer->deserialize($json, Follow::class, 'json');
-        $this->assertEquals($date->format(DateTimeInterface::ISO8601), $deserialized->getFollowedAt()->format(DateTimeInterface::ISO8601));
+        $this->assertEquals($date->format(DateTimeInterface::ATOM), $deserialized->getFollowedAt()->format(DateTimeInterface::ATOM));
     }
 
     /**
@@ -118,6 +118,6 @@ class FollowTest extends TestCase
      */
     protected function getProviders()
     {
-        return array_merge($this->parentProviders(), [FakerEnumProvider::class]);
+        return array_merge($this->parentProviders(), [EnumProvider::class]);
     }
 }

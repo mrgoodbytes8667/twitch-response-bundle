@@ -33,14 +33,11 @@ class Transport
     /**
      * @param string $callback
      * @param string|null $secret
-     * @param EventSubTransportMethod|null $method
+     * @param EventSubTransportMethod $method
      * @return static
      */
-    public static function create(string $callback, ?string $secret = null, ?EventSubTransportMethod $method = null)
+    public static function create(string $callback, ?string $secret = null, EventSubTransportMethod $method = EventSubTransportMethod::WEBHOOK)
     {
-        if (is_null($method)) {
-            $method = EventSubTransportMethod::webhook();
-        }
         $static = new static();
         $static->setCallback($callback);
         $static->setMethod($method->value);
