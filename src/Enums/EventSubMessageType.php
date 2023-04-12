@@ -4,27 +4,39 @@
 namespace Bytes\TwitchResponseBundle\Enums;
 
 
-use Bytes\EnumSerializerBundle\Enums\Enum;
+use Bytes\EnumSerializerBundle\Enums\StringBackedEnumInterface;
+use Bytes\EnumSerializerBundle\Enums\StringBackedEnumTrait;
+use JetBrains\PhpStorm\Deprecated;
 
 /**
  * Class EventSubMessageType
  * @package Bytes\TwitchResponseBundle\Enums
  *
- * @method static self webhookCallbackVerification()
- * @method static self notification()
- * @method static self revocation()
- *
  * @link https://dev.twitch.tv/docs/eventsub#subscriptions
  */
-class EventSubMessageType extends Enum
+enum EventSubMessageType: string implements StringBackedEnumInterface
 {
-    /**
-     * @return string[]
-     */
-    protected static function values(): array
+    use StringBackedEnumTrait;
+
+    case WEBHOOK_CALLBACK_VERIFICATION = 'webhook_callback_verification';
+    case NOTIFICATION = 'notification';
+    case REVOCATION = 'revocation';
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::WEBHOOK_CALLBACK_VERIFICATION')]
+    public static function webhookCallbackVerification(): EventSubMessageType
     {
-        return [
-            'webhookCallbackVerification' => 'webhook_callback_verification',
-        ];
+        return EventSubMessageType::WEBHOOK_CALLBACK_VERIFICATION;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::NOTIFICATION')]
+    public static function notification(): EventSubMessageType
+    {
+        return EventSubMessageType::NOTIFICATION;
+    }
+
+    #[Deprecated('Since 0.6.1, use the enum variant', '%class%::REVOCATION')]
+    public static function revocation(): EventSubMessageType
+    {
+        return EventSubMessageType::REVOCATION;
     }
 }

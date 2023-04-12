@@ -3,6 +3,8 @@
 
 namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Traits;
 
+use Bytes\EnumSerializerBundle\Enums\BackedEnumInterface;
+use Bytes\EnumSerializerBundle\Enums\StringBackedEnumInterface;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Condition;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Transport;
 use Symfony\Component\Serializer\Annotation\SerializedName;
@@ -74,12 +76,12 @@ trait SubscriptionTrait
     }
 
     /**
-     * @param string $type
+     * @param StringBackedEnumInterface|string $type
      * @return $this
      */
-    public function setType(string $type): self
+    public function setType($type): self
     {
-        $this->type = $type;
+        $this->type = !($type instanceof StringBackedEnumInterface) ? $type : $type::tryNormalizeToValue($type);
         return $this;
     }
 

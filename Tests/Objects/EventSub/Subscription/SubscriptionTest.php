@@ -2,6 +2,8 @@
 
 namespace Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Subscription;
 
+use Bytes\Common\Faker\Enum\TestEnumFakerTrait;
+use Bytes\Common\Faker\Providers\EnumProvider;
 use Bytes\Common\Faker\Twitch\TestTwitchFakerTrait;
 use Bytes\Tests\Common\TestSerializerTrait;
 use Bytes\TwitchResponseBundle\Enums\EventSubTransportMethod;
@@ -14,7 +16,6 @@ use DateTimeInterface;
 use Exception;
 use Generator;
 use PHPUnit\Framework\TestCase;
-use Spatie\Enum\Faker\FakerEnumProvider;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use function Symfony\Component\String\u;
@@ -304,6 +305,6 @@ class SubscriptionTest extends TestCase
      */
     protected function getProviders()
     {
-        return array_merge($this->parentProviders(), [FakerEnumProvider::class]);
+        return array_merge($this->parentProviders(), [EnumProvider::class]);
     }
 }
