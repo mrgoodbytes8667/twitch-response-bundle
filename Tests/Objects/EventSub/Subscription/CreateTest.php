@@ -69,6 +69,27 @@ class CreateTest extends TestCase
     }
 
     /**
+     * @dataProvider provideValidCreates
+     * @param $type
+     * @param $conditions
+     * @param $callback
+     * @param $secret
+     * @param $method
+     */
+    public function testCreateNoMethod($type, $conditions, $callback, $secret, $method)
+    {
+        $create = Create::create($type, $conditions, $callback, $secret);
+        $this->assertInstanceOf(Create::class, $create);
+
+        $this->assertEquals($type->value, $create->getType());
+        $this->assertInstanceOf(Transport::class, $create->getTransport());
+
+        $this->assertEquals($callback, $create->getTransport()?->getCallback());
+        $this->assertEquals($secret, $create->getTransport()?->getSecret());
+        $this->assertEquals($method?->value ?? Transport::DEFAULT_METHOD, $create->getTransport()?->getMethod());
+    }
+
+    /**
      *
      */
     public function testCreateFail()
@@ -93,16 +114,16 @@ class CreateTest extends TestCase
 
         $conditions = ['broadcasterUserId' => $this->faker->id()];
 
-        yield ['type' => $this->faker->randomElement(EventSubSubscriptionTypes::cases()), 'conditions' => $conditions, 'callback' => $this->faker->url(), 'secret' => $this->faker->accessToken(), 'method' => $this->faker->optional()->randomElement(EventSubTransportMethod::cases())];
+        yield ['type' => $this->faker->randomEnum(EventSubSubscriptionTypes::class), 'conditions' => $conditions, 'callback' => $this->faker->url(), 'secret' => $this->faker->accessToken(), 'method' => $this->faker->randomEnum(EventSubTransportMethod::class)];
 
         $conditions = Condition::createFromArray(['broadcasterUserId' => $this->faker->id()]);
 
-        yield ['type' => $this->faker->randomElement(EventSubSubscriptionTypes::cases()), 'conditions' => $conditions, 'callback' => $this->faker->url(), 'secret' => $this->faker->accessToken(), 'method' => $this->faker->optional()->randomElement(EventSubTransportMethod::cases())];
+        yield ['type' => $this->faker->randomEnum(EventSubSubscriptionTypes::class), 'conditions' => $conditions, 'callback' => $this->faker->url(), 'secret' => $this->faker->accessToken(), 'method' => $this->faker->randomEnum(EventSubTransportMethod::class)];
 
         $conditions = new Condition();
         $conditions->setBroadcasterUserId($this->faker->id());
 
-        yield ['type' => $this->faker->randomElement(EventSubSubscriptionTypes::cases()), 'conditions' => $conditions, 'callback' => $this->faker->url(), 'secret' => $this->faker->accessToken(), 'method' => $this->faker->optional()->randomElement(EventSubTransportMethod::cases())];
+        yield ['type' => $this->faker->randomEnum(EventSubSubscriptionTypes::class), 'conditions' => $conditions, 'callback' => $this->faker->url(), 'secret' => $this->faker->accessToken(), 'method' => $this->faker->randomEnum(EventSubTransportMethod::class)];
     }
 
     /**

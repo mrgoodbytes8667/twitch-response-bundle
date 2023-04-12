@@ -24,10 +24,10 @@ class Create
      * @param Condition|string[] $conditions = ['broadcasterUserId' => '', 'userId' => '', 'rewardId' => '', 'clientId' => '']
      * @param string $callback
      * @param string $secret
-     * @param EventSubTransportMethod|null $method
+     * @param EventSubTransportMethod $method
      * @return static
      */
-    public static function create(EventSubSubscriptionTypes $type, $conditions, string $callback, string $secret, ?EventSubTransportMethod $method = null)
+    public static function create(EventSubSubscriptionTypes $type, $conditions, string $callback, string $secret, EventSubTransportMethod $method = EventSubTransportMethod::WEBHOOK)
     {
         $transport = Transport::create($callback, $secret, $method);
         if ($conditions instanceof Condition) {

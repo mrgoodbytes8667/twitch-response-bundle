@@ -145,7 +145,8 @@ class SubscriptionTest extends TestCase
     public function provideTransport()
     {
         $this->setupFaker();
-        yield [Transport::create($this->faker->url(), $this->faker->accessToken(), $this->faker->optional()->randomEnum(EventSubTransportMethod::class))];
+        yield [Transport::create($this->faker->url(), $this->faker->accessToken(), $this->faker->randomEnum(EventSubTransportMethod::class))];
+        yield [Transport::create($this->faker->url(), $this->faker->accessToken())];
     }
 
     /**
