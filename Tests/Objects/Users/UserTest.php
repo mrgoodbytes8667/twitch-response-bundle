@@ -241,7 +241,7 @@ class UserTest extends TestCase
     {
         /** @var User $deserialized */
         $deserialized = $this->serializer->deserialize($json, User::class, 'json');
-        $this->assertEquals($date->format(DateTimeInterface::ISO8601), $deserialized->getCreatedAt()->format(DateTimeInterface::ISO8601));
+        $this->assertEquals($date->format(DateTimeInterface::ATOM), $deserialized->getCreatedAt()->format(DateTimeInterface::ATOM));
     }
 
     /**
