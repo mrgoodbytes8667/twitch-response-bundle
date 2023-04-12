@@ -100,7 +100,7 @@ class CreateTest extends TestCase
         $conditions = new \DateTime();
         $callback = $this->faker->url();
         $secret = $this->faker->accessToken();
-        $method = $this->faker->optional()->randomEnum(EventSubTransportMethod::class);
+        $method = $this->faker->randomEnum(EventSubTransportMethod::class);
 
         $create = Create::create($type, $conditions, $callback, $secret, $method);
     }
