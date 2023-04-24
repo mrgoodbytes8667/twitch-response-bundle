@@ -63,6 +63,7 @@ class StreamTest extends TestCase
         $stream->setUserName($this->faker->userName());
         $stream->setViewerCount($this->faker->numberBetween());
         $stream->setMature($this->faker->boolean());
+        $stream->setTags($this->faker->words());
 
         $stream->setStartedAt($date);
 
@@ -246,18 +247,18 @@ class StreamTest extends TestCase
      * @dataProvider provideTagIds
      * @param mixed $tagIds
      */
-    public function testGetSetTagIds($tagIds)
+    public function testGetSetTags($tagIds)
     {
         $stream = new Stream();
-        $this->assertNull($stream->getTagIds());
-        $this->assertInstanceOf(Stream::class, $stream->setTagIds($tagIds));
-        $this->assertEquals($tagIds, $stream->getTagIds());
+        $this->assertNull($stream->getTags());
+        $this->assertInstanceOf(Stream::class, $stream->setTags($tagIds));
+        $this->assertEquals($tagIds, $stream->getTags());
     }
 
     /**
      * @return Generator
      */
-    public function provideTagIds()
+    public function provideTags()
     {
         $this->setupFaker();
         yield [[]];
