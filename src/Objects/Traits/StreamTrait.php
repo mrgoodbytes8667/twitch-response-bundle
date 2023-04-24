@@ -5,6 +5,7 @@ namespace Bytes\TwitchResponseBundle\Objects\Traits;
 
 
 use DateTimeInterface;
+use JetBrains\PhpStorm\Deprecated;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
@@ -41,7 +42,13 @@ trait StreamTrait
     /**
      * @var string|null[]|null
      */
+    #[Deprecated('Since mrgoodbytes8667/0.6.1|February 28, 2023, this field is deprecated')]
     protected $tag_ids;
+
+    /**
+     * @var string[]
+     */
+    protected array $tags = [];
 
     /**
      * @var string|null
@@ -203,6 +210,7 @@ trait StreamTrait
      * Shows tag IDs that apply to the stream.
      * @return string[]|null
      */
+    #[Deprecated('Since mrgoodbytes8667/0.6.1|February 28, 2023, this field is deprecated', '%class%->getTags()')]
     public function getTagIds(): ?array
     {
         return $this->tag_ids;
@@ -212,9 +220,28 @@ trait StreamTrait
      * @param string[]|null $tag_ids
      * @return $this
      */
+    #[Deprecated('Since mrgoodbytes8667/0.6.1|February 28, 2023, this field is deprecated')]
     public function setTagIds(?array $tag_ids): self
     {
         $this->tag_ids = $tag_ids;
+        return $this;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param string[] $tags
+     * @return $this
+     */
+    public function setTags(array $tags): self
+    {
+        $this->tags = $tags;
         return $this;
     }
 
