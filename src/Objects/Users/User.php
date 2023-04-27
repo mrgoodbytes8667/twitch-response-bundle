@@ -5,14 +5,16 @@ namespace Bytes\TwitchResponseBundle\Objects\Users;
 
 
 use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
+use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchUserInterface;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\UserInterface;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
  * Class User
  * @package Bytes\TwitchResponseBundle\Objects\Users
  */
-class User implements UserInterface, TwitchDateTimeInterface
+class User implements UserInterface, TwitchDateTimeInterface, TwitchUserInterface
 {
     /**
      * User’s broadcaster type: "partner", "affiliate", or "".
@@ -195,6 +197,16 @@ class User implements UserInterface, TwitchDateTimeInterface
     }
 
     /**
+     * Display name corresponding to user_id.
+     * @return string|null
+     */
+    #[Ignore]
+    public function getUserName(): ?string
+    {
+        return $this->display_name;
+    }
+
+    /**
      * @return bool
      */
     public function hasEmail(): bool
@@ -255,6 +267,16 @@ class User implements UserInterface, TwitchDateTimeInterface
     {
         $this->login = $login;
         return $this;
+    }
+
+    /**
+     * Login of the user who is streaming.
+     * @return string|null
+     */
+    #[Ignore]
+    public function getUserLogin(): ?string
+    {
+        return $this->getLogin();
     }
 
     /**
