@@ -4,11 +4,18 @@
 namespace Bytes\TwitchResponseBundle\Tests;
 
 
+use Bytes\TwitchResponseBundle\Normalizer\TwitchDateTimeNormalizer;
 use Bytes\TwitchResponseBundle\Objects\Users\User;
 use Symfony\Component\Serializer\Normalizer\UnwrappingDenormalizer;
 
 class DeserializationTest extends TestSerializationCase
 {
+    /**
+     * Note that created_at is not tested here and is not included in users.json. This serializer does not add in the
+     * {@see TwitchDateTimeNormalizer} and therefore cannot test this property. It is included in other tests.
+     *
+     * @return void
+     */
     public function testUserDeserialization()
     {
         $serializer = $this->createSerializer();
