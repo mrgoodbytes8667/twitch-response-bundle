@@ -12,6 +12,7 @@ use Bytes\TwitchResponseBundle\Objects\Traits\PaginationTrait;
  * @package Bytes\TwitchResponseBundle\Objects\Streams
  *
  * @link https://dev.twitch.tv/docs/api/reference#get-all-stream-tags
+ * @deprecated Twitch no longer has Tag objects
  */
 class TagsResponse implements DataPaginationResponseInterface
 {
