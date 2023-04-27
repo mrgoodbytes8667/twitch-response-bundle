@@ -6,6 +6,7 @@
     "require": {
         "php": "^8.1",
         "ext-json": "*",
+        "doctrine/annotations": "^1.0 | ^2.0",
         "mrgoodbytes8667/response-bundle": "^5.0 | ^6.0",
         "symfony/messenger": "^5.3 | ^6.0",
         "symfony/validator": "^5.3 | ^6.0"
@@ -38,7 +39,7 @@
         "doctrine/inflector": "<1.4.3",
         "doctrine/lexer": "<1.2.1",
         "doctrine/persistence": "<2.1.0",
-        "phpunit/phpunit": "<9.5",
+        "phpunit/phpunit": "<9.5 | 9.5.8 | >=10",
         "symfony/property-info": "<5.3",
         "symfony/serializer": "<5.2.2"
     },
