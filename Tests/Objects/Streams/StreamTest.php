@@ -245,13 +245,13 @@ class StreamTest extends TestCase
     }
 
     /**
-     * @dataProvider provideTagIds
+     * @dataProvider provideTags
      * @param mixed $tagIds
      */
     public function testGetSetTags($tagIds)
     {
         $stream = new Stream();
-        $this->assertNull($stream->getTags());
+        $this->assertEmpty($stream->getTags());
         $this->assertInstanceOf(Stream::class, $stream->setTags($tagIds));
         $this->assertEquals($tagIds, $stream->getTags());
     }
