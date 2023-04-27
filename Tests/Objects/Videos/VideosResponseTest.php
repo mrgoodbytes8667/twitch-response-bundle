@@ -51,6 +51,7 @@ class VideosResponseTest extends TestCase
         foreach (range(1, 3) as $i) {
             $videos[] = $this->buildVideo();
         }
+        
         $lastVideo = $this->buildVideo();
         $videos[] = $lastVideo;
 

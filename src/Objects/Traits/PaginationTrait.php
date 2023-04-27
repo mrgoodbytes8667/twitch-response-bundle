@@ -43,6 +43,7 @@ trait PaginationTrait
         } else {
             $this->pagination = $pagination;
         }
+        
         return $this;
     }
 

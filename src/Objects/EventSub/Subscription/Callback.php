@@ -11,6 +11,7 @@ namespace Bytes\TwitchResponseBundle\Objects\EventSub\Subscription;
 class Callback
 {
     private string $challenge;
+    
     private Subscription $subscription;
 
     /**

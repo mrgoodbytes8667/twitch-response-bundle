@@ -25,8 +25,8 @@ class Validate implements TokenValidationResponseInterface
 
     /**
      * @var string|null
-     * @SerializedName("login")
      */
+    #[SerializedName('login')]
     private $userName;
 
     /**
@@ -149,6 +149,7 @@ class Validate implements TokenValidationResponseInterface
         if (!is_null($expiresIn)) {
             $this->setExpiresAt($expiresIn);
         }
+        
         return $this;
     }
 
@@ -229,11 +230,13 @@ class Validate implements TokenValidationResponseInterface
             if (is_int($expiresAt)) {
                 $expiresAt = ComparableDateInterval::secondsToInterval($expiresAt);
             }
+            
             if ($expiresAt instanceof DateInterval) {
                 $now = new DateTimeImmutable();
                 $expiresAt = $now->add($expiresAt);
             }
         }
+        
         $this->expiresAt = $expiresAt;
         return $this;
     }

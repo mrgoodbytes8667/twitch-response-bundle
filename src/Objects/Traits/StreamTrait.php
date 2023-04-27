@@ -89,8 +89,8 @@ trait StreamTrait
     /**
      * Indicates if the broadcaster has specified their channel contains mature content that may be inappropriate for younger audiences.
      * @var bool|null
-     * @SerializedName("is_mature")
      */
+    #[SerializedName('is_mature')]
     protected $mature;
 
     /**

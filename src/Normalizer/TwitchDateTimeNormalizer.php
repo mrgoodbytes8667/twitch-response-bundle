@@ -49,6 +49,7 @@ class TwitchDateTimeNormalizer extends ObjectNormalizer
                         } else {
                             $timezone =  $createdAt->afterLast('-')->prepend('-');
                         }
+                        
                         if($createdAt->containsAny('.')) {
                             $createdAt = $createdAt->before('.')->append($timezone);
                         }

@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Transport
 {
+    /**
+     * @var string
+     */
     const DEFAULT_METHOD = 'webhook';
 
     /**
@@ -21,8 +24,8 @@ class Transport
 
     /**
      * @var string
-     * @Assert\Url()
      */
+    #[Assert\Url]
     private string $callback = '';
 
     /**

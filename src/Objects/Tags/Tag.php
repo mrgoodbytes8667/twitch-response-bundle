@@ -22,8 +22,8 @@ class Tag implements TagInterface
 
     /**
      * @var bool|null
-     * @SerializedName("is_auto")
      */
+    #[SerializedName('is_auto')]
     private $auto;
 
     /**

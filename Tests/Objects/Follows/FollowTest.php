@@ -47,6 +47,7 @@ class FollowTest extends TestCase
     {
         $follow = new Follow();
         $follow->setFollowedAt($date);
+        
         $serialized = $this->serializer->serialize($follow, 'json');
         $this->assertStringContainsString($date->format('Y'), $serialized);
         $this->assertStringContainsString($date->format('m'), $serialized);
@@ -85,6 +86,7 @@ class FollowTest extends TestCase
                 $this->faker->time('\-H:i')
             ]);
         }
+        
         foreach ($timezones as $timezone) {
             foreach (['P', 'p'] as $timezoneIdentifier) {
                 $date = $this->faker->dateTime(timezone: $timezone);

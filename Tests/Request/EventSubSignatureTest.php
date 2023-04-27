@@ -20,12 +20,18 @@ class EventSubSignatureTest extends TestCase
 {
 
     /**
-     *
+     * @var string
      */
     const TWITCH_HUB_SECRET = 'abc123';
 
+    /**
+     * @var string
+     */
     const TWITCH_MESSAGE_ID = '5AL_vgZc1wZ7ZqDcU6SYRJyw7ijry1tMaM6_CEiS1zo=';
 
+    /**
+     * @var string
+     */
     const TWITCH_TIMESTAMP = '2020-11-21T03:33:53Z';
 
     /**

@@ -222,6 +222,7 @@ class SubscriptionTest extends TestCase
     {
         $subscription = new Subscription();
         $subscription->setCreatedAt($date);
+        
         $serialized = $this->serializer->serialize($subscription, 'json');
         $this->assertStringContainsString($date->format('Y'), $serialized);
         $this->assertStringContainsString($date->format('m'), $serialized);
@@ -259,6 +260,7 @@ class SubscriptionTest extends TestCase
                 $this->faker->time('\-H:i')
             ]);
         }
+        
         foreach ($timezones as $timezone) {
             foreach (['P', 'p'] as $timezoneIdentifier) {
                 $date = $this->faker->dateTime(timezone: $timezone);

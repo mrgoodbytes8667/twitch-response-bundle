@@ -69,6 +69,7 @@ class Subscriptions implements DataPaginationResponseInterface
             $data = $this->data;
             return array_shift($data);
         }
+        
         return null;
     }
 

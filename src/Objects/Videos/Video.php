@@ -14,8 +14,8 @@ class Video
 {
     /**
      * @var string|null
-     * @SerializedName("id")
      */
+    #[SerializedName('id')]
     private $videoId;
 
     /**

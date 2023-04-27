@@ -15,8 +15,8 @@ class Game
 
     /**
      * @var string|int|null
-     * @SerializedName("id")
      */
+    #[SerializedName('id')]
     private $gameID;
 
     /**

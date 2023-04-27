@@ -69,13 +69,16 @@ abstract class TestSerializationCase extends TestCase
             if ($includeEnumNormalizer) {
                 $normalizers[] = new EnumNormalizer($objectNormalizer);
             }
+            
             foreach ($appendNormalizers as $normalizer) {
                 $normalizers[] = $normalizer;
             }
+            
             if ($includeObjectNormalizer) {
                 $normalizers[] = $objectNormalizer;
             }
         }
+        
         return $normalizers;
     }
 

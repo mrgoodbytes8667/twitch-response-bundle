@@ -100,33 +100,43 @@ class User implements UserInterface, TwitchDateTimeInterface
         if (!empty($login)) {
             $static->setLogin($login);
         }
+        
         if (!empty($broadcasterType)) {
             $static->setBroadcasterType($broadcasterType);
         }
+        
         if (!empty($description)) {
             $static->setDescription($description);
         }
+        
         if (!empty($displayName)) {
             $static->setDisplayName($displayName);
         }
+        
         if (!empty($email)) {
             $static->setEmail($email);
         }
+        
         if (!empty($offlineImageUrl)) {
             $static->setOfflineImageUrl($offlineImageUrl);
         }
+        
         if (!empty($profileImageUrl)) {
             $static->setProfileImageUrl($profileImageUrl);
         }
+        
         if (!empty($type)) {
             $static->setType($type);
         }
+        
         if (!is_null($viewCount)) {
             $static->setViewCount($viewCount);
         }
+        
         if (!is_null($createdAt)) {
             $static->setCreatedAt($createdAt);
         }
+        
         return $static;
     }
 
@@ -212,8 +222,8 @@ class User implements UserInterface, TwitchDateTimeInterface
 
     /**
      * @return string|null
-     * @SerializedName("id")
      */
+    #[SerializedName('id')]
     public function getUserId(): ?string
     {
         return $this->id;

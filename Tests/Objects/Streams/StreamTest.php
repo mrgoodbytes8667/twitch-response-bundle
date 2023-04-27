@@ -104,6 +104,7 @@ class StreamTest extends TestCase
                 $this->faker->time('\-H:i')
             ]);
         }
+        
         foreach ($timezones as $timezone) {
             foreach (['P', 'p'] as $timezoneIdentifier) {
                 $date = $this->faker->dateTime(timezone: $timezone);

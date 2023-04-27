@@ -20,32 +20,32 @@ class Condition
 {
     /**
      * @var string|null
-     * @Groups({"channel","stream","points_reward_add", "points_rewards_update", "points_reward_remove"})
      */
+    #[Groups(['channel', 'stream', 'points_reward_add', 'points_rewards_update', 'points_reward_remove'])]
     private ?string $broadcaster_user_id = null;
 
     /**
      * @var string|null
-     * @Groups({"points_rewards_update", "points_reward_remove"})
      */
+    #[Groups(['points_rewards_update', 'points_reward_remove'])]
     private ?string $reward_id = null;
 
     /**
      * @var string|null
-     * @Groups({"user_authorization_revoke"})
      */
+    #[Groups(['user_authorization_revoke'])]
     private ?string $client_id = null;
 
     /**
      * @var string|null
-     * @Groups({"user_update"})
      */
+    #[Groups(['user_update'])]
     private ?string $user_id = null;
 
     /**
      * @return string|null
-     * @SerializedName("broadcaster_user_id")
      */
+    #[SerializedName('broadcaster_user_id')]
     public function getBroadcasterUserId(): ?string
     {
         return $this->broadcaster_user_id;
@@ -63,8 +63,8 @@ class Condition
 
     /**
      * @return string|null
-     * @SerializedName("reward_id")
      */
+    #[SerializedName('reward_id')]
     public function getRewardId(): ?string
     {
         return $this->reward_id;
@@ -82,8 +82,8 @@ class Condition
 
     /**
      * @return string|null
-     * @SerializedName("client_id")
      */
+    #[SerializedName('client_id')]
     public function getClientId(): ?string
     {
         return $this->client_id;
@@ -101,8 +101,8 @@ class Condition
 
     /**
      * @return string|null
-     * @SerializedName("user_id")
      */
+    #[SerializedName('user_id')]
     public function getUserId(): ?string
     {
         return $this->user_id;
@@ -121,8 +121,8 @@ class Condition
     /**
      * Gets the broadcaster or user id
      * @return string|null
-     * @Ignore
      */
+    #[Ignore]
     public function getBroadcasterOrUserId()
     {
         return $this->getBroadcasterUserId() ?? $this->getUserId();

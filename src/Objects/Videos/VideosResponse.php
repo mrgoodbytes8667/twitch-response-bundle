@@ -90,6 +90,7 @@ class VideosResponse implements Countable
         if (empty($this->data)) {
             return null;
         }
+        
         return Arr::random($this->data);
     }
 }

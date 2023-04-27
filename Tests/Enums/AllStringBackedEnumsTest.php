@@ -20,8 +20,8 @@ class AllStringBackedEnumsTest extends TestCase
      */
     public static function provideLabelsValues()
     {
-        foreach (static::provideStringBackedEnumClasses() as $x) {
-            foreach ($x as $class) {
+        foreach (static::provideStringBackedEnumClasses() as $generator) {
+            foreach ($generator as $class) {
                 foreach ($class::cases() as $type) {
                     yield $class . '::' . $type->name => ['label' => $type->name, 'value' => $type->value, 'enum' => $type];
                 }

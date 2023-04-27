@@ -27,6 +27,7 @@ class Pagination
         if (empty($cursor)) {
             return null;
         }
+        
         return new static($cursor);
     }
 

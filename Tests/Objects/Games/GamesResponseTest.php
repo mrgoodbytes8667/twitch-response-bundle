@@ -51,6 +51,7 @@ class GamesResponseTest extends TestCase
         foreach (range(1, 3) as $i) {
             $games[] = $this->buildGame();
         }
+        
         $lastGame = $this->buildGame();
         $games[] = $lastGame;
 
