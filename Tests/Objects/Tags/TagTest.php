@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class TagTest
  * @package Bytes\TwitchResponseBundle\Tests\Objects\Tags
+ * @deprecated Twitch no longer has Tag objects
  */
 class TagTest extends TestCase
 {
