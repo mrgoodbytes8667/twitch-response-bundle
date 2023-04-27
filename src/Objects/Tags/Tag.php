@@ -12,6 +12,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * @package Bytes\TwitchResponseBundle\Objects\Tags
  *
  * @link https://dev.twitch.tv/docs/api/reference#get-all-stream-tags
+ * @deprecated Twitch no longer has Tag objects
  */
 class Tag implements TagInterface
 {

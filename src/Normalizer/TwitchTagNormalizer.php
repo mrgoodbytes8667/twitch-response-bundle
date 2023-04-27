@@ -16,6 +16,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
  * @package Bytes\TwitchResponseBundle\Normalizer
  *
  * @example ['allowed_locales' => ['en-us'], 'filtered_locales' => ['cs-cz']]
+ * @deprecated Twitch no longer has Tag objects
  */
 class TwitchTagNormalizer extends ObjectNormalizer implements CacheableSupportsMethodInterface
 {
