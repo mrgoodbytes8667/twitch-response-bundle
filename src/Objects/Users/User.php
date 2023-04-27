@@ -5,14 +5,17 @@ namespace Bytes\TwitchResponseBundle\Objects\Users;
 
 
 use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
+use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchUserInterface;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\UserInterface;
+use DateTimeInterface;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
  * Class User
  * @package Bytes\TwitchResponseBundle\Objects\Users
  */
-class User implements UserInterface, TwitchDateTimeInterface
+class User implements UserInterface, TwitchDateTimeInterface, TwitchUserInterface
 {
     /**
      * User’s broadcaster type: "partner", "affiliate", or "".
@@ -75,7 +78,7 @@ class User implements UserInterface, TwitchDateTimeInterface
     protected $view_count;
 
     /**
-     * @var \DateTimeInterface|null
+     * @var DateTimeInterface|null
      */
     protected $created_at;
 
@@ -90,10 +93,10 @@ class User implements UserInterface, TwitchDateTimeInterface
      * @param string|null $profileImageUrl
      * @param string|null $type = ['staff', 'admin', 'global_mod', ''][$any]
      * @param int|null $viewCount
-     * @param \DateTimeInterface|null $createdAt
+     * @param DateTimeInterface|null $createdAt
      * @return UserInterface
      */
-    public static function make(string $id, ?string $login = null, ?string $broadcasterType = null, ?string $description = null, ?string $displayName = null, ?string $email = null, ?string $offlineImageUrl = null, ?string $profileImageUrl = null, ?string $type = null, ?int $viewCount = null, ?\DateTimeInterface $createdAt = null): UserInterface
+    public static function make(string $id, ?string $login = null, ?string $broadcasterType = null, ?string $description = null, ?string $displayName = null, ?string $email = null, ?string $offlineImageUrl = null, ?string $profileImageUrl = null, ?string $type = null, ?int $viewCount = null, ?DateTimeInterface $createdAt = null): UserInterface
     {
         $static = new static();
         $static->setUserId($id);
@@ -195,6 +198,16 @@ class User implements UserInterface, TwitchDateTimeInterface
     }
 
     /**
+     * Display name corresponding to user_id.
+     * @return string|null
+     */
+    #[Ignore]
+    public function getUserName(): ?string
+    {
+        return $this->display_name;
+    }
+
+    /**
      * @return bool
      */
     public function hasEmail(): bool
@@ -223,7 +236,6 @@ class User implements UserInterface, TwitchDateTimeInterface
     /**
      * @return string|null
      */
-    #[SerializedName('id')]
     public function getUserId(): ?string
     {
         return $this->id;
@@ -233,10 +245,19 @@ class User implements UserInterface, TwitchDateTimeInterface
      * @param string|null $id
      * @return $this
      */
+    #[SerializedName('id')]
     public function setUserId(?string $id): self
     {
         $this->id = $id;
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     /**
@@ -255,6 +276,16 @@ class User implements UserInterface, TwitchDateTimeInterface
     {
         $this->login = $login;
         return $this;
+    }
+
+    /**
+     * Login of the user who is streaming.
+     * @return string|null
+     */
+    #[Ignore]
+    public function getUserLogin(): ?string
+    {
+        return $this->getLogin();
     }
 
     /**
@@ -330,18 +361,18 @@ class User implements UserInterface, TwitchDateTimeInterface
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->created_at;
     }
 
     /**
-     * @param \DateTimeInterface|null $created_at
+     * @param DateTimeInterface|null $created_at
      * @return $this
      */
-    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    public function setCreatedAt(?DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
         return $this;
