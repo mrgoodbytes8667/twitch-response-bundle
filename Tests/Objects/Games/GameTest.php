@@ -13,6 +13,9 @@ use PHPUnit\Framework\TestCase;
  */
 class GameTest extends TestCase
 {
+    /**
+     * @var string
+     */
     const DESTINY_2_BOX_ART_URL = 'https://static-cdn.jtvnw.net/ttv-boxart/Destiny%202-{width}x{height}.jpg';
 
     /**

@@ -6,11 +6,12 @@ use Bytes\Common\Faker\TestFakerTrait;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Event\EventInterface;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Notification\Stream\Offline;
 use Bytes\TwitchResponseBundle\Objects\EventSub\Subscription\Subscription;
+use Bytes\TwitchResponseBundle\Tests\FixtureTestCase;
 use Bytes\TwitchResponseBundle\Tests\Objects\EventSub\Notification\SubscriptionProviderTrait;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
-class OfflineTest extends TestCase
+class OfflineTest extends FixtureTestCase
 {
     use TestFakerTrait, SubscriptionProviderTrait;
 

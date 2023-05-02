@@ -5,10 +5,10 @@ namespace Bytes\TwitchResponseBundle\Tests\Objects\Users;
 use Bytes\Common\Faker\TestFakerTrait;
 use Bytes\Tests\Common\TestSerializerTrait;
 use Bytes\TwitchResponseBundle\Normalizer\TwitchDateTimeNormalizer;
-use Bytes\TwitchResponseBundle\Objects\Follows\Follow;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\UserInterface;
 use Bytes\TwitchResponseBundle\Objects\Users\User;
 use DateTime;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
 use Generator;
@@ -28,7 +28,7 @@ class UserTest extends TestCase
      * @var SerializerInterface
      */
     protected $serializer;
-    
+
     /**
      * @var User
      */
@@ -200,7 +200,7 @@ class UserTest extends TestCase
         foreach (range(1, 10) as $i) {
             $login = $this->faker->userName();
             $createdAt = $this->faker->dateTime();
-            $createdAtImmutable = \DateTimeImmutable::createFromMutable($createdAt);
+            $createdAtImmutable = DateTimeImmutable::createFromMutable($createdAt);
             yield ['id' => (string)$this->faker->numberBetween(1000, 9999999), 'login' => $login, 'broadcasterType' => $this->faker->optional()->randomElement(['partner', 'affiliate', '']), 'description' => $this->faker->optional()->paragraph(), 'displayName' => $this->faker->optional()->passthrough($login), 'email' => $this->faker->optional()->email(), 'offlineImageUrl' => $this->faker->optional()->imageUrl(), 'profileImageUrl' => $this->faker->optional()->imageUrl(), 'type' => $this->faker->optional()->randomElement(['staff', 'admin', 'global_mod', '']), 'viewCount' => $this->faker->optional()->numberBetween(), 'createdAt' => $this->faker->optional()->randomElement([$createdAt, $createdAtImmutable])];
         }
     }
@@ -254,7 +254,7 @@ class UserTest extends TestCase
     {
         $follow = new User();
         $follow->setCreatedAt($date);
-        
+
         $serialized = $this->serializer->serialize($follow, 'json');
         $this->assertStringContainsString($date->format('Y'), $serialized);
         $this->assertStringContainsString($date->format('m'), $serialized);
@@ -292,7 +292,7 @@ class UserTest extends TestCase
                 $this->faker->time('\-H:i')
             ]);
         }
-        
+
         foreach ($timezones as $timezone) {
             foreach (['P', 'p'] as $timezoneIdentifier) {
                 $date = $this->faker->dateTime(timezone: $timezone);
@@ -322,7 +322,7 @@ class UserTest extends TestCase
     /**
      * @before
      */
-    protected function setUpSerializer()
+    protected function setUpSerializer(): void
     {
         $this->setupObjectNormalizerParts();
         $normalizer = new TwitchDateTimeNormalizer($this->classMetadataFactory, $this->metadataAwareNameConverter, $this->propertyAccessor, $this->propertyInfo, $this->classDiscriminatorFromClassMetadata);
@@ -337,4 +337,3 @@ class UserTest extends TestCase
         $this->serializer = null;
     }
 }
-

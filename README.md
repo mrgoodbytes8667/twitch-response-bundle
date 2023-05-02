@@ -56,6 +56,12 @@ return [
 ```
 Note: this bundle depends on the [Enum-Serializer-Bundle](https://github.com/mrgoodbytes8667/enum-serializer-bundle) and [setup instructions](https://github.com/mrgoodbytes8667/enum-serializer-bundle/blob/main/README.md#applications-that-dont-use-symfony-flex) for it must be followed as well.
 
+## Contributing
+
+### Test Fixtures
+Instructions for creating new test fixtures is in the [wiki](https://github.com/mrgoodbytes8667/twitch-response-bundle/wiki/Creating-Test-Fixtures).
+
+
 ## License
 [![License](https://i.creativecommons.org/l/by-nc/4.0/88x31.png)]("http://creativecommons.org/licenses/by-nc/4.0/)  
 twitch-response-bundle by [MrGoodBytes](https://mrgoodbytes.dev) is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).  
