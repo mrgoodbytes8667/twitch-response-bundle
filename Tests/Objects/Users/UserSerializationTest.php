@@ -1,27 +1,31 @@
 <?php
 
+namespace Bytes\TwitchResponseBundle\Tests\Objects\Users;
 
-namespace Bytes\TwitchResponseBundle\Tests;
-
-
+use Bytes\Common\Faker\TestFakerTrait;
 use Bytes\TwitchResponseBundle\Normalizer\TwitchDateTimeNormalizer;
+use Bytes\TwitchResponseBundle\Objects\Interfaces\UserInterface;
 use Bytes\TwitchResponseBundle\Objects\Users\User;
+use Bytes\TwitchResponseBundle\Tests\TestFullSerializationCase;
+use DateTime;
+use DateTimeInterface;
+use Exception;
+use Generator;
 use Symfony\Component\Serializer\Normalizer\UnwrappingDenormalizer;
+use function Symfony\Component\String\u;
 
-class DeserializationTest extends TestSerializationCase
+/**
+ *
+ */
+class UserSerializationTest extends TestFullSerializationCase
 {
     /**
-     * Note that created_at is not tested here and is not included in users.json. This serializer does not add in the
-     * {@see TwitchDateTimeNormalizer} and therefore cannot test this property. It is included in other tests.
-     *
      * @return void
      */
     public function testUserDeserialization()
     {
-        $serializer = $this->createSerializer();
-
         /** @var User $output */
-        $output = $serializer->deserialize(file_get_contents(self::getFixturesFile('users.json')), User::class, 'json', [UnwrappingDenormalizer::UNWRAP_PATH => '[data][0]']);
+        $output = $this->serializer->deserialize(file_get_contents(self::getFixturesFile('users.json')), User::class, 'json', [UnwrappingDenormalizer::UNWRAP_PATH => '[data][0]']);
 
         self::assertEquals('partner', $output->getBroadcasterType());
         self::assertEquals("Twitch is the world's leading video platform and community for gamers with more than 100 million visitors per month. Our mission is to connect gamers around the world by allowing them to broadcast, watch, and chat from everywhere they play.", $output->getDescription());
@@ -35,5 +39,6 @@ class DeserializationTest extends TestSerializationCase
         self::assertEquals("", $output->getType());
         self::assertEquals(312119199, $output->getViewCount());
         self::assertNull($output->getEmail());
+        self::assertEquals($output->getCreatedAt(), new DateTime('2007-05-22T10:39:54.000000+0000'));
     }
 }

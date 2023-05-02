@@ -47,7 +47,7 @@ trait SubscriptionTrait
      * @var \DateTimeInterface|null
      */
     #[SerializedName('created_at')]
-    protected $createdAt = null;
+    protected ?\DateTimeInterface $createdAt = null;
 
     /**
      * @return string|null
