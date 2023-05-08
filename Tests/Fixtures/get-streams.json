@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "game_id": "32399",
+      "game_name": "Counter-Strike: Global Offensive",
+      "id": "39570995429",
+      "is_mature": false,
+      "language": "en",
+      "started_at": "2023-05-08T08:06:47Z",
+      "tag_ids": [],
+      "tags": [
+        "Esports",
+        "English"
+      ],
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_blastpremier-{width}x{height}.jpg",
+      "title": "BLAST.tv Major, Challenger Stage: Day 1, Stream A | NIP vs. MOUZ",
+      "type": "live",
+      "user_id": "163299585",
+      "user_login": "blastpremier",
+      "user_name": "BLASTPremier",
+      "viewer_count": 64532
+    },
+    {
+      "game_id": "29595",
+      "game_name": "Dota 2",
+      "id": "39571252837",
+      "is_mature": false,
+      "language": "ru",
+      "started_at": "2023-05-08T10:12:52Z",
+      "tag_ids": [],
+      "tags": null,
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_torontotokyo17-{width}x{height}.jpg",
+      "title": "DOTA GYM SLEEP REPEAT",
+      "type": "live",
+      "user_id": "178413200",
+      "user_login": "torontotokyo17",
+      "user_name": "TORONTOTOKYO17",
+      "viewer_count": 6533
+    }
+  ],
+  "pagination": {
+    "cursor": "eyJiIjp7IkN1cnNvciI6ImV5SnpJam8yTkRVek1pNDRNamc0TkRNek1EVTNPQ3dpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In0sImEiOnsiQ3Vyc29yIjoiZXlKeklqbzJNREV5Tmk0eU1UUTFOalk1TkRNNE1pd2laQ0k2Wm1Gc2MyVXNJblFpT25SeWRXVjkifX0"
+  }
+}
