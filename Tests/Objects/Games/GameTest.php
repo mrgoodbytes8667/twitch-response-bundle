@@ -87,7 +87,7 @@ class GameTest extends TestCase
         $this->assertInstanceOf(Game::class, $game->setGameID($id));
         $this->assertInstanceOf(Game::class, $game->setName($name));
         $this->assertInstanceOf(Game::class, $game->setBoxArtURL($boxArtUrl));
-        self::assertEquals($game->getBoxArtURL(), $game->getProfileImage());
+        self::assertEquals($game->getBoxArtURLWithSize(width: 85, height: 113), $game->getProfileImage(width: 85, height: 113));
         self::assertInstanceOf(Game::class, $game->setIgdbId($igdbId));
 
         $this->assertEquals($id, $game->getGameID());
