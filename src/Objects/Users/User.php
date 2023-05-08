@@ -4,6 +4,7 @@
 namespace Bytes\TwitchResponseBundle\Objects\Users;
 
 
+use Bytes\ResponseBundle\Interfaces\ProfileImageInterface;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchDateTimeInterface;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\TwitchUserInterface;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\UserInterface;
@@ -15,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  * Class User
  * @package Bytes\TwitchResponseBundle\Objects\Users
  */
-class User implements UserInterface, TwitchDateTimeInterface, TwitchUserInterface
+class User implements UserInterface, TwitchDateTimeInterface, TwitchUserInterface, ProfileImageInterface
 {
     /**
      * User’s broadcaster type: "partner", "affiliate", or "".
@@ -376,5 +377,17 @@ class User implements UserInterface, TwitchDateTimeInterface, TwitchUserInterfac
     {
         $this->created_at = $created_at;
         return $this;
+    }
+
+    /**
+     * Return the profile image
+     * @param int|null $width
+     * @param int|null $height
+     * @return string|null
+     */
+    #[Ignore]
+    public function getProfileImage(?int $width = null, ?int $height = null): ?string
+    {
+        return $this->getProfileImageUrl();
     }
 }

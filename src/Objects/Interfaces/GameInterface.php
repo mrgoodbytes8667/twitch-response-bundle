@@ -2,9 +2,10 @@
 
 namespace Bytes\TwitchResponseBundle\Objects\Interfaces;
 
+use Bytes\ResponseBundle\Interfaces\ProfileImageInterface;
 use Bytes\TwitchResponseBundle\Objects\ImageResize;
 
-interface GameInterface
+interface GameInterface extends ProfileImageInterface
 {
     /**
      * @return string|null

@@ -6,6 +6,7 @@ namespace Bytes\TwitchResponseBundle\Objects\Games;
 
 use Bytes\TwitchResponseBundle\Objects\ImageResize;
 use Bytes\TwitchResponseBundle\Objects\Interfaces\GameInterface;
+use Symfony\Component\Serializer\Annotation\Ignore;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
@@ -137,5 +138,16 @@ class Game implements GameInterface
             ->setBoxArtURL($boxArtUrl)
         ->setIgdbId($igdbId);
         return $static;
+    }
+
+    /**
+     * @param int|null $width
+     * @param int|null $height
+     * @return string|null
+     */
+    #[Ignore]
+    public function getProfileImage(?int $width = ImageResize::WIDTH_TWITCH_GAME_THUMBNAIL, ?int $height = ImageResize::HEIGHT_TWITCH_GAME_THUMBNAIL): ?string
+    {
+        return $this->getBoxArtURLWithSize(width: $width, height: $height);
     }
 }

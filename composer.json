@@ -7,7 +7,7 @@
         "php": "^8.1",
         "ext-json": "*",
         "doctrine/annotations": "^1.0 | ^2.0",
-        "mrgoodbytes8667/response-bundle": "^5.0 | ^6.0",
+        "mrgoodbytes8667/response-bundle": "^5.1.1 | ^6.0",
         "symfony/messenger": "^6.2",
         "symfony/validator": "^6.2"
     },
