@@ -2,7 +2,6 @@
 
 namespace Bytes\TwitchResponseBundle\Tests\Objects\Streams;
 
-use Bytes\TwitchResponseBundle\Objects\EventSub\Notification\Stream\Online;
 use Bytes\TwitchResponseBundle\Objects\Streams\Stream;
 use Bytes\TwitchResponseBundle\Tests\TestFullSerializationCase;
 use Symfony\Component\Serializer\Normalizer\UnwrappingDenormalizer;
@@ -22,5 +21,9 @@ class StreamSerializationTest extends TestFullSerializationCase
 
         self::assertNotEmpty($output);
         self::assertCount(2, $output);
+
+        foreach ($output as $stream) {
+            self::assertNotNull($stream->getTags());
+        }
     }
 }
