@@ -46,9 +46,9 @@ trait StreamTrait
     protected $tag_ids;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    protected array $tags = [];
+    protected ?array $tags = [];
 
     /**
      * @var string|null
@@ -232,16 +232,16 @@ trait StreamTrait
      */
     public function getTags(): array
     {
-        return $this->tags;
+        return $this->tags ?? [];
     }
 
     /**
      * @param string[] $tags
      * @return $this
      */
-    public function setTags(array $tags): self
+    public function setTags(?array $tags): self
     {
-        $this->tags = $tags;
+        $this->tags = $tags ?? [];
         return $this;
     }
 
