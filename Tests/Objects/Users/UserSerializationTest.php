@@ -36,6 +36,7 @@ class UserSerializationTest extends TestFullSerializationCase
         self::assertEquals($output->getLogin(), $output->getUserLogin());
         self::assertEquals("https://static-cdn.jtvnw.net/jtv_user_pictures/bdc19970-3a3b-4516-9f23-4203d59f0a5d-channel_offline_image-1920x1080.png", $output->getOfflineImageUrl());
         self::assertEquals("https://static-cdn.jtvnw.net/jtv_user_pictures/27bfa19d-e9ab-4d31-bff5-eea89e47a3df-profile_image-300x300.png", $output->getProfileImageUrl());
+        self::assertEquals("https://static-cdn.jtvnw.net/jtv_user_pictures/27bfa19d-e9ab-4d31-bff5-eea89e47a3df-profile_image-300x300.png", $output->getProfileImage());
         self::assertEquals("", $output->getType());
         self::assertEquals(312119199, $output->getViewCount());
         self::assertNull($output->getEmail());

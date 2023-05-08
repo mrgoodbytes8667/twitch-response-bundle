@@ -310,6 +310,7 @@ class User implements UserInterface, TwitchDateTimeInterface, TwitchUserInterfac
     /**
      * @return string|null
      */
+    #[Ignore]
     public function getProfileImageUrl(): ?string
     {
         return $this->profile_image_url;

@@ -131,6 +131,7 @@ class UserTest extends TestCase
         $this->assertNull($this->user->getProfileImageUrl());
         $this->assertInstanceOf(User::class, $this->user->setProfileImageUrl($profileImageUrl));
         $this->assertEquals($profileImageUrl, $this->user->getProfileImageUrl());
+        $this->assertEquals($profileImageUrl, $this->user->getProfileImage());
     }
 
     /**
