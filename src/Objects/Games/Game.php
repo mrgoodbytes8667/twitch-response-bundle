@@ -90,6 +90,7 @@ class Game implements GameInterface
      * @param int $height
      * @return string
      */
+    #[Ignore]
     public function getBoxArtURLWithSize(int $width = ImageResize::WIDTH_TWITCH_GAME_THUMBNAIL, int $height = ImageResize::HEIGHT_TWITCH_GAME_THUMBNAIL): string
     {
         return ImageResize::twitchGameThumbnail(url: $this->boxArtURL ?? '', width: $width, height: $height);
