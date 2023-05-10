@@ -13,6 +13,8 @@ use Bytes\TwitchResponseBundle\Objects\Traits\TotalTrait;
  * Class Subscriptions
  * Used for Creation response and Get EventSub Subscriptions
  * @package Bytes\TwitchResponseBundle\Objects\EventSub\Subscription
+ *
+ * @method int|null getTotal() Returns the total number of subscriptions with pagination 
  */
 class Subscriptions implements DataPaginationResponseInterface
 {
