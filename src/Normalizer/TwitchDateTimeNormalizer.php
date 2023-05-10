@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use function Symfony\Component\String\u;
 
 /**
- * Class SubscriptionNormalizer
+ * Class TwitchDateTimeNormalizer
  * Sets the created_at field format to the non-standard Twitch EventSub format for denormalization, otherwise
  * defaults to GetSetMethodNormalizer
  * @package Bytes\TwitchResponseBundle\Serializer
@@ -40,17 +40,16 @@ class TwitchDateTimeNormalizer extends ObjectNormalizer
                     $camelKey = u($key)->camel()->toString();
                     $createdAt = u($data[$key]);
                     //0000-00-00T00:00:00.vP
-                    if(in_array($createdAt->slice(-6, 1)->toString(), ['+', '-']) || $createdAt->endsWith('Z'))
-                    {
+                    if (in_array($createdAt->slice(-6, 1)->toString(), ['+', '-']) || $createdAt->endsWith('Z')) {
                         if ($createdAt->endsWith('Z')) {
-                            $timezone =  'Z';
+                            $timezone = 'Z';
                         } elseif ($createdAt->slice(-6, 1) == '+') {
-                            $timezone =  $createdAt->afterLast('+')->prepend('+');
+                            $timezone = $createdAt->afterLast('+')->prepend('+');
                         } else {
-                            $timezone =  $createdAt->afterLast('-')->prepend('-');
+                            $timezone = $createdAt->afterLast('-')->prepend('-');
                         }
-                        
-                        if($createdAt->containsAny('.')) {
+
+                        if ($createdAt->containsAny('.')) {
                             $createdAt = $createdAt->before('.')->append($timezone);
                         }
                     }
@@ -89,5 +88,27 @@ class TwitchDateTimeNormalizer extends ObjectNormalizer
     public function supportsNormalization($data, string $format = null): bool
     {
         return ($data instanceof TwitchDateTimeInterface) && parent::supportsNormalization($data, $format);
+    }
+
+    /**
+     * Returns the types potentially supported by this [de]normalizer.
+     *
+     * For each supported formats (if applicable), the supported types should be
+     * returned as keys, and each type should be mapped to a boolean indicating
+     * if the result of supports[Den|N]ormalization() can be cached or not
+     * (a result cannot be cached when it depends on the context or on the data.)
+     * A null value means that the [de]normalizer does not support the corresponding
+     * type.
+     *
+     * Use type "object" to match any classes or interfaces,
+     * and type "*" to match any types.
+     *
+     * @return array<class-string|'*'|'object'|string, bool|null>
+     */
+    public function getSupportedTypes(?string $format): array
+    {
+        return [
+            TwitchDateTimeInterface::class => (__CLASS__ === static::class),
+        ];
     }
 }
